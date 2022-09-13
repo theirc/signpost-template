@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "prepare": "husky install",
+    "lint": "next lint --max-warnings=0",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run",
+    "e2e": "start-server-and-test dev :3000 cypress",
+    "e2e:headless": "start-server-and-test dev :3000 cypress:headless"
   },
   "dependencies": {
     "next": "12.3.0",
@@ -14,11 +19,23 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "@types/node": "18.7.17",
     "@types/react": "18.0.19",
     "@types/react-dom": "18.0.6",
-    "eslint": "8.23.1",
-    "eslint-config-next": "12.3.0",
+    "cypress": "^10.7.0",
+    "eslint": "^8.23.1",
+    "eslint-config-next": "^12.3.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "start-server-and-test": "^1.14.0",
     "typescript": "4.8.3"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
