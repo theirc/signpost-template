@@ -1,7 +1,8 @@
-import whatsappImage from '../public/whatsapp.svg';
+import { SocialMediaProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
+
 import facebookImage from '../public/facebook.svg';
 import messengerImage from '../public/messenger.svg';
-import { SocialMediaProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
+import whatsappImage from '../public/whatsapp.svg';
 
 /**
  * Provides data for Social Media buttons, e.g. Facebook, Whatsapp, etc.

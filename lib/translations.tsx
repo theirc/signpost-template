@@ -1,10 +1,11 @@
-import { HeaderBannerProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
-import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page';
-import { ErrorProps } from '@ircsignpost/signpost-base/dist/src/error';
-import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
-import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-cards-list';
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
+import { ErrorProps } from '@ircsignpost/signpost-base/dist/src/error';
+import { HeaderBannerProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
 import { HomePageStrings } from '@ircsignpost/signpost-base/dist/src/home-page';
+import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-cards-list';
+import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page';
+import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
+
 import { CustomMenuOverlayStrings } from './menu';
 import { getSocialMediaProps } from './social-media';
 

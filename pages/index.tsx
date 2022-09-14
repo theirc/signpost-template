@@ -4,12 +4,6 @@ import HomePage, {
 import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 import { ServiceMapProps } from '@ircsignpost/signpost-base/dist/src/service-map';
 import { ZendeskCategory } from '@ircsignpost/signpost-base/dist/src/zendesk';
-// TODO Use real Zendesk API implementation.
-import {
-  getArticle,
-  getCategories,
-  getTranslationsFromDynamicContent,
-} from '../lib/zendesk-fake';
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 
@@ -21,6 +15,8 @@ import {
   ZENDESK_AUTH_HEADER,
 } from '../lib/constants';
 import { LOCALES, Locale, getLocaleFromCode } from '../lib/locale';
+import { getHeaderLogoProps } from '../lib/logo';
+import { getMenuItems } from '../lib/menu';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS,
@@ -28,8 +24,12 @@ import {
   populateMenuOverlayStrings,
 } from '../lib/translations';
 import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
-import { getHeaderLogoProps } from '../lib/logo';
-import { getMenuItems } from '../lib/menu';
+// TODO Use real Zendesk API implementation.
+import {
+  getArticle,
+  getCategories,
+  getTranslationsFromDynamicContent,
+} from '../lib/zendesk-fake';
 
 interface HomeProps {
   currentLocale: Locale;
