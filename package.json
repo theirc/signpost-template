@@ -10,8 +10,8 @@
     "lint": "next lint --max-warnings=0",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
-    "e2e": "start-server-and-test dev :3000 cypress",
-    "e2e:headless": "start-server-and-test dev :3000 cypress:headless"
+    "e2e": "start-server-and-test 'yarn dev --port 3003' :3003 cypress",
+    "e2e:headless": "start-server-and-test 'yarn dev --port 3003' :3003 cypress:headless"
   },
   "dependencies": {
     "@ircsignpost/signpost-base": "^4.2.0",
