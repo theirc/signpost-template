@@ -10,6 +10,17 @@ const nextConfig = {
     defaultLocale: 'default',
     localeDetection: false,
   },
+  async redirects() {
+    return [
+      // Redirect legacy Zendesk paths with slugs. For example, redirect
+      // /articles/123456-Article-Title to /articles/123456.
+      {
+        source: '/:resource/:id(\\d{1,}):rest(-.*)',
+        destination: '/:resource/:id',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = withLess({
