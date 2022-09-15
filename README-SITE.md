@@ -2,6 +2,22 @@
 
 TODO: Briefly describe your site
 
+## Development environment setup
+
+This section explains how to set up your development environment, so that you can build, test, and preview the site locally.
+
+1. Install Node.js dependencies
+
+   ```sh
+   yarn install
+   ```
+
+2. Install Git hooks
+
+   ```sh
+   yarn prepare
+   ```
+
 ## Getting Started
 
 First, run the development server:
@@ -20,17 +36,20 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Linting & formatting
 
-To learn more about Next.js, take a look at the following resources:
+We use ESLint and [Prettier][prettier] to lint and format the directory respectively.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To check for lint and formatting errors, run
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+yarn lint
+yarn prettier --check .
+```
 
-## Deploy on Vercel
+To automatically fix issues, run
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+yarn lint --fix
+yarn prettier --write .
+```
