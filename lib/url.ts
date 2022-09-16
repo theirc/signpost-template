@@ -6,3 +6,9 @@ export function getSiteUrl(): string {
   // dynamic URL for preview and dev deployments.
   return process.env.SITE_URL ?? 'https://' + process.env.VERCEL_URL;
 }
+
+// @return The site's Zendesk effective URL, e.g., https://signpost-afghanistan.zendesk.com
+export function getZendeskUrl(): string {
+  // If ZENDESK_URL is present, use that. Otherwise use Signpost global URL.
+  return process.env.ZENDESK_URL ?? 'https://signpost-global.zendesk.com';
+}
