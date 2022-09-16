@@ -45,6 +45,7 @@ The site depends on the following environment variables that you need to provide
   `https://www.beporsed.org`. You most likely want to use
   `http://localhost:3000` for your [variables in
   .env.local](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables).
+- `ZENDESK_URL`. The canonical Zendesk URL, e.g., `https://signpost-afghanistan.zendesk.com`.
 
 ## Linting & formatting
 
