@@ -17,3 +17,6 @@ describe('Redirects', () => {
     cy.url().should('eq', 'http://localhost:3003/locale-select?target=%2F');
   });
 });
+
+// Prevent TypeScript from reading file as legacy script.
+export {};
