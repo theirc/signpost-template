@@ -36,6 +36,16 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+### Environment variables
+
+The site depends on the following environment variables that you need to provide:
+
+- `SITE_URL` (`VERCEL_URL` is used as fallback in Vercel environments). This
+  variable should represent the site's canonical URL in the environment, e.g.,
+  `https://www.beporsed.org`. You most likely want to use
+  `http://localhost:3000` for your [variables in
+  .env.local](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables).
+
 ## Linting & formatting
 
 We use ESLint and [Prettier][prettier] to lint and format the directory respectively.
