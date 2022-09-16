@@ -63,3 +63,16 @@ To automatically fix issues, run
 yarn lint --fix
 yarn prettier --write .
 ```
+
+## Site's design
+
+This section documents some of the site's design decisions.
+
+### Sitemap & robots.txt
+
+To improve SEO of the website, we publish robots.txt and a sitemap.
+
+We use [next-sitemap][next-sitemap] to simplify the process of creating those
+files.
+
+[next-sitemap]: https://www.npmjs.com/package/next-sitemap 'next-sitemap'
