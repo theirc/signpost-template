@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.mjs",
     "start": "next start",
     "prepare": "husky install",
     "lint": "next lint --max-warnings=0",
