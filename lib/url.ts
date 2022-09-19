@@ -12,3 +12,8 @@ export function getZendeskUrl(): string {
   // If ZENDESK_URL is present, use that. Otherwise use Signpost global URL.
   return process.env.ZENDESK_URL ?? 'https://signpost-global.zendesk.com';
 }
+
+// @return Zendesk's mapped URL for the site, e.g., https://www.beporsed-ma-ra.org
+export function getZendeskMappedUrl(): string {
+  return process.env.ZENDESK_MAPPED_URL ?? 'https://www.TODO.com';
+}
