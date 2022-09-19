@@ -17,7 +17,16 @@ created from this template.
 
 ### 3. Run the new site's development set up instructions
 
-### 4. Connect the site to Vercel
+### 4. Customize your site
+
+1.  Fill out the environment variables documented in `README-SITE.md` in [.env.local](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables).
+2.  Finish TODOs in [lib/translations.tsx](lib/translations.tsx).
+    - **Note:** [Create new Dynamic content on Zendesk](https://signpost-global.zendesk.com/admin/workspaces/agent-workspace/dynamic_content) with your website's name in prefix
+3.  Finish TODOs in [lib/social-media.tsx](lib/social-media.tsx).
+    - **Note:** you might need to change Social media logo images in [public/](public/) directory
+4.  Fill out custom CSS variables in [next.config.js](next.config.js).
+
+### 5. Connect the site to Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel
 Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
@@ -25,11 +34,3 @@ from the creators of Next.js.
 
 Check out [Next.js deployment
 documentation](https://nextjs.org/docs/deployment) for more details.
-
-### 5. Customize your site
-
-1.  Fill out custom CSS variables in [next.config.js](next.config.js).
-2.  Finish TODOs in [lib/translations.tsx](lib/translations.tsx).
-    - **Note:** [Create new Dynamic content on Zendesk](https://signpost-global.zendesk.com/admin/workspaces/agent-workspace/dynamic_content) with your website's name in prefix
-3.  Finish TODOs in [lib/social-media.tsx](lib/social-media.tsx).
-    - **Note:** you might need to change Social media logo images in [public/](public/) directory
