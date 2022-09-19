@@ -20,11 +20,12 @@ created from this template.
 ### 4. Customize your site
 
 1.  Fill out the environment variables documented in `README-SITE.md` in [.env.local](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables).
-2.  Finish TODOs in [lib/translations.tsx](lib/translations.tsx).
+2.  Provide [the site's constants](lib/constants.ts). Search for TODOs.
+3.  Finish TODOs in [lib/translations.tsx](lib/translations.tsx).
     - **Note:** [Create new Dynamic content on Zendesk](https://signpost-global.zendesk.com/admin/workspaces/agent-workspace/dynamic_content) with your website's name in prefix
-3.  Finish TODOs in [lib/social-media.tsx](lib/social-media.tsx).
+4.  Finish TODOs in [lib/social-media.tsx](lib/social-media.tsx).
     - **Note:** you might need to change Social media logo images in [public/](public/) directory
-4.  Fill out custom CSS variables in [next.config.js](next.config.js).
+5.  Fill out custom CSS variables in [next.config.js](next.config.js).
 
 ### 5. Connect the site to Vercel
 

@@ -48,6 +48,9 @@ The site depends on the following environment variables that you need to provide
 - `ZENDESK_URL`. The canonical Zendesk URL, e.g., `https://signpost-afghanistan.zendesk.com`.
 - `ZENDESK_MAPPED_URL`. The mapped URL configured in Zendesk that Zendesk
   prepends to links, e.g., `https://www.unitedforukraine.org`.
+- `ZENDESK_OAUTH_TOKEN`. [The OAuth token from Zendesk that allows
+  querying their
+  API](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application).
 
 ## Linting & formatting
 
