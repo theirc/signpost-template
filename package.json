@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.14.2",
-    "@ircsignpost/signpost-base": "^6.0.0",
+    "@ircsignpost/signpost-base": "^6.8.0",
     "antd": "^4.23.1",
     "leaflet": "^1.8.0",
     "leaflet.markercluster": "^1.5.3",
