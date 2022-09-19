@@ -5,12 +5,14 @@ import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-butt
 import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-cards-list';
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { HomePageStrings } from '@ircsignpost/signpost-base/dist/src/home-page';
-import { MenuOverlayStrings } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
+import { CustomMenuOverlayStrings } from './menu';
 
 /** General strings used on various pages. */
 export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header strings.
   'default_menu_home_title',
+  'default_information_title',
+  'default_menu_about_title',
   // Cookie banner strings.
   'default_cookie_banner',
   'default_accept',
@@ -154,9 +156,11 @@ export function getSelectTopicLabel(dynamicContent: {
 
 export function populateMenuOverlayStrings(dynamicContent: {
   [key: string]: string;
-}): MenuOverlayStrings {
+}): CustomMenuOverlayStrings {
   return {
     home: dynamicContent['default_menu_home_title'],
+    information: dynamicContent['default_information_title'],
+    about: dynamicContent['default_menu_about_title'],
   };
 }
 

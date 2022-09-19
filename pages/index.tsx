@@ -90,7 +90,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   categories.forEach((c) => (c.icon = CATEGORY_ICON_NAMES[c.id]));
 
   const menuOverlayItems = getMenuItems(
-    populateMenuOverlayStrings(dynamicContent)
+    populateMenuOverlayStrings(dynamicContent),
+    categories
   );
   const article = await getArticle(
     currentLocale,
