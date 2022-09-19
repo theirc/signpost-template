@@ -1,8 +1,10 @@
+import { CategoryStrings } from '@ircsignpost/signpost-base/dist/src/category-page';
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { ErrorProps } from '@ircsignpost/signpost-base/dist/src/error';
 import { HeaderBannerProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
 import { HomePageStrings } from '@ircsignpost/signpost-base/dist/src/home-page';
 import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-cards-list';
+import { SearchBarStrings } from '@ircsignpost/signpost-base/dist/src/search-bar';
 import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page';
 import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
 
@@ -20,6 +22,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_accept',
   'default_reject',
   // General strings.
+  'default_search_hint',
   'default_share',
   'default_share_notificaiton_text',
   'default_download',
@@ -173,5 +176,24 @@ export function populateHomePageStrings(dynamicContent: {
     cardsListStrings: populateCategoriesSectionStrings(dynamicContent),
     cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     headerBannerProps: createHeaderBannerProps(dynamicContent),
+    searchBarStrings: populateSearchBarStrings(dynamicContent),
+  };
+}
+
+export function populateSearchBarStrings(dynamicContent: {
+  [key: string]: string;
+}): SearchBarStrings {
+  return {
+    searchHint: dynamicContent['default_search_hint'],
+  };
+}
+
+export function populateCategoryStrings(dynamicContent: {
+  [key: string]: string;
+}): CategoryStrings {
+  return {
+    cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
+    selectTopicLabel: getSelectTopicLabel(dynamicContent),
+    searchBarStrings: populateSearchBarStrings(dynamicContent),
   };
 }
