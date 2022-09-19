@@ -4,9 +4,13 @@ import { ErrorProps } from '@ircsignpost/signpost-base/dist/src/error';
 import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
 import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-cards-list';
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
+import { HomePageStrings } from '@ircsignpost/signpost-base/dist/src/home-page';
+import { MenuOverlayStrings } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 
 /** General strings used on various pages. */
 export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
+  // Header strings.
+  'default_menu_home_title',
   // Cookie banner strings.
   'default_cookie_banner',
   'default_accept',
@@ -21,7 +25,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
 
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header banner and social media strings.
-  /*  
+  /*
    * TODO: create Dynamic content ID for mission statement.
   '<website_name>_mission_statement',
    */
@@ -147,3 +151,21 @@ export function getSelectTopicLabel(dynamicContent: {
 
 // TODO(annkats): add populateServiceMapStrings() once Service map becomes a Shared component.
 // TODO(annkats): add populateArticlePageStrings() once Article page becomes a Shared component.
+
+export function populateMenuOverlayStrings(dynamicContent: {
+  [key: string]: string;
+}): MenuOverlayStrings {
+  return {
+    home: dynamicContent['default_menu_home_title'],
+  };
+}
+
+export function populateHomePageStrings(dynamicContent: {
+  [key: string]: string;
+}): HomePageStrings {
+  return {
+    cardsListStrings: populateCategoriesSectionStrings(dynamicContent),
+    cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
+    headerBannerProps: createHeaderBannerProps(dynamicContent),
+  };
+}

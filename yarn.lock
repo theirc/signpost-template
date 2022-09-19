@@ -600,10 +600,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@ircsignpost/signpost-base@^6.8.0":
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/@ircsignpost/signpost-base/-/signpost-base-6.8.0.tgz#12dd671f0037a3ad7acaa92a874f113624d9abe1"
-  integrity sha512-2CiprKXaOebVqbpB9pEXxOdt6JObi5hnjLN3HfoXrmx9cFrZUBs1eApuGBGWBrMeBV/aBC5jBTqMNruBZK8l9A==
+"@ircsignpost/signpost-base@^6.9.1":
+  version "6.9.1"
+  resolved "https://registry.yarnpkg.com/@ircsignpost/signpost-base/-/signpost-base-6.9.1.tgz#87ec8983b0a7282f70d7a8001272a5c46388de80"
+  integrity sha512-RfP8reQKiB5oj2Edaj3Hhgxne8o/3Ic5SLWrCs4igqKKvFDIScDlJ9+JTgvKTLineedRJA1HrFNtlxWwYEcWVg==
   dependencies:
     "@algolia/autocomplete-core" "^1.7.1"
     "@algolia/autocomplete-js" "^1.7.1"
