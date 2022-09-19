@@ -6,6 +6,7 @@ import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { HomePageStrings } from '@ircsignpost/signpost-base/dist/src/home-page';
 import { CustomMenuOverlayStrings } from './menu';
+import { getSocialMediaProps } from './social-media';
 
 /** General strings used on various pages. */
 export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
@@ -69,7 +70,7 @@ export function createHeaderBannerProps(dynamicContent: {
     socialMediaTitle: dynamicContent['default_banner_social_media_title'],
     socialMediaDescription:
       dynamicContent['default_banner_social_media_description'],
-    socialMediaData: [], // TODO(annkats): use getSocialMediaProps(dynamicContent),
+    socialMediaData: getSocialMediaProps(dynamicContent),
   };
 }
 
