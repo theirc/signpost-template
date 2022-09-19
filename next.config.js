@@ -31,6 +31,34 @@ module.exports = withLess({
       // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
       modifyVars: {
         'primary-color': '#51258F',
+        'info-color': '#FF9083',
+        'alert-info-bg-color': '#FF9083',
+        // Override Ant typography.
+        'heading-1-size': '3.75rem',
+        'heading-2-size': '1.875rem',
+        'typography-title-font-weight': '400',
+        // Set height and border radius for 'default' type elements, e.g. buttons, inputs, etc.
+        'height-base': '48px',
+        'height-sm': '32px',
+        'border-radius-base': '10px',
+        'border-color-base': '#333',
+        // Set header styles.
+        'layout-header-height': 'auto',
+        'layout-header-min-height': '4.375rem',
+        'layout-header-padding': '0',
+        'header-background-color': '#2F7DBF',
+        'header-text-color': 'white',
+        'header-banner-background-color': 'linear-gradient(#2F7DBF, #3FA7FF)',
+        'header-banner-text-color': 'white',
+        // Set search styles.
+        'search-icon-color': 'black',
+        'search-icon-bg-color': '#FF9083',
+        // Set card styles.
+        'card-padding-base': '16px',
+        'home-page-card-icon-color': '#999999',
+        // Set cookie banner styles.
+        'cookie-banner-text': '#000',
+        'cookie-banner-back': '#ff9083',
       },
     },
   },

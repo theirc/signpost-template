@@ -26,9 +26,10 @@ from the creators of Next.js.
 Check out [Next.js deployment
 documentation](https://nextjs.org/docs/deployment) for more details.
 
-### 5. Populate your site's specific data by completing TODOs in following files:
+### 5. Customize your site
 
-- [lib/translations.tsx](lib/translations.tsx)
-  - **Note:** [Create new Dynamic content on Zendesk](https://signpost-global.zendesk.com/admin/workspaces/agent-workspace/dynamic_content) with your website's name in prefix
-- [lib/social-media.tsx](lib/social-media.tsx)
-  - **Note:** you might need to change Social media logo images in [public/](public/) directory
+1.  Fill out custom CSS variables in [next.config.js](next.config.js).
+2.  Finish TODOs in [lib/translations.tsx](lib/translations.tsx).
+    - **Note:** [Create new Dynamic content on Zendesk](https://signpost-global.zendesk.com/admin/workspaces/agent-workspace/dynamic_content) with your website's name in prefix
+3.  Finish TODOs in [lib/social-media.tsx](lib/social-media.tsx).
+    - **Note:** you might need to change Social media logo images in [public/](public/) directory
