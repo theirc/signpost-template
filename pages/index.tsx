@@ -14,7 +14,12 @@ import {
   REVALIDATION_TIMEOUT_SECONDS,
   ZENDESK_AUTH_HEADER,
 } from '../lib/constants';
-import { LOCALES, Locale, getLocaleFromCode } from '../lib/locale';
+import {
+  LOCALES,
+  Locale,
+  getLocaleFromCode,
+  getZendeskLocaleId,
+} from '../lib/locale';
 import { getHeaderLogoProps } from '../lib/logo';
 import { getMenuItems } from '../lib/menu';
 import {
@@ -62,13 +67,6 @@ const Home: NextPage<HomeProps> = ({
       categories={categories}
     />
   );
-};
-
-/* Returns a Zendesk locale id for the current locale.
- If there is no mapping for the requested locale, return the deafault id
- for en-us locale. */
-const getZendeskLocaleId = (_currentLocale: Locale): number => {
-  return 1;
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
