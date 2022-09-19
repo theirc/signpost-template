@@ -26,6 +26,7 @@ created from this template.
 4.  Finish TODOs in [lib/social-media.tsx](lib/social-media.tsx).
     - **Note:** you might need to change Social media logo images in [public/](public/) directory
 5.  Fill out custom CSS variables in [next.config.js](next.config.js).
+6.  Provide the site's logo in [lib/logo.ts](lib/logo.ts).
 
 ### 5. Connect the site to Vercel
 
