@@ -67,8 +67,17 @@ the corresponding environment variables: `NEXT_PUBLIC_GA_ID` and
 [migration from Universal Analytics to Google Analytics
 4](https://support.google.com/analytics/answer/11583528?hl=en).
 
-Next, you will need to use the `Analytics` component from `src/analytics.tsx`
-in your `pages/_app.tsx` file.
+Next, ensure that these environment variables are included in the `GOOGLE_ANALYTICS_IDS` variable of the [the site's constants](lib/constants.ts). For example,
+
+```
+  export const GOOGLE_ANALYTICS_IDS = [
+    process.env.NEXT_PUBLIC_GA_ID ?? '',
+    process.env.NEXT_PUBLIC_GA4_ID ?? '',
+  ];
+```
+
+These Measurement IDs are connected to the site by using the `Analytics` component from `@ircsignpost/signpost-base/dist/src/analytics`
+in your app's `pages/_app.tsx` file.
 This component needs to be added as close to the top as possible (above
 `<Component {...pageProps} />`). Your file should look something like the
 following:
@@ -76,14 +85,15 @@ following:
 ```
   ...
   import Analytics from '@ircsignpost/signpost-base/dist/src/analytics';
+  import { GOOGLE_ANALYTICS_IDS } from '../lib/constants';
   ...
 
   function MyApp({ Component, pageProps }: AppProps) {
     return (
       <>
-        <Analytics googleAnalyticsIds={[process.env.NEXT_PUBLIC_GA_ID ?? '', process.env.NEXT_PUBLIC_GA4_ID ?? '']}/>
+        <Analytics googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}/>
         <Component {...pageProps} />
-      </>;
+      </>
     );
   }
 
@@ -94,7 +104,7 @@ Now your app should be setup to start collecting data!
 
 **_Tracking Events_**
 
-By default, the `Analytics` component tracks page views for you, but you may want to track other events such as page clicks, or maybe disable/enable analytics depending on a user's response to a cookie banner. In order to do this, there are a couple lightweight utility functions you can use.
+By default, the `Analytics` component tracks page views for you, but you may want to track other events such as page clicks, or maybe disable/enable analytics depending on a user's response to a cookie banner (consider using `@ircsignpost/signpost-base/dist/src/cookie-banner`). In order to do this, there are a couple lightweight utility functions you can use.
 
 **NOTE:** These functions only work if you have successfully set up and began using the `Analytics` component.
 

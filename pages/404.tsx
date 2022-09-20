@@ -1,6 +1,7 @@
 import Custom404Page, {
   Custom404Strings,
 } from '@ircsignpost/signpost-base/dist/src/404-page';
+import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 import { ZendeskCategory } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
@@ -8,6 +9,7 @@ import { useRouter } from 'next/router';
 
 import {
   CATEGORIES_TO_HIDE,
+  GOOGLE_ANALYTICS_IDS,
   REVALIDATION_TIMEOUT_SECONDS,
   SITE_TITLE,
   ZENDESK_AUTH_HEADER,
@@ -58,6 +60,12 @@ export default function Custom404({
       strings={strings}
       menuOverlayItems={menuOverlayItems}
       headerLogoProps={getHeaderLogoProps(currentLocale)}
+      cookieBanner={
+        <CookieBanner
+          strings={strings.cookieBannerStrings}
+          googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}
+        />
+      }
     />
   );
 }

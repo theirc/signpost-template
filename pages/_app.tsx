@@ -17,10 +17,18 @@ import '@ircsignpost/signpost-base/styles/select-menu.less';
 import '@ircsignpost/signpost-base/styles/service-map.less';
 import '@ircsignpost/signpost-base/styles/map.less';
 import '@ircsignpost/signpost-base/styles/cookie-banner.less';
+import Analytics from '@ircsignpost/signpost-base/dist/src/analytics';
+import { GOOGLE_ANALYTICS_IDS } from '../lib/constants';
+
 import type { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Analytics googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}/>
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
