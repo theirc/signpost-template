@@ -6,6 +6,7 @@ import { HeaderBannerProps } from '@ircsignpost/signpost-base/dist/src/header-ba
 import { HomePageStrings } from '@ircsignpost/signpost-base/dist/src/home-page';
 import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-cards-list';
 import { SearchBarStrings } from '@ircsignpost/signpost-base/dist/src/search-bar';
+import { SearchResultsPageStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page';
 import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page-content';
 import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
 
@@ -206,5 +207,16 @@ export function populateCustom404Strings(dynamicContent: {
     errorStrings: generate404ErrorProps(dynamicContent),
     cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     searchBarStrings: populateSearchBarStrings(dynamicContent),
+  };
+}
+
+export function populateSearchResultsPageStrings(dynamicContent: {
+  [key: string]: string;
+}): SearchResultsPageStrings {
+  return {
+    cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
+    searchBarStrings: populateSearchBarStrings(dynamicContent),
+    lastEditedLabel: getLastUpdatedLabel(dynamicContent),
+    resultsFoundForQuery: dynamicContent['default_search_results_found'],
   };
 }
