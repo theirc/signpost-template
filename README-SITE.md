@@ -82,3 +82,18 @@ We use [next-sitemap][next-sitemap] to simplify the process of creating those
 files.
 
 [next-sitemap]: https://www.npmjs.com/package/next-sitemap 'next-sitemap'
+
+### Search
+
+We use [Algolia search engine](https://www.algolia.com/) to generate indexes for Zendesk Articles and Search queries.
+See full list of Signpost indexes on Algolia Signpost Dashbaord: https://www.algolia.com/apps/BWATZIXLX6/dashboard
+
+How to add Search to new Signpost websites:
+
+1. Add Search index for your Signpost instance: https://www.algolia.com/getstarted/#/zendesk
+   - Once added, you will see it in [Algolia Signpost dashboard](https://www.algolia.com/apps/BWATZIXLX6/dashboard)
+2. Configure new search index ('Configuration' tab for your index):
+   - In 'Language', populate 'Index languages' and 'Query languages' with your site's locales, e.g. see [example for U4U index](https://www.algolia.com/apps/BWATZIXLX6/explorer/configuration/zendesk_signpost-u4u_articles/language).
+   - In 'Facets', add 'category.id' to 'Attributes for faceting'. It's needed to filter internal/helper articles. E.g. see [example of U4U index](https://www.algolia.com/apps/BWATZIXLX6/explorer/configuration/zendesk_signpost-u4u_articles/facets).
+3. Add Queries index from your article index: https://www.algolia.com/apps/BWATZIXLX6/query-suggestions
+   - Ask your Product manager (Liam) if you don't have permissions.
