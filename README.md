@@ -36,3 +36,79 @@ from the creators of Next.js.
 
 Check out [Next.js deployment
 documentation](https://nextjs.org/docs/deployment) for more details.
+
+## 6. Setup a domain
+
+To set up the target domain after you have set up the site in the previous steps,
+follow https://vercel.com/docs/concepts/projects/custom-domains.
+
+## 7. Set up Google Analytics
+
+**_Create a GA4 Property and find your Measurement ID_**
+
+If you already have a Google Analytics Measurement ID (i.e. G-XXXXXXXXX or
+UA-XXXXXXXXX), you can skip this step.
+
+To set up Google Anaytics, you will first need to follow the [online
+instructions](https://support.google.com/analytics/answer/9304153) in order to
+create a new Google Analytics 4 property and add a data stream. After this,
+find your [Measurement
+ID](https://support.google.com/analytics/answer/9304153#zippy=%2Cadd-your-tag-using-google-tag-manager%2Cfind-your-g--id-for-any-platform-that-accepts-a-g--id).
+
+**_Set up your app to collect data_**
+
+To start data collection, you will need to add your Google Analytics ID(s) to
+your local `.env.local` file and as [environment
+variables](https://vercel.com/docs/concepts/projects/environment-variables) in
+your vercel project settings, using the `NEXT_PUBLIC_*` notation. For example,
+if you had a Universal Analytics ID and a Google Analytics 4 ID, you could have
+the corresponding environment variables: `NEXT_PUBLIC_GA_ID` and
+`NEXT_PUBLIC_GA4_ID`. You may have two IDs, for example, during the
+[migration from Universal Analytics to Google Analytics
+4](https://support.google.com/analytics/answer/11583528?hl=en).
+
+Next, you will need to use the `Analytics` component from `src/analytics.tsx`
+in your `pages/_app.tsx` file.
+This component needs to be added as close to the top as possible (above
+`<Component {...pageProps} />`). Your file should look something like the
+following:
+
+```
+  ...
+  import Analytics from '@ircsignpost/signpost-base/dist/src/analytics';
+  ...
+
+  function MyApp({ Component, pageProps }: AppProps) {
+    return (
+      <>
+        <Analytics googleAnalyticsIds={[process.env.NEXT_PUBLIC_GA_ID ?? '', process.env.NEXT_PUBLIC_GA4_ID ?? '']}/>
+        <Component {...pageProps} />
+      </>;
+    );
+  }
+
+  export default MyApp;
+```
+
+Now your app should be setup to start collecting data!
+
+**_Tracking Events_**
+
+By default, the `Analytics` component tracks page views for you, but you may want to track other events such as page clicks, or maybe disable/enable analytics depending on a user's response to a cookie banner. In order to do this, there are a couple lightweight utility functions you can use.
+
+**NOTE:** These functions only work if you have successfully set up and began using the `Analytics` component.
+
+```
+// Opts user out of Google Analytics tracking.
+export function disableGoogleAnalytics(googleAnalyticsIds: string[]);
+```
+
+```
+// Re-enables Google Analytics tracking if it was previously disabled.
+export function enableGoogleAnalytics(googleAnalyticsIds: string[]);
+```
+
+```
+// Tracks a click event for the given category and label.
+export function trackClickEvent(eventCategory: string, eventLabel: string);
+```
