@@ -78,5 +78,7 @@ export async function getTranslationsFromDynamicContent(
   _zendeskUrl: string,
   _authHeader: HeadersInit
 ): Promise<{ [key: string]: string }> {
-  return Object.fromEntries(placeholders.map((key) => [key, 'todo']));
+  // Use the `key` as a value, because some components use that value as a
+  // React key.
+  return Object.fromEntries(placeholders.map((key) => [key, `todo-${key}`]));
 }
