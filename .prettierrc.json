@@ -1,5 +1,8 @@
 {
   "singleQuote": true,
   "tabWidth": 2,
-  "semi": true
+  "semi": true,
+  "importOrder": ["^components/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

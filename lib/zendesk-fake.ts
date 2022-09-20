@@ -5,6 +5,7 @@ import type {
   ZendeskArticle,
   ZendeskCategory,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
+
 import { Locale } from './locale';
 
 /**

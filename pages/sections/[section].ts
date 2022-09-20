@@ -1,7 +1,8 @@
-import { getLocaleFromCode } from '../../lib/locale';
-import { getZendeskUrl } from '../../lib/url';
 import { getSection } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetServerSideProps } from 'next';
+
+import { getLocaleFromCode } from '../../lib/locale';
+import { getZendeskUrl } from '../../lib/url';
 
 export default function Section() {}
 
