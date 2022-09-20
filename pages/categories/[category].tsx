@@ -13,6 +13,7 @@ import { GetStaticProps } from 'next';
 import {
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
+  GOOGLE_ANALYTICS_IDS,
   REVALIDATION_TIMEOUT_SECONDS,
   SITE_TITLE,
   ZENDESK_AUTH_HEADER,
@@ -69,7 +70,12 @@ export default function Category({
       sections={sections}
       menuOverlayItems={menuOverlayItems}
       headerLogoProps={getHeaderLogoProps(currentLocale)}
-      cookieBanner={<CookieBanner strings={strings.cookieBannerStrings} />}
+      cookieBanner={
+        <CookieBanner
+          strings={strings.cookieBannerStrings}
+          googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}
+        />
+      }
       strings={strings}
     />
   );

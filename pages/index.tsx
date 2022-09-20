@@ -1,3 +1,4 @@
+import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import HomePage, {
   HomePageStrings,
 } from '@ircsignpost/signpost-base/dist/src/home-page';
@@ -11,6 +12,7 @@ import {
   ABOUT_US_ARTICLE_ID,
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
+  GOOGLE_ANALYTICS_IDS,
   REVALIDATION_TIMEOUT_SECONDS,
   SITE_TITLE,
   ZENDESK_AUTH_HEADER,
@@ -67,6 +69,12 @@ const Home: NextPage<HomeProps> = ({
       serviceMapProps={serviceMapProps}
       aboutUsTextHtml={aboutUsTextHtml}
       categories={categories}
+      cookieBanner={
+        <CookieBanner
+          strings={strings.cookieBannerStrings}
+          googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}
+        />
+      }
     />
   );
 };
