@@ -6,7 +6,7 @@ import { HeaderBannerProps } from '@ircsignpost/signpost-base/dist/src/header-ba
 import { HomePageStrings } from '@ircsignpost/signpost-base/dist/src/home-page';
 import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-cards-list';
 import { SearchBarStrings } from '@ircsignpost/signpost-base/dist/src/search-bar';
-import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page';
+import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page-content';
 import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
 
 import { CustomMenuOverlayStrings } from './menu';
