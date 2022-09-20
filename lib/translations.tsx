@@ -1,3 +1,4 @@
+import { Custom404Strings } from '@ircsignpost/signpost-base/dist/src/404-page';
 import { CategoryStrings } from '@ircsignpost/signpost-base/dist/src/category-page';
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { ErrorProps } from '@ircsignpost/signpost-base/dist/src/error';
@@ -194,6 +195,16 @@ export function populateCategoryStrings(dynamicContent: {
   return {
     cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     selectTopicLabel: getSelectTopicLabel(dynamicContent),
+    searchBarStrings: populateSearchBarStrings(dynamicContent),
+  };
+}
+
+export function populateCustom404Strings(dynamicContent: {
+  [key: string]: string;
+}): Custom404Strings {
+  return {
+    errorStrings: generate404ErrorProps(dynamicContent),
+    cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     searchBarStrings: populateSearchBarStrings(dynamicContent),
   };
 }
