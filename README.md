@@ -25,8 +25,10 @@ created from this template.
     - **Note:** [Create new Dynamic content on Zendesk](https://signpost-global.zendesk.com/admin/workspaces/agent-workspace/dynamic_content) with your website's name in prefix
 4.  Finish TODOs in [lib/social-media.tsx](lib/social-media.tsx).
     - **Note:** you might need to change Social media logo images in [public/](public/) directory
-5.  Fill out custom CSS variables in [next.config.js](next.config.js).
-6.  Provide the site's logo in [lib/logo.ts](lib/logo.ts).
+5.  Create Algolia Search indexes for Zendesk Articles and Search queries, and replace indexes in [lib/constants.ts](lib/constants.ts).
+    - Follow [Search documentation](README-SITE.md#search) on how to create new index.
+6.  Fill out custom CSS variables in [next.config.js](next.config.js).
+7.  Provide the site's logo in [lib/logo.ts](lib/logo.ts).
 
 ### 5. Connect the site to Vercel
 
