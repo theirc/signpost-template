@@ -809,10 +809,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@ircsignpost/signpost-base@^6.9.2":
-  version "6.9.2"
-  resolved "https://registry.yarnpkg.com/@ircsignpost/signpost-base/-/signpost-base-6.9.2.tgz#68bc541408d3386e66557ae89510a81c5bd8faae"
-  integrity sha512-aqIlI02Qfom9oxsccittcGhoCnoMqK6t5j/1TEHGvcOvTUzObHsisho8rOjKnWCXc7uG7l4lqaE1gSx/xC2U5g==
+"@ircsignpost/signpost-base@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@ircsignpost/signpost-base/-/signpost-base-8.0.0.tgz#aeca31b34c1173772dcee61cacd69e818e08c766"
+  integrity sha512-Zbf2IZZTIssi3l/uLn6F7FPhEj2TlmLwriycnEymY4XeMy4h0o27LUtvxkeOnxmhCE7L6adHOknApcXYAd6uAg==
   dependencies:
     "@algolia/autocomplete-core" "^1.7.1"
     "@algolia/autocomplete-js" "^1.7.1"

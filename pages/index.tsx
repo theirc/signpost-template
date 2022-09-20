@@ -12,6 +12,7 @@ import {
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
   REVALIDATION_TIMEOUT_SECONDS,
+  SITE_TITLE,
   ZENDESK_AUTH_HEADER,
 } from '../lib/constants';
 import {
@@ -57,6 +58,7 @@ const Home: NextPage<HomeProps> = ({
 }) => {
   return (
     <HomePage
+      title={SITE_TITLE}
       currentLocale={currentLocale}
       locales={LOCALES}
       strings={strings}
