@@ -4,12 +4,14 @@ import type { GetServerSidePropsContext, PreviewData } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
 import { getSiteUrl } from '../../lib/url';
+import * as category from '../categories/[category]';
 
 export async function getServerSideProps(
   ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ) {
   const allPaths: string[] = await Promise.all([
     /* Put dynamic paths here */
+    category.getStringPaths(),
   ]).then((results: string[][]) => results.flat());
 
   return generateSitemap(ctx, getSiteUrl(), allPaths);
