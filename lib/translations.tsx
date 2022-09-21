@@ -27,7 +27,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // General strings.
   'default_search_hint',
   'default_share',
-  'default_share_notificaiton_text',
+  'default_share_notification_text',
   'default_download',
   'default_last_updated',
   'default_article_reader_title',
@@ -168,7 +168,7 @@ export function getShareButtonProps(dynamicContent: {
 }): ShareButtonProps {
   return {
     label: dynamicContent['default_share'],
-    notificationText: dynamicContent['default_share_notificaiton_text'],
+    notificationText: dynamicContent['default_share_notification_text'],
   };
 }
 
