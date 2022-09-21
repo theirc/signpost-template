@@ -15,6 +15,7 @@ import {
   CATEGORY_ICON_NAMES,
   GOOGLE_ANALYTICS_IDS,
   REVALIDATION_TIMEOUT_SECONDS,
+  SEARCH_BAR_INDEX,
   SITE_TITLE,
   ZENDESK_AUTH_HEADER,
 } from '../../lib/constants';
@@ -70,6 +71,7 @@ export default function Category({
       sections={sections}
       menuOverlayItems={menuOverlayItems}
       headerLogoProps={getHeaderLogoProps(currentLocale)}
+      searchBarIndex={SEARCH_BAR_INDEX}
       cookieBanner={
         <CookieBanner
           strings={strings.cookieBannerStrings}

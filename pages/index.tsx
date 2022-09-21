@@ -14,6 +14,7 @@ import {
   CATEGORY_ICON_NAMES,
   GOOGLE_ANALYTICS_IDS,
   REVALIDATION_TIMEOUT_SECONDS,
+  SEARCH_BAR_INDEX,
   SITE_TITLE,
   ZENDESK_AUTH_HEADER,
 } from '../lib/constants';
@@ -66,6 +67,7 @@ const Home: NextPage<HomeProps> = ({
       strings={strings}
       menuOverlayItems={menuOverlayItems}
       headerLogoProps={getHeaderLogoProps(currentLocale)}
+      searchBarIndex={SEARCH_BAR_INDEX}
       serviceMapProps={serviceMapProps}
       aboutUsTextHtml={aboutUsTextHtml}
       categories={categories}
