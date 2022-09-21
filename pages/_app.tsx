@@ -1,5 +1,6 @@
 import 'antd/dist/antd.less';
 import '../styles/globals.css';
+import 'leaflet/dist/leaflet.css';
 import '@ircsignpost/signpost-base/styles/category-content.less';
 import '@ircsignpost/signpost-base/styles/footer-page.less';
 import '@ircsignpost/signpost-base/styles/header.less';
@@ -16,6 +17,7 @@ import '@ircsignpost/signpost-base/styles/search-results-page.less';
 import '@ircsignpost/signpost-base/styles/select-menu.less';
 import '@ircsignpost/signpost-base/styles/service-map.less';
 import '@ircsignpost/signpost-base/styles/map.less';
+import '@ircsignpost/signpost-base/styles/service-list.less';
 import '@ircsignpost/signpost-base/styles/cookie-banner.less';
 import Analytics from '@ircsignpost/signpost-base/dist/src/analytics';
 import { GOOGLE_ANALYTICS_IDS } from '../lib/constants';

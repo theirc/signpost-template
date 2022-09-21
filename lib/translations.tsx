@@ -8,6 +8,7 @@ import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-
 import { SearchBarStrings } from '@ircsignpost/signpost-base/dist/src/search-bar';
 import { SearchResultsPageStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page';
 import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page-content';
+import { ServiceMapStrings } from '@ircsignpost/signpost-base/dist/src/service-map';
 import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
 
 import { CustomMenuOverlayStrings } from './menu';
@@ -51,8 +52,17 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_service_map_select_region',
   'default_service_map_all_regions',
   'default_service_map_select_city',
+  'default_service_map_all_cities',
   'default_service_map_select_services',
+  'default_services_list_count_of',
+  'default_services_list_count_services',
+  'default_service_map_map_tab',
+  'default_service_map_list_tab',
   'default_service_map_all_services',
+  'default_service_map_all_regions_option',
+  'default_service_map_all_cities_option',
+  'default_service_map_all_categories_option',
+  'default_service_map_my_location_option',
 ];
 
 export const CATEGORY_PLACEHOLDERS = ['default_select_topic'];
@@ -77,6 +87,31 @@ export function createHeaderBannerProps(dynamicContent: {
     socialMediaDescription:
       dynamicContent['default_banner_social_media_description'],
     socialMediaData: getSocialMediaProps(dynamicContent),
+  };
+}
+
+export function populateServiceMapStrings(dynamicContent: {
+  [key: string]: string;
+}): ServiceMapStrings {
+  return {
+    title: dynamicContent['default_service_map_title'],
+    description: dynamicContent['default_service_map_description'],
+    selectRegionTitle: dynamicContent['default_service_map_select_region'],
+    regionDefaultValue: dynamicContent['default_service_map_all_regions'],
+    selectCityTitle: dynamicContent['default_service_map_select_city'],
+    cityDefaultValue: dynamicContent['default_service_map_all_cities'],
+    selectServiceTitle: dynamicContent['default_service_map_all_services'],
+    serviceDefaultValue: dynamicContent['default_service_map_select_services'],
+    serviceListStringOf: dynamicContent['default_services_list_count_of'],
+    serviceListStringServices:
+      dynamicContent['default_services_list_count_services'],
+    mapTab: dynamicContent['default_service_map_map_tab'],
+    listTab: dynamicContent['default_service_map_list_tab'],
+    allRegionsOption: dynamicContent['default_service_map_all_regions_option'],
+    allCitiesOption: dynamicContent['default_service_map_all_cities_option'],
+    allCategoriesOption:
+      dynamicContent['default_service_map_all_categories_option'],
+    myLocationOption: dynamicContent['default_service_map_my_location_option'],
   };
 }
 
@@ -177,7 +212,7 @@ export function populateHomePageStrings(dynamicContent: {
   return {
     cardsListStrings: populateCategoriesSectionStrings(dynamicContent),
     cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
-    headerBannerProps: createHeaderBannerProps(dynamicContent),
+    serviceMapStrings: populateServiceMapStrings(dynamicContent),
     searchBarStrings: populateSearchBarStrings(dynamicContent),
   };
 }
