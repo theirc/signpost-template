@@ -38,6 +38,7 @@ import { getZendeskUrl } from '../../lib/url';
 // TODO Use real Zendesk API implementation.
 import {
   getCategories,
+  getSectionsForCategory,
   getTranslationsFromDynamicContent,
 } from '../../lib/zendesk-fake';
 
@@ -155,89 +156,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     categories
   );
 
-  // TODO: Delete this inline function and use real signpost-base/Zendesk API
-  // implementation in the function call below.
-  const getSectionsForCategory = (
-    locale: Locale,
-    _categoryId: number,
-    _zendeskUrl: string,
-    lastUpdatedLabel: string
-  ): Promise<Section[]> => {
-    return Promise.resolve([
-      {
-        id: 11111100,
-        name: 'TODO',
-        articles: [
-          {
-            id: 11111101,
-            title: 'Lorem Ipsum',
-            lastEdit: {
-              value: '2022-08-22T16:28:15Z',
-              label: lastUpdatedLabel,
-              locale: locale,
-            },
-          },
-          {
-            id: 11111102,
-            title: 'Lorem Ipsum',
-            lastEdit: {
-              value: '2022-08-22T16:28:15Z',
-              label: lastUpdatedLabel,
-              locale: locale,
-            },
-          },
-        ],
-      },
-      {
-        id: 22222200,
-        name: 'TODO',
-        articles: [
-          {
-            id: 22222201,
-            title: 'Lorem Ipsum',
-            lastEdit: {
-              value: '2022-08-22T16:28:15Z',
-              label: lastUpdatedLabel,
-              locale: locale,
-            },
-          },
-          {
-            id: 22222202,
-            title: 'Lorem Ipsum',
-            lastEdit: {
-              value: '2022-08-22T16:28:15Z',
-              label: lastUpdatedLabel,
-              locale: locale,
-            },
-          },
-        ],
-      },
-      {
-        id: 33333300,
-        name: 'TODO',
-        articles: [
-          {
-            id: 33333301,
-            title: 'Lorem ipsum',
-            lastEdit: {
-              value: '2022-08-22T16:28:15Z',
-              label: lastUpdatedLabel,
-              locale: locale,
-            },
-          },
-          {
-            id: 33333302,
-            title: 'Lorem Ipsum',
-            lastEdit: {
-              value: '2022-08-22T16:28:15Z',
-              label: lastUpdatedLabel,
-              locale: locale,
-            },
-          },
-        ],
-      },
-    ]);
-  };
+  // TODO Use real Zendesk API instead of the faked one.
   const sections = await getSectionsForCategory(
     currentLocale,
     Number(params?.category),

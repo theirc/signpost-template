@@ -1,4 +1,5 @@
 import { Custom404Strings } from '@ircsignpost/signpost-base/dist/src/404-page';
+import { ArticleContentStrings } from '@ircsignpost/signpost-base/dist/src/article-content';
 import { CategoryStrings } from '@ircsignpost/signpost-base/dist/src/category-page';
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { ErrorProps } from '@ircsignpost/signpost-base/dist/src/error';
@@ -216,7 +217,14 @@ export function getSelectTopicLabel(dynamicContent: {
 }
 
 // TODO(annkats): add populateServiceMapStrings() once Service map becomes a Shared component.
-// TODO(annkats): add populateArticlePageStrings() once Article page becomes a Shared component.
+
+export function populateArticleContentStrings(dynamicContent: {
+  [key: string]: string;
+}): ArticleContentStrings {
+  return {
+    textReaderTitle: dynamicContent['HC_BEPORSEDMARA_ARTICLE_READER_TITLE'],
+  };
+}
 
 export function populateMenuOverlayStrings(dynamicContent: {
   [key: string]: string;
