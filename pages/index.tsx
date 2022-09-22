@@ -38,7 +38,7 @@ import { SocialMediaLinks, getSocialMediaProps } from '../lib/social-media';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS,
-  getShareButtonProps,
+  getShareButtonStrings,
   populateHeaderBannerStrings,
   populateHomePageStrings,
   populateMenuOverlayStrings,
@@ -160,7 +160,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         serviceCategories,
         services,
         defaultCoords: MAP_DEFAULT_COORDS,
-        shareButton: getShareButtonProps(dynamicContent),
+        shareButton: getShareButtonStrings(dynamicContent),
       },
       categories,
       aboutUsTextHtml,

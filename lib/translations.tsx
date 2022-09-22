@@ -1,5 +1,6 @@
 import { Custom404Strings } from '@ircsignpost/signpost-base/dist/src/404-page';
 import { ArticleContentStrings } from '@ircsignpost/signpost-base/dist/src/article-content';
+import { ArticlePageStrings } from '@ircsignpost/signpost-base/dist/src/article-page';
 import { CategoryStrings } from '@ircsignpost/signpost-base/dist/src/category-page';
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { ErrorProps } from '@ircsignpost/signpost-base/dist/src/error';
@@ -10,7 +11,7 @@ import { SearchBarStrings } from '@ircsignpost/signpost-base/dist/src/search-bar
 import { SearchResultsPageStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page';
 import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page-content';
 import { ServiceMapStrings } from '@ircsignpost/signpost-base/dist/src/service-map';
-import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
+import { ShareButtonStrings } from '@ircsignpost/signpost-base/dist/src/share-button';
 
 import { CustomMenuOverlayStrings } from './menu';
 import { SocialMediaLinks } from './social-media';
@@ -164,9 +165,9 @@ export function getLastUpdatedLabel(dynamicContent: {
   return dynamicContent['default_last_updated'];
 }
 
-export function getShareButtonProps(dynamicContent: {
+export function getShareButtonStrings(dynamicContent: {
   [key: string]: string;
-}): ShareButtonProps {
+}): ShareButtonStrings {
   return {
     label: dynamicContent['default_share'],
     notificationText: dynamicContent['default_share_notification_text'],
@@ -222,7 +223,8 @@ export function populateArticleContentStrings(dynamicContent: {
   [key: string]: string;
 }): ArticleContentStrings {
   return {
-    textReaderTitle: dynamicContent['HC_BEPORSEDMARA_ARTICLE_READER_TITLE'],
+    textReaderTitle: dynamicContent['default_article_reader_title'],
+    shareButtonStrings: getShareButtonStrings(dynamicContent),
   };
 }
 
@@ -283,5 +285,17 @@ export function populateSearchResultsPageStrings(dynamicContent: {
     searchBarStrings: populateSearchBarStrings(dynamicContent),
     lastEditedLabel: getLastUpdatedLabel(dynamicContent),
     resultsFoundForQuery: dynamicContent['default_search_results_found'],
+  };
+}
+
+export function populateArticlePageStrings(dynamicContent: {
+  [key: string]: string;
+}): ArticlePageStrings {
+  return {
+    articleContentStrings: populateArticleContentStrings(dynamicContent),
+    searchBarStrings: populateSearchBarStrings(dynamicContent),
+    cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
+    articleErrorStrings: generateArticleErrorProps(dynamicContent),
+    lastUpdatedLabel: getLastUpdatedLabel(dynamicContent),
   };
 }

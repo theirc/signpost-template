@@ -428,16 +428,6 @@
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
 
-"@changey/react-leaflet-markercluster@^4.0.0-rc1":
-  version "4.0.0-rc1"
-  resolved "https://registry.yarnpkg.com/@changey/react-leaflet-markercluster/-/react-leaflet-markercluster-4.0.0-rc1.tgz#88d76c74e9014ca2f669900dded8e2ccdd6dd545"
-  integrity sha512-gS1lEQiQwyeI6Y6Wuxuqqffwywm7giQw4tbcqtJP8zyT5bc3AzW2/EVJGwWORYo/PLDdDnvOrpI+lUJy2UA5MQ==
-  dependencies:
-    "@react-leaflet/core" "^2.0.0"
-    leaflet "^1.8.0"
-    leaflet.markercluster "^1.5.3"
-    react-leaflet "^4.0.0"
-
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
@@ -968,7 +958,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@react-leaflet/core@^2.0.0", "@react-leaflet/core@^2.0.1":
+"@react-leaflet/core@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@react-leaflet/core/-/core-2.0.1.tgz#19d4bb7c83525fab786982e5750a3f53a4bb0168"
   integrity sha512-XGmx01DovDt0IWsW4tqeuSYifpY19aUn9NYCqTBI3KNtjbCjj0pfiWa7krNsnJ6l2oQbv4Nt0/BabLbIvT4ocA==
@@ -5151,7 +5141,7 @@ react-is@^16.12.0, react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-leaflet@^4.0.0, react-leaflet@^4.0.1:
+react-leaflet@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-4.0.2.tgz#ffa3d8dde9859459e3dc91436f84ffd56f39ec57"
   integrity sha512-pDyIf50Ek/LZ0p4Qxw2D9LMOx+LytQs2R+MY3mhTUPGzubrpP4QAgbCv2qc0L9y0qVRgx7dHavWuPFkc/WCJCw==
@@ -5947,9 +5937,9 @@ use-sync-external-store@1.2.0, use-sync-external-store@^1.0.0:
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 usehooks-ts@^2.6.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.7.0.tgz#11ca19368be621ec610d99deb224c23c006ce72b"
-  integrity sha512-HNNBgWBrLqnEkZQmdbxuMF4bdiqPw4iwh/RalCglhJJsPFZd4cgMbIBsB1SeavOAFkIJ5G8BheJYaEtKt9A8IA==
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.7.1.tgz#6b009aa1adda128f32fd31266201fc9e715ccf12"
+  integrity sha512-7WgP5ELpmJ/5rZ4P+YnfhLXdiGf1Xpy4iLnjcifBGmwBWXBBa9FZRRHNOiJJw1NKIAU9LOaKaps4G3KXLPhZ6w==
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2:
   version "1.0.2"
