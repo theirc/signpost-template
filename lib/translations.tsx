@@ -2,7 +2,7 @@ import { Custom404Strings } from '@ircsignpost/signpost-base/dist/src/404-page';
 import { CategoryStrings } from '@ircsignpost/signpost-base/dist/src/category-page';
 import { CookieBannerStrings } from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { ErrorProps } from '@ircsignpost/signpost-base/dist/src/error';
-import { HeaderBannerProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
+import { HeaderBannerStrings } from '@ircsignpost/signpost-base/dist/src/header-banner';
 import { HomePageStrings } from '@ircsignpost/signpost-base/dist/src/home-page';
 import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-cards-list';
 import { SearchBarStrings } from '@ircsignpost/signpost-base/dist/src/search-bar';
@@ -12,7 +12,7 @@ import { ServiceMapStrings } from '@ircsignpost/signpost-base/dist/src/service-m
 import { ShareButtonProps } from '@ircsignpost/signpost-base/dist/src/share-button';
 
 import { CustomMenuOverlayStrings } from './menu';
-import { getSocialMediaProps } from './social-media';
+import { SocialMediaLinks } from './social-media';
 
 /** General strings used on various pages. */
 export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
@@ -77,16 +77,38 @@ export const ERROR_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_error_home_button_title',
 ];
 
-export function createHeaderBannerProps(dynamicContent: {
+// TODO: Ask your Product manager to get Social media links.
+export function populateSocialMediaLinks(dynamicContent: {
   [key: string]: string;
-}): HeaderBannerProps {
+}): SocialMediaLinks {
+  return {
+    facebookLink: {
+      title: dynamicContent['default_banner_facebook_title'],
+      // TODO: create Dynamic content with link to Facebook page
+      href: '', // dynamicContent['<site_prefix>_facebook_link']
+    },
+    whatsappLink: {
+      title: dynamicContent['default_banner_whatsapp_title'],
+      // TODO: create Dynamic content with link to Whatsapp page
+      href: '', // dynamicContent['<site_prefix>_whatsapp_link']
+    },
+    messengerLink: {
+      title: dynamicContent['default_banner_messenger_title'],
+      // TODO: create Dynamic content with link to Messenger page
+      href: '', // dynamicContent['<site_prefix>_messenger_link']
+    },
+  };
+}
+
+export function populateHeaderBannerStrings(dynamicContent: {
+  [key: string]: string;
+}): HeaderBannerStrings {
   return {
     // TODO: replace welcomeTitle with website-specific Dynamic content ID.
     welcomeTitle: 'Welcome text.', // dynamicContent['<site_prefix>_mission_statement'],
     socialMediaTitle: dynamicContent['default_banner_social_media_title'],
     socialMediaDescription:
       dynamicContent['default_banner_social_media_description'],
-    socialMediaData: getSocialMediaProps(dynamicContent),
   };
 }
 

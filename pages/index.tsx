@@ -1,5 +1,5 @@
 import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
-import { HeaderBannerProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
+import { HeaderBannerStrings } from '@ircsignpost/signpost-base/dist/src/header-banner';
 import HomePage, {
   HomePageStrings,
 } from '@ircsignpost/signpost-base/dist/src/home-page';
@@ -34,14 +34,15 @@ import {
 } from '../lib/locale';
 import { getHeaderLogoProps } from '../lib/logo';
 import { getMenuItems } from '../lib/menu';
-import { getSocialMediaProps } from '../lib/social-media';
+import { SocialMediaLinks, getSocialMediaProps } from '../lib/social-media';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS,
-  createHeaderBannerProps,
   getShareButtonProps,
+  populateHeaderBannerStrings,
   populateHomePageStrings,
   populateMenuOverlayStrings,
+  populateSocialMediaLinks,
 } from '../lib/translations';
 import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
 // TODO Use real Zendesk API implementation.
@@ -54,7 +55,8 @@ import {
 interface HomeProps {
   currentLocale: Locale;
   strings: HomePageStrings;
-  headerBammerProps: HeaderBannerProps;
+  headerBannerStrings: HeaderBannerStrings;
+  socialMediaLinks: SocialMediaLinks;
   // A list of |MenuOverlayItem|s to be displayed in the header and side menu.
   menuOverlayItems: MenuOverlayItem[];
   serviceMapProps: ServiceMapProps;
@@ -66,7 +68,8 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = ({
   currentLocale,
   strings,
-  headerBammerProps,
+  headerBannerStrings,
+  socialMediaLinks,
   menuOverlayItems,
   serviceMapProps,
   aboutUsTextHtml,
@@ -79,7 +82,10 @@ const Home: NextPage<HomeProps> = ({
       locales={LOCALES}
       strings={strings}
       menuOverlayItems={menuOverlayItems}
-      headerBannerProps={headerBammerProps}
+      headerBannerProps={{
+        ...headerBannerStrings,
+        socialMediaData: getSocialMediaProps(socialMediaLinks),
+      }}
       headerLogoProps={getHeaderLogoProps(currentLocale)}
       searchBarIndex={SEARCH_BAR_INDEX}
       serviceMapProps={serviceMapProps}
@@ -147,10 +153,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       currentLocale,
       strings,
       menuOverlayItems,
-      headerBannerProps: {
-        headderBannerStrings: createHeaderBannerProps(dynamicContent),
-        socialMediaData: getSocialMediaProps(dynamicContent),
-      },
+      headerBannerStrings: populateHeaderBannerStrings(dynamicContent),
+      socialMediaLinks: populateSocialMediaLinks(dynamicContent),
       serviceMapProps: {
         regions,
         serviceCategories,
