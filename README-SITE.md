@@ -36,6 +36,8 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+**_Note:_** To test Locale select page and Cookie banner, you need to test site in the Incognito mode or clear cookies for 'localhost' in browser settings, because selected language and cookie preferences are set in Cookies. Follow [instructions for Chrome on how to clear cookies](hhttps://support.google.com/chrome/answer/95647?hl=en&co=GENIE.Platform%3DDesktop&oco=0#zippy=%2Cdelete-cookies-from-a-site).
+
 ### Environment variables
 
 The site depends on the following environment variables that you need to provide:
