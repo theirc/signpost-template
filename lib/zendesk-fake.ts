@@ -1,6 +1,7 @@
 // Fake implementation of the Zendesk interface.
 //
 // TODO Replace uses of this library with the real implementation.
+import { Section } from '@ircsignpost/signpost-base/dist/src/category-content';
 import type {
   ZendeskArticle,
   ZendeskCategory,
@@ -31,6 +32,99 @@ export async function getCategories(
   ];
 }
 
+export async function getSectionsForCategory(
+  locale: Locale,
+  _categoryId: number,
+  _zendeskUrl: string,
+  lastUpdatedLabel: string
+): Promise<Section[]> {
+  return Promise.resolve([
+    {
+      id: 11111100,
+      name: 'TODO',
+      articles: [
+        {
+          id: 11111101,
+          title: 'Lorem Ipsum',
+          lastEdit: {
+            value: '2022-08-22T16:28:15Z',
+            label: lastUpdatedLabel,
+            locale: locale,
+          },
+        },
+        {
+          id: 11111102,
+          title: 'Lorem Ipsum',
+          lastEdit: {
+            value: '2022-08-22T16:28:15Z',
+            label: lastUpdatedLabel,
+            locale: locale,
+          },
+        },
+      ],
+    },
+    {
+      id: 22222200,
+      name: 'TODO',
+      articles: [
+        {
+          id: 22222201,
+          title: 'Lorem Ipsum',
+          lastEdit: {
+            value: '2022-08-22T16:28:15Z',
+            label: lastUpdatedLabel,
+            locale: locale,
+          },
+        },
+        {
+          id: 22222202,
+          title: 'Lorem Ipsum',
+          lastEdit: {
+            value: '2022-08-22T16:28:15Z',
+            label: lastUpdatedLabel,
+            locale: locale,
+          },
+        },
+      ],
+    },
+    {
+      id: 33333300,
+      name: 'TODO',
+      articles: [
+        {
+          id: 33333301,
+          title: 'Lorem ipsum',
+          lastEdit: {
+            value: '2022-08-22T16:28:15Z',
+            label: lastUpdatedLabel,
+            locale: locale,
+          },
+        },
+        {
+          id: 33333302,
+          title: 'Lorem Ipsum',
+          lastEdit: {
+            value: '2022-08-22T16:28:15Z',
+            label: lastUpdatedLabel,
+            locale: locale,
+          },
+        },
+      ],
+    },
+  ]);
+}
+
+// An example article content which contains custom elements.
+// More about Zendesk content editor custom elements:
+// https://docs.google.com/document/d/1RyKzdU5ytXyswHtMoefjpvC7DtEMcJ1ZwJtMRsP5r4E
+const exampleArticleContent = `
+  {meta name="description" content="This article is an example article"}
+  <h2>Lorem ipsum dolor sit amet</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut enim elit. Etiam sit amet tristique nulla, sed pulvinar justo. Mauris vestibulum purus auctor, rhoncus diam vel, euismod nisl. Curabitur sagittis nisi in odio feugiat, feugiat tempus sapien tristique. Praesent sed convallis lorem. Suspendisse semper vel ex at vehicula. Aenean ultricies, urna non ultricies cursus, nisl est viverra enim, sed malesuada tortor sapien eget lectus. Curabitur in velit tincidunt urna blandit viverra a vel mauris.<p>
+  <p>In volutpat, justo nec lacinia tristique, justo nibh aliquam eros, ac consequat mi est ut erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer tortor nunc, tempor non nibh sed, tincidunt viverra orci. Maecenas blandit, eros non consectetur maximus, dui nulla iaculis augue, sit amet maximus metus arcu vel risus. Duis faucibus, nibh rutrum iaculis cursus, justo tortor placerat erat, in efficitur leo turpis ac dui. Pellentesque dolor lectus, interdum nec faucibus non, aliquet ut sem. Proin eleifend, nibh in ornare hendrerit, enim nibh elementum urna, sed interdum leo quam ac odio. Quisque tincidunt nisi orci, a facilisis velit laoreet eu. Donec consequat ullamcorper mauris, sed tristique massa lobortis eu. Duis vulputate condimentum arcu et congue. Pellentesque feugiat lorem non rutrum finibus.</p>
+  <br/>
+  [link-button href="https://www.lipsum.com/"] Lorem ipsum [/link-button]`;
+
 /**
  * Fetches article for the given locale.
  *
@@ -52,13 +146,47 @@ export async function getArticle(
   _includeDrafts?: boolean
 ): Promise<ZendeskArticle | undefined> {
   return {
-    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    body: exampleArticleContent,
     edited_at: '2022-09-19',
     id: articleId,
     locale: locale.url,
     section_id: 123,
     title: 'TODO',
   };
+}
+
+/**
+ * Fetches all articles for the given locale.
+ *
+ * @param locale The locale of articles.
+ * @param zendeskUrl The canonical Zendesk URL, e.g., https://signpost-u4u.zendesk.com.
+ *
+ * @returns List of ZendeskArticle
+ */
+export async function getArticles(
+  locale: Locale,
+  zendeskUrl: string
+): Promise<ZendeskArticle[]> {
+  const sections = await getSectionsForCategory(
+    locale,
+    123,
+    zendeskUrl,
+    'Last updated: '
+  );
+  const articles: ZendeskArticle[] = [];
+  sections.forEach((section) => {
+    section.articles.forEach((article) => {
+      articles.push({
+        id: article.id,
+        section_id: section.id,
+        locale: locale.url,
+        edited_at: article.lastEdit.value,
+        title: article.title,
+        body: exampleArticleContent,
+      });
+    });
+  });
+  return articles;
 }
 
 /**
