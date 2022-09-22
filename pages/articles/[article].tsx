@@ -1,5 +1,8 @@
 import { extractMetaTags } from '@ircsignpost/signpost-base/dist/src/article-content';
-import { getErrorResponseProps } from '@ircsignpost/signpost-base/dist/src/article-page';
+import {
+  ArticlePageStrings,
+  getErrorResponseProps,
+} from '@ircsignpost/signpost-base/dist/src/article-page';
 import ArticlePage, {
   MountArticle,
 } from '@ircsignpost/signpost-base/dist/src/article-page';
@@ -33,12 +36,8 @@ import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   ERROR_DYNAMIC_CONTENT_PLACEHOLDERS,
   generateArticleErrorProps,
-  getLastUpdatedLabel,
-  getShareButtonProps,
-  populateArticleContentStrings,
-  populateCookieBannerStrings,
+  populateArticlePageStrings,
   populateMenuOverlayStrings,
-  populateSearchBarStrings,
 } from '../../lib/translations';
 import { getSiteUrl, getZendeskMappedUrl, getZendeskUrl } from '../../lib/url';
 // TODO Use real Zendesk API implemetation.
@@ -60,8 +59,7 @@ interface ArticleProps {
   locale: Locale;
   pageUnderConstruction?: boolean;
   preview: boolean;
-  // A map of dynamic content placeholders to their string values.
-  dynamicContent: { [key: string]: string };
+  strings: ArticlePageStrings;
   // A list of |MenuOverlayItem|s to be displayed in the header and side menu.
   menuOverlayItems: MenuOverlayItem[];
 }
@@ -77,7 +75,7 @@ export default function Article({
   locale,
   pageUnderConstruction,
   preview,
-  dynamicContent,
+  strings,
   menuOverlayItems,
 }: ArticleProps) {
   const router = useRouter();
@@ -90,7 +88,7 @@ export default function Article({
       pageUnderConstruction={pageUnderConstruction}
       siteUrl={siteUrl}
       preview={preview}
-      errorProps={generateArticleErrorProps(dynamicContent)}
+      errorProps={strings.articleErrorStrings}
       metaTagAttributes={metaTagAttributes}
       layoutWithMenuProps={{
         headerProps: {
@@ -98,7 +96,7 @@ export default function Article({
           locales: LOCALES,
           logoProps: getHeaderLogoProps(locale),
           searchBarProps: createDefaultSearchBarProps(
-            populateSearchBarStrings(dynamicContent),
+            strings.searchBarStrings,
             SEARCH_BAR_INDEX,
             locale,
             router
@@ -107,7 +105,7 @@ export default function Article({
         menuOverlayItems: menuOverlayItems,
         cookieBanner: (
           <CookieBanner
-            strings={populateCookieBannerStrings(dynamicContent)}
+            strings={strings.cookieBannerStrings}
             googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}
           />
         ),
@@ -121,12 +119,11 @@ export default function Article({
           title: articleTitle,
           content: articleContent,
           lastEdit: {
-            label: getLastUpdatedLabel(dynamicContent),
+            label: strings.lastUpdatedLabel,
             value: lastEditedValue,
             locale: locale,
           },
-          shareButton: getShareButtonProps(dynamicContent),
-          strings: populateArticleContentStrings(dynamicContent),
+          strings: strings.articleContentStrings,
         }}
       />
     </ArticlePage>
@@ -179,9 +176,10 @@ export const getStaticProps: GetStaticProps = async ({
   const currentLocale = getLocaleFromCode(locale ?? '');
   let dynamicContent = await getTranslationsFromDynamicContent(
     getZendeskLocaleId(currentLocale),
-    COMMON_DYNAMIC_CONTENT_PLACEHOLDERS.concat(
-      ERROR_DYNAMIC_CONTENT_PLACEHOLDERS
-    ),
+    [
+      ...COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
+      ...ERROR_DYNAMIC_CONTENT_PLACEHOLDERS,
+    ],
     getZendeskUrl(),
     ZENDESK_AUTH_HEADER
   );
@@ -193,6 +191,8 @@ export const getStaticProps: GetStaticProps = async ({
     populateMenuOverlayStrings(dynamicContent),
     categories
   );
+
+  const strings = populateArticlePageStrings(dynamicContent);
 
   const article = await getArticle(
     currentLocale,
@@ -228,7 +228,7 @@ export const getStaticProps: GetStaticProps = async ({
           props: {
             ...errorProps,
             pageTitle: `${subtitle} - ${SITE_TITLE}`,
-            dynamicContent,
+            strings,
             menuOverlayItems,
             siteUrl: getSiteUrl(),
             articleId: Number(params?.article),
@@ -255,7 +255,7 @@ export const getStaticProps: GetStaticProps = async ({
       lastEditedValue: article.edited_at,
       locale: currentLocale,
       preview: preview ?? false,
-      dynamicContent,
+      strings,
       menuOverlayItems,
     },
     revalidate: REVALIDATION_TIMEOUT_SECONDS,
