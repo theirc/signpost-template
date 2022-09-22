@@ -53,6 +53,7 @@ The site depends on the following environment variables that you need to provide
 - `ZENDESK_OAUTH_TOKEN`. [The OAuth token from Zendesk that allows
   querying their
   API](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application).
+- `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN`. The mapbox access token for the service map tiles.
 
 ## Linting & formatting
 

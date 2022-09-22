@@ -29,7 +29,8 @@ created from this template.
     - Follow [Search documentation](README-SITE.md#search) on how to create new index.
 6.  Fill out custom CSS variables in [next.config.js](next.config.js).
 7.  Provide the site's logo in [lib/logo.ts](lib/logo.ts).
-8.  Enable Chat widget by completing TODO in [pages/\_document.tsx](pages/_document.tsx)
+8.  Enable Service map by completing TODO in [lib/constants.ts](lib/constants.ts)
+9.  Enable Chat widget by completing TODO in [pages/\_document.tsx](pages/_document.tsx)
 
 ### 5. Connect the site to Vercel
 
