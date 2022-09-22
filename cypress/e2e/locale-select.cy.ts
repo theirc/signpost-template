@@ -1,4 +1,4 @@
-describe('locale select', () => {
+describe('locale select', { defaultCommandTimeout: 20000 }, () => {
   it('redirects based on local storage', () => {
     localStorage.setItem('preferredLocaleJSON', '"en-us"');
     cy.visit(encodeURI('http://localhost:3003/locale-select?target=/'));
