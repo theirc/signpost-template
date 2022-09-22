@@ -10,7 +10,7 @@ export async function getServerSideProps(
   ctx: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ) {
   const allPaths: string[] = await Promise.all([
-    /* Put dynamic paths here */
+    /* Put dynamic paths here and exclude them from next-sitemap.config.mjs */
     category.getStringPaths(),
   ]).then((results: string[][]) => results.flat());
 
