@@ -1,15 +1,11 @@
 import { AlgoliaSearchIndex } from '@ircsignpost/signpost-base/dist/src/search-common';
 import { LatLngExpression } from 'leaflet';
 
-export const SITE_TITLE = 'TODO';
+export const SITE_TITLE = 'Refugee.info Greece';
 
-// TODO: add the country id of the instance to fetch the data from the cms for the service-map;
-export const COUNTRY_ID = 123;
+export const COUNTRY_ID = 9;
 
-// TODO: add the default coords for the center of the map
-export const MAP_DEFAULT_COORDS: LatLngExpression = [
-  34.45830721078611, 65.09457416213823,
-];
+export const MAP_DEFAULT_COORDS: LatLngExpression = [39.1250405, 20.0791107];
 
 // Cache statically generated pages for 1 hour. The timeout was chosen
 // arbitrarily. Our website has static, non-urgent resources, so we probably do
@@ -17,19 +13,19 @@ export const MAP_DEFAULT_COORDS: LatLngExpression = [
 export const REVALIDATION_TIMEOUT_SECONDS: number = 1 * 60 * 60;
 
 // The "about us" article ID.
-//
-// TODO
-export const ABOUT_US_ARTICLE_ID: number = 123;
+export const ABOUT_US_ARTICLE_ID: number = 4985544145943;
 
 // A mapping from category ID to a Material icon for that category.
 export const CATEGORY_ICON_NAMES: { [key: string]: string } = {
-  /* TODO */
-  '123': 'home_work', // Placeholder
+  '4768127626007': 'description',
+  '4768111818263': 'campaign',
+  '4768127623703': 'question_mark',
+  '4420351005975': 'explore',
 };
 
 // A list of category IDs that the site should not display.
 export const CATEGORIES_TO_HIDE: number[] = [
-  /* TODO */
+  5388415886487, 5451758139293, 5388415940887, 4421271418775, 4420351027479,
 ];
 
 // A map from a locale code to Zendesk locale id used for dynamic content translations.
@@ -37,7 +33,11 @@ export const CATEGORIES_TO_HIDE: number[] = [
 // Keep in sync with locales configured in /next.config.js.
 export const DYNAMIC_CONTENT_LOCALES: { [key: string]: number } = {
   'en-us': 1, // English locale id
-  // TODO: Add any other IDs needed
+  ar: 66,
+  fa: 1016,
+  fr: 16,
+  uk: 1173,
+  ur: 1183,
 };
 
 export const ZENDESK_AUTH_HEADER = {
@@ -55,12 +55,12 @@ export const GOOGLE_ANALYTICS_IDS = [
 // Algolia search app ID, Search API key and search index name:
 // https://www.algolia.com/account/api-keys/
 export const ALGOLIA_SEARCH_APP_ID = 'BWATZIXLX6';
-export const ALGOLIA_SEARCH_API_KEY = '0d9093280e7b2bc2b6ca12ed4180fd0a';
+export const ALGOLIA_SEARCH_API_KEY = '5ce4c0f27492db0d6e42fa948101e69c';
 
-// TODO: create Algolia indexes for Articles and Queries and replace the names here.
 // See README for more info on how to create indexes.
-export const ALGOLIA_ARTICLE_INDEX_NAME = 'TODO'; // TODO: replace article index name, e.g. 'zendesk_signpost-afghanistan_articles'.
-export const ALGOLIA_QUERY_INDEX_NAME = 'TODO'; // TODO: replace query index name, e.g. 'zendesk_signpost-afghanistan_articles_query_suggestions'.
+export const ALGOLIA_ARTICLE_INDEX_NAME = 'zendesk_signpost-greece_articles';
+export const ALGOLIA_QUERY_INDEX_NAME =
+  'zendesk_signpost-greece_articles_query_suggestions';
 
 export const SEARCH_BAR_INDEX: AlgoliaSearchIndex = {
   appId: ALGOLIA_SEARCH_APP_ID,
