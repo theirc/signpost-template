@@ -1,3 +1,5 @@
+export {};
+
 describe('locale select', { defaultCommandTimeout: 20000 }, () => {
   it('redirects based on local storage', () => {
     localStorage.setItem('preferredLocaleJSON', '"en-us"');

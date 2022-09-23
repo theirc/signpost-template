@@ -1,8 +1,4 @@
-let windowErrorSpy;
-
-Cypress.on('window:before:load', (win) => {
-  windowErrorSpy = cy.spy(win.console, 'error');
-});
+export {};
 
 const DELAY_MS: number = 1000;
 
@@ -15,10 +11,11 @@ describe('Home page behavior', () => {
       cy.get('#__next');
       cy.get('header');
       cy.get('main');
-      cy.get('footer');
-      // No console errors are produced.
-      cy.wait(DELAY_MS).then(() => {
-        expect(windowErrorSpy).to.not.be.called;
+      cy.get('footer'); // No console errors are produced.
+      cy.window().then((win) => {
+        cy.wait(DELAY_MS).then(() => {
+          expect(cy.spy(win.console, 'error')).to.not.be.called;
+        });
       });
     });
   }

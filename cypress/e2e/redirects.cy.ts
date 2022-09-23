@@ -1,3 +1,5 @@
+export {};
+
 describe('Redirects', () => {
   // TODO Once you've connected a Zendesk CMS, provide a valid locale and
   // article ID for e2e testing.
