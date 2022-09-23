@@ -11,6 +11,12 @@ import Footer from '@ircsignpost/signpost-base/dist/src/footer';
 import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 import { createDefaultSearchBarProps } from '@ircsignpost/signpost-base/dist/src/search-bar';
 import { ZendeskCategory } from '@ircsignpost/signpost-base/dist/src/zendesk';
+import {
+  getArticle,
+  getArticles,
+  getCategories,
+  getTranslationsFromDynamicContent,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -40,13 +46,6 @@ import {
   populateMenuOverlayStrings,
 } from '../../lib/translations';
 import { getSiteUrl, getZendeskMappedUrl, getZendeskUrl } from '../../lib/url';
-// TODO Use real Zendesk API implemetation.
-import {
-  getArticle,
-  getArticles,
-  getCategories,
-  getTranslationsFromDynamicContent,
-} from '../../lib/zendesk-fake';
 
 interface ArticleProps {
   pageTitle: string;

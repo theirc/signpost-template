@@ -4,6 +4,10 @@ import Custom404Page, {
 import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 import { ZendeskCategory } from '@ircsignpost/signpost-base/dist/src/zendesk';
+import {
+  getCategories,
+  getTranslationsFromDynamicContent,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
@@ -30,11 +34,6 @@ import {
   populateMenuOverlayStrings,
 } from '../lib/translations';
 import { getZendeskUrl } from '../lib/url';
-// TODO Use real Zendesk API implementation.
-import {
-  getCategories,
-  getTranslationsFromDynamicContent,
-} from '../lib/zendesk-fake';
 
 interface Custom404Props {
   currentLocale: Locale;

@@ -11,6 +11,12 @@ import {
   fetchServicesCategories,
 } from '@ircsignpost/signpost-base/dist/src/service-map-common';
 import { ZendeskCategory } from '@ircsignpost/signpost-base/dist/src/zendesk';
+// TODO Use real Zendesk API implementation.
+import {
+  getArticle,
+  getCategories,
+  getTranslationsFromDynamicContent,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 
@@ -45,12 +51,6 @@ import {
   populateSocialMediaLinks,
 } from '../lib/translations';
 import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
-// TODO Use real Zendesk API implementation.
-import {
-  getArticle,
-  getCategories,
-  getTranslationsFromDynamicContent,
-} from '../lib/zendesk-fake';
 
 interface HomeProps {
   currentLocale: Locale;
