@@ -4,7 +4,11 @@ import {
   default as DefaultSearchResultsPage,
   SearchResultsPageStrings,
 } from '@ircsignpost/signpost-base/dist/src/search-results-page';
-import { ZendeskCategory } from '@ircsignpost/signpost-base/dist/src/zendesk';
+import {
+  ZendeskCategory,
+  getCategories,
+  getTranslationsFromDynamicContent,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
 
 import {
@@ -32,11 +36,6 @@ import {
   populateSearchResultsPageStrings,
 } from '../lib/translations';
 import { getZendeskUrl } from '../lib/url';
-// TODO: import methods from '@ircsignpost/signpost-base/dist/src/zendesk' instead.
-import {
-  getCategories,
-  getTranslationsFromDynamicContent,
-} from '../lib/zendesk-fake';
 
 interface SearchResultsPageProps {
   currentLocale: Locale;
