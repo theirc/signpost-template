@@ -19,7 +19,11 @@ created from this template.
 
 ### 4. Customize your site
 
-1.  Fill out the environment variables documented in `README-SITE.md` in [.env.local](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables).
+1.  Fill out the environment variables documented in `README-SITE.md`.
+    1. Add all variables to [.env.local](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables).
+    2. Provide some environment variables (`ZENDESK_URL` and
+       `ZENDESK_OAUTH_TOKEN`) as [repository
+       secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 2.  Provide [the site's constants](lib/constants.ts). Search for TODOs.
 3.  Finish TODOs in [lib/translations.tsx](lib/translations.tsx).
     - **Note:** [Create new Dynamic content on Zendesk](https://signpost-global.zendesk.com/admin/workspaces/agent-workspace/dynamic_content) with your website's name in prefix

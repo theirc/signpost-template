@@ -3,6 +3,9 @@ on:
   push:
   pull_request:
     types: [opened, reopened]
+env:
+  ZENDESK_URL: ${{ secrets.ZENDESK_URL }}
+  ZENDESK_OAUTH_TOKEN: ${{ secrets.ZENDESK_OAUTH_TOKEN }}
 jobs:
   e2e-test:
     runs-on: ubuntu-latest
