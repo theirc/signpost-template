@@ -54,6 +54,7 @@ The site depends on the following environment variables that you need to provide
   querying their
   API](https://support.zendesk.com/hc/en-us/articles/4408845965210-Using-OAuth-authentication-with-your-application).
 - `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN`. The mapbox access token for the service map tiles.
+- `PREVIEW_TOKEN` is used to access preview mode. See [preview mode instructions](https://docs.google.com/document/d/1IbtY_EvIm0c1C8yeKpEPWwPvWJyHiNehYkRpVJJ65kg/edit?usp=sharing) for more details.
 
 ## Linting & formatting
 
