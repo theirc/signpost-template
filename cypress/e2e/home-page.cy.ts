@@ -1,4 +1,4 @@
-let windowErrorSpy;
+let windowErrorSpy: any;
 
 Cypress.on('window:before:load', (win) => {
   windowErrorSpy = cy.spy(win.console, 'error');
@@ -40,3 +40,6 @@ describe('Home page behavior', () => {
     runTestCases();
   });
 });
+
+// Prevent TypeScript from reading file as legacy script.
+export {};
