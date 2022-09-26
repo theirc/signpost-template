@@ -1,3 +1,6 @@
+// Prevent TypeScript from reading file as legacy script.
+export {};
+
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
