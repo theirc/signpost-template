@@ -18,3 +18,6 @@ describe('locale select', { defaultCommandTimeout: 20000 }, () => {
     cy.url().should('eq', 'http://localhost:3003/en-us');
   });
 });
+
+// Prevent TypeScript from reading file as legacy script.
+export {};
