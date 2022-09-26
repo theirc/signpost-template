@@ -7,7 +7,7 @@ import type { Lang } from '@ircsignpost/signpost-base/dist/src/locale-select-pag
 import Image from 'next/image';
 
 import { SITE_TITLE } from '../lib/constants';
-import logo from '../public/greece-logo-locale-select.jpeg';
+import logo from '../public/greece-logo-locale-select.png';
 
 const langs: Lang[] = [
   {
