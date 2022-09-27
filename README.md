@@ -137,3 +137,14 @@ export function enableGoogleAnalytics(googleAnalyticsIds: string[]);
 // Tracks a click event for the given category and label.
 export function trackClickEvent(eventCategory: string, eventLabel: string);
 ```
+
+## 8. Generate Zendesk OAuth token for your site
+
+You need to generate a new Zendesk OAuth token for your site for Zendesk logging and API usage tracking purposes. To do that, you need full Admin access. If you don't have it, ask your Product manager (Liam) to generate it for you with following instructions:
+
+1. Add a new OAuth client in Zendesk Admin center: https://signpost-global.zendesk.com/admin/apps-integrations/apis/zendesk-api/oauth_clients
+2. Find ID of your new Oauth client: https://signpost-global.zendesk.com/api/v2/oauth/clients.json
+   - Copy number from ‘id’ field corresponding to the new client you added
+3. Perform the following command in the terminal `curl https://signpost-global.zendesk.com/api/v2/oauth/tokens.json -H "Content-Type: application/json" -d '{"token": {"client_id": <new_oauth_client_id>, "scopes": ["read"]}}' -X POST -v -u <your_email>/token:<api_token>`
+   - Substitute <new_oauth_client_id>, <your_email> and <api_token>
+   - Get an API token from https://signpost-global.zendesk.com/admin/apps-integrations/apis/zendesk-api/settings/tokens/
