@@ -163,8 +163,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     a.name.normalize().localeCompare(b.name.normalize())
   );
 
-  const services = await fetchServices(COUNTRY_ID, currentLocale.url);
-  services.sort((a, b) => a.name.normalize().localeCompare(b.name.normalize()));
+  const fetchedServices = await fetchServices(COUNTRY_ID, currentLocale.url);
+  const services = fetchedServices
+    .filter((s) => s.data_i18n[0]?.name)
+    .sort((a, b) => a.name.normalize().localeCompare(b.name.normalize()));
 
   return {
     props: {
