@@ -8,7 +8,11 @@ created from this template.
 
 ## Instructions for setting up a new Signpost instance
 
-### 1. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+### 1. Fork the repository
+
+1. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+2. [Enable GitHub
+   workflows](https://docs.github.com/en/actions/managing-workflow-runs/disabling-and-enabling-a-workflow#enabling-a-workflow).
 
 ### 2. Swap README
 
