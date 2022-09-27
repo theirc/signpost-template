@@ -51,8 +51,11 @@ documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## 6. Setup a domain
 
-To set up the target domain after you have set up the site in the previous steps,
-follow https://vercel.com/docs/concepts/projects/custom-domains.
+1. Set up the target domain after you have set up the site in the previous steps
+   by following https://vercel.com/docs/concepts/projects/custom-domains.
+2. Remove Host mapping from Zendesk for your brand: https://signpost-global.zendesk.com/admin/account/brand_management/brands.
+   - It's needed to allow Zendesk Admin functionalities (e.g., category editing and article preview) to keep working through Zendesk Themes.
+3. Verify that editing category name in Zendesk still works for your brand.
 
 ## 7. Set up Google Analytics
 
