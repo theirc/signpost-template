@@ -5,8 +5,10 @@ import {
   SearchResultsPageStrings,
 } from '@ircsignpost/signpost-base/dist/src/search-results-page';
 import {
+  CategoryWithSections,
   ZendeskCategory,
   getCategories,
+  getCategoriesWithSections,
   getTranslationsFromDynamicContent,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
@@ -18,7 +20,9 @@ import {
   REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
   SEARCH_RESULTS_PAGE_INDEX,
+  SECTION_ICON_NAMES,
   SITE_TITLE,
+  USE_CAT_SEC_ART_CONTENT_STRUCTURE,
   ZENDESK_AUTH_HEADER,
 } from '../lib/constants';
 import {
@@ -83,12 +87,25 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     ZENDESK_AUTH_HEADER
   );
 
-  let categories: ZendeskCategory[] = await getCategories(
-    currentLocale,
-    getZendeskUrl()
-  );
-  categories = categories.filter((c) => !CATEGORIES_TO_HIDE.includes(c.id));
-  categories.forEach((c) => (c.icon = CATEGORY_ICON_NAMES[c.id]));
+  let categories: ZendeskCategory[] | CategoryWithSections[];
+  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
+    categories = await getCategoriesWithSections(
+      currentLocale,
+      getZendeskUrl(),
+      (c) => !CATEGORIES_TO_HIDE.includes(c.id)
+    );
+    categories.forEach(({ sections }) => {
+      sections.forEach(
+        (s) => (s.icon = SECTION_ICON_NAMES[s.id] || 'help_outline')
+      );
+    });
+  } else {
+    categories = await getCategories(currentLocale, getZendeskUrl());
+    categories = categories.filter((c) => !CATEGORIES_TO_HIDE.includes(c.id));
+    categories.forEach(
+      (c) => (c.icon = CATEGORY_ICON_NAMES[c.id] || 'help_outline')
+    );
+  }
 
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
