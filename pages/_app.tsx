@@ -1,7 +1,9 @@
 import 'antd/dist/antd.less';
 import '../styles/globals.css';
 import 'leaflet/dist/leaflet.css';
-import '@ircsignpost/signpost-base/styles/category-content.less';
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+import '@ircsignpost/signpost-base/styles/topic-with-articles.less';
 import '@ircsignpost/signpost-base/styles/footer-page.less';
 import '@ircsignpost/signpost-base/styles/header.less';
 import '@ircsignpost/signpost-base/styles/header-banner.less';
