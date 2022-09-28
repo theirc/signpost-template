@@ -32,13 +32,36 @@ export const CATEGORY_ICON_NAMES: { [key: string]: string } = {
 
 // A mapping from section ID to a Material icon for that section.
 export const SECTION_ICON_NAMES: { [key: string]: string } = {
-  /* TODO */
-  '123': 'home_work', // Placeholder
+  // articles section
+  '4768116680855': 'content_paste',
+  '4768201127959': 'favorite',
+  '4768236201879': 'apartment',
+  '4768229873431': 'flight_land',
+  '4768215377431': 'favorite',
+  '4768236226967': 'medical_services',
+  '4768116667543': 'description',
+  '4768116668311': 'school',
+  '4768229899031': 'description',
+  '4768222212887': 'payments',
+  '4768201101719': 'hail',
+  '4768236260759': 'female',
+  '4768201105175': 'medical_services',
+  '4768236267159': 'business_center',
+  '4768222253335': 'directions_car',
+  '4768222261655': 'flight',
+  '6155198126365': '',
+  // latest announcements section
+  '4768116683927': '',
+  // about section
+  '4768236194583': '',
+  '4768222161687': '',
+  '4768116665751': '',
 };
 
 // A list of category IDs that the site should not display.
 export const CATEGORIES_TO_HIDE: number[] = [
   5388415886487, 5451758139293, 5388415940887, 4421271418775, 4420351027479,
+  4420351005975,
 ];
 
 // A map from a locale code to Zendesk locale id used for dynamic content translations.
