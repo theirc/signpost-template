@@ -64,6 +64,7 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_service_map_all_cities_option',
   'default_service_map_all_categories_option',
   'default_service_map_my_location_option',
+  'HC_RI_GREECE_WELCOME_BANNER_TEXT_UCL',
 ];
 
 export const CATEGORY_PLACEHOLDERS = ['default_select_topic'];
@@ -234,6 +235,7 @@ export function populateHomePageStrings(dynamicContent: {
     cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     serviceMapStrings: populateServiceMapStrings(dynamicContent),
     searchBarStrings: populateSearchBarStrings(dynamicContent),
+    topBannerString: dynamicContent['HC_RI_GREECE_WELCOME_BANNER_TEXT_UCL'],
   };
 }
 
