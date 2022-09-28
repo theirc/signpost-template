@@ -10,17 +10,23 @@ import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import Footer from '@ircsignpost/signpost-base/dist/src/footer';
 import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 import { createDefaultSearchBarProps } from '@ircsignpost/signpost-base/dist/src/search-bar';
-import { ZendeskCategory } from '@ircsignpost/signpost-base/dist/src/zendesk';
+import {
+  CategoryWithSections,
+  ZendeskCategory,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 import {
   CATEGORIES_TO_HIDE,
+  CATEGORY_ICON_NAMES,
   GOOGLE_ANALYTICS_IDS,
   REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
+  SECTION_ICON_NAMES,
   SITE_TITLE,
+  USE_CAT_SEC_ART_CONTENT_STRUCTURE,
   ZENDESK_AUTH_HEADER,
 } from '../../lib/constants';
 import {
@@ -45,6 +51,7 @@ import {
   getArticle,
   getArticles,
   getCategories,
+  getCategoriesWithSections,
   getTranslationsFromDynamicContent,
 } from '../../lib/zendesk-fake';
 
@@ -184,9 +191,25 @@ export const getStaticProps: GetStaticProps = async ({
     ZENDESK_AUTH_HEADER
   );
 
-  const categories: ZendeskCategory[] = (
-    await getCategories(currentLocale, getZendeskUrl())
-  ).filter((c) => !CATEGORIES_TO_HIDE.includes(c.id));
+  let categories: ZendeskCategory[] | CategoryWithSections[];
+  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
+    categories = await getCategoriesWithSections(
+      currentLocale,
+      getZendeskUrl(),
+      (c) => !CATEGORIES_TO_HIDE.includes(c.id)
+    );
+    categories.forEach(({ sections }) => {
+      sections.forEach(
+        (s) => (s.icon = SECTION_ICON_NAMES[s.id] || 'help_outline')
+      );
+    });
+  } else {
+    categories = await getCategories(currentLocale, getZendeskUrl());
+    categories = categories.filter((c) => !CATEGORIES_TO_HIDE.includes(c.id));
+    categories.forEach(
+      (c) => (c.icon = CATEGORY_ICON_NAMES[c.id] || 'help_outline')
+    );
+  }
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
     categories

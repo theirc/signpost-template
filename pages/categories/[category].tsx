@@ -17,6 +17,7 @@ import {
   REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
   SITE_TITLE,
+  USE_CAT_SEC_ART_CONTENT_STRUCTURE,
   ZENDESK_AUTH_HEADER,
 } from '../../lib/constants';
 import {
@@ -123,6 +124,10 @@ export async function getStringPaths(): Promise<string[]> {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  // Category page does not exist in this type of content structure.
+  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
+    return { notFound: true, props: {} };
+  }
   if (!locale) {
     throw new Error(
       `Failed to get static props for a category (id: ${params?.category}): missing locale.`
