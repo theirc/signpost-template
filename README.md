@@ -49,7 +49,7 @@ from the creators of Next.js.
 Check out [Next.js deployment
 documentation](https://nextjs.org/docs/deployment) for more details.
 
-## 6. Setup a domain
+### 6. Setup a domain
 
 1. Set up the target domain after you have set up the site in the previous steps
    by following https://vercel.com/docs/concepts/projects/custom-domains.
@@ -57,7 +57,7 @@ documentation](https://nextjs.org/docs/deployment) for more details.
    - It's needed to allow Zendesk Admin functionalities (e.g., category editing and article preview) to keep working through Zendesk Themes.
 3. Verify that editing category name in Zendesk still works for your brand.
 
-## 7. Set up Google Analytics
+### 7. Set up Google Analytics
 
 **_Create a GA4 Property and find your Measurement ID_**
 
@@ -138,7 +138,7 @@ export function enableGoogleAnalytics(googleAnalyticsIds: string[]);
 export function trackClickEvent(eventCategory: string, eventLabel: string);
 ```
 
-## 8. Generate Zendesk OAuth token for your site
+### 8. Generate Zendesk OAuth token for your site
 
 You need to generate a new Zendesk OAuth token for your site for Zendesk logging and API usage tracking purposes. To do that, you need full Admin access. If you don't have it, ask your Product manager (Liam) to generate it for you with following instructions:
 
@@ -148,3 +148,18 @@ You need to generate a new Zendesk OAuth token for your site for Zendesk logging
 3. Perform the following command in the terminal `curl https://signpost-global.zendesk.com/api/v2/oauth/tokens.json -H "Content-Type: application/json" -d '{"token": {"client_id": <new_oauth_client_id>, "scopes": ["read"]}}' -X POST -v -u <your_email>/token:<api_token>`
    - Substitute <new_oauth_client_id>, <your_email> and <api_token>
    - Get an API token from https://signpost-global.zendesk.com/admin/apps-integrations/apis/zendesk-api/settings/tokens/
+
+## Architectural Decisions
+
+### Dual content structure
+
+There are two possible versions of content in a Zendesk instance. They are both
+explained at
+[Figma](https://www.figma.com/file/Gkxqy6IGhG1WYtEO6t9oOF/Default-template-%2F-Signpost?node-id=258%3A19009).
+
+The components [signpost-base][signpost-base] work with both of them. During
+setting up of this template, you'll do steps to configure the site for a
+specific version. (TODO:
+https://github.com/unitedforukraine/signpost-template/issues/103)
+
+[signpost-base]: https://github.com/unitedforukraine/signpost-base
