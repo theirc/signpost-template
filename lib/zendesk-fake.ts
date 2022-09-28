@@ -3,8 +3,10 @@
 // TODO Replace uses of this library with the real implementation.
 import { Section } from '@ircsignpost/signpost-base/dist/src/category-content';
 import type {
+  CategoryWithSections,
   ZendeskArticle,
   ZendeskCategory,
+  ZendeskSection,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 
 import { Locale } from './locale';
@@ -24,12 +26,61 @@ export async function getCategories(
   return [
     {
       id: 123,
-      name: 'TODO',
+      name: 'TODO 1',
+      description: 'Lorem Ipsum',
+      locale: 'en-us',
+      icon: '',
+    },
+    {
+      id: 321,
+      name: 'TODO 2',
       description: 'Lorem Ipsum',
       locale: 'en-us',
       icon: '',
     },
   ];
+}
+
+/**
+ * Gets categories with their associated sections.
+ *
+ * @async
+ * @param locale The locale of the fetched data.
+ * @param zendeskUrl The canonical Zendesk URL, e.g., https://signpost-u4u.zendesk.com.
+ * @param [categoryFilter] If provided, filters out specified categories.
+ * @returns Categories with their associated sections.
+ */
+export async function getCategoriesWithSections(
+  locale: Locale,
+  zendeskUrl: string,
+  categoryFilter?: (category: ZendeskCategory) => boolean
+): Promise<CategoryWithSections[]> {
+  let categories: ZendeskCategory[] = await getCategories(locale, zendeskUrl);
+  if (categoryFilter) categories = categories.filter(categoryFilter);
+
+  const categoriesAndSections: CategoryWithSections[] = [];
+  for (const category of categories) {
+    const sections: ZendeskSection[] = [
+      {
+        name: 'TODO',
+        description: 'Lorem Ipsum',
+        id: 1111,
+        locale: 'en-us',
+        category_id: category.id,
+        icon: '',
+      },
+      {
+        name: 'TODO',
+        description: 'Lorem Ipsum',
+        id: 2222,
+        locale: 'en-us',
+        category_id: category.id,
+        icon: '',
+      },
+    ];
+    categoriesAndSections.push({ category, sections });
+  }
+  return categoriesAndSections;
 }
 
 export async function getSectionsForCategory(

@@ -21,8 +21,21 @@ export const REVALIDATION_TIMEOUT_SECONDS: number = 1 * 60 * 60;
 // TODO
 export const ABOUT_US_ARTICLE_ID: number = 123;
 
+// The information hierary of the website.
+// Set to true for the category -> section -> article hierarchy, similar to that of United for Ukraine.
+// Set to false for the "information" -> category -> article hierarchy, similar to that of Beporsed.
+//
+// TODO
+export const USE_CAT_SEC_ART_CONTENT_STRUCTURE = false;
+
 // A mapping from category ID to a Material icon for that category.
 export const CATEGORY_ICON_NAMES: { [key: string]: string } = {
+  /* TODO */
+  '123': 'home_work', // Placeholder
+};
+
+// A mapping from section ID to a Material icon for that section.
+export const SECTION_ICON_NAMES: { [key: string]: string } = {
   /* TODO */
   '123': 'home_work', // Placeholder
 };
