@@ -57,6 +57,40 @@ The site depends on the following environment variables that you need to provide
 - `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN`. The mapbox access token for the service map tiles.
 - `PREVIEW_TOKEN` is used to access preview mode. See [preview mode instructions](https://docs.google.com/document/d/1IbtY_EvIm0c1C8yeKpEPWwPvWJyHiNehYkRpVJJ65kg/edit?usp=sharing) for more details.
 
+## Running locally
+
+### Get the environment variables:
+
+Some functionality, such as getting dynamic content via authenticated requests,
+requires secret tokens and IDs. In order to run the server locally, we will
+need to pull these environment variables into our setup. There are two ways of
+doing this.
+
+A. Sign-in to vercel to manage environment variables and copy and paste each
+key-value pair into your `.env.local` file.
+
+or
+
+B. Install the [Vercel CLI](https://vercel.com/cli) and pull the environment
+variables:
+
+```bash
+# Install the CLI
+yarn global add vercel
+# Setup and link your repo to the existing unitedforukraine/nextjs project
+vercel link
+# Pull the environment variables into your local environment
+vercel env pull .env.local
+```
+
+### Run the development server:
+
+```bash
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 ## Linting & formatting
 
 We use ESLint and [Prettier][prettier] to lint and format the directory respectively.
