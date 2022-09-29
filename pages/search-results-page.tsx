@@ -11,6 +11,7 @@ import {
 import { GetStaticProps } from 'next';
 
 import {
+  ABOUT_US_ARTICLE_ID,
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
   GOOGLE_ANALYTICS_IDS,
@@ -36,9 +37,10 @@ import {
   populateMenuOverlayStrings,
   populateSearchResultsPageStrings,
 } from '../lib/translations';
-import { getZendeskUrl } from '../lib/url';
+import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
 // TODO: import methods from '@ircsignpost/signpost-base/dist/src/zendesk' instead.
 import {
+  getArticle,
   getCategories,
   getCategoriesWithSections,
   getTranslationsFromDynamicContent,
@@ -110,9 +112,18 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     );
   }
 
+  const aboutUsArticle = await getArticle(
+    currentLocale,
+    ABOUT_US_ARTICLE_ID,
+    getZendeskUrl(),
+    getZendeskMappedUrl(),
+    ZENDESK_AUTH_HEADER
+  );
+
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
-    categories
+    categories,
+    !!aboutUsArticle
   );
 
   const strings = populateSearchResultsPageStrings(dynamicContent);

@@ -138,18 +138,20 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     );
   }
 
-  const menuOverlayItems = getMenuItems(
-    populateMenuOverlayStrings(dynamicContent),
-    categories
-  );
-  const article = await getArticle(
+  const aboutUsArticle = await getArticle(
     currentLocale,
     ABOUT_US_ARTICLE_ID,
     getZendeskUrl(),
     getZendeskMappedUrl(),
     ZENDESK_AUTH_HEADER
   );
-  const aboutUsTextHtml = article ? article.body : '';
+  const aboutUsTextHtml = aboutUsArticle ? aboutUsArticle.body : '';
+
+  const menuOverlayItems = getMenuItems(
+    populateMenuOverlayStrings(dynamicContent),
+    categories,
+    !!aboutUsArticle
+  );
 
   const strings = populateHomePageStrings(dynamicContent);
 

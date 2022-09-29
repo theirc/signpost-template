@@ -11,6 +11,7 @@ import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
 import {
+  ABOUT_US_ARTICLE_ID,
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
   GOOGLE_ANALYTICS_IDS,
@@ -35,9 +36,10 @@ import {
   populateCustom404Strings,
   populateMenuOverlayStrings,
 } from '../lib/translations';
-import { getZendeskUrl } from '../lib/url';
+import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
 // TODO Use real Zendesk API implementation.
 import {
+  getArticle,
   getCategories,
   getCategoriesWithSections,
   getTranslationsFromDynamicContent,
@@ -112,9 +114,18 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       (c) => (c.icon = CATEGORY_ICON_NAMES[c.id] || 'help_outline')
     );
   }
+
+  const aboutUsArticle = await getArticle(
+    currentLocale,
+    ABOUT_US_ARTICLE_ID,
+    getZendeskUrl(),
+    getZendeskMappedUrl(),
+    ZENDESK_AUTH_HEADER
+  );
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
-    categories
+    categories,
+    !!aboutUsArticle
   );
 
   return {

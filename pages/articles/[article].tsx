@@ -19,6 +19,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import {
+  ABOUT_US_ARTICLE_ID,
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
   GOOGLE_ANALYTICS_IDS,
@@ -210,9 +211,17 @@ export const getStaticProps: GetStaticProps = async ({
       (c) => (c.icon = CATEGORY_ICON_NAMES[c.id] || 'help_outline')
     );
   }
+  const aboutUsArticle = await getArticle(
+    currentLocale,
+    ABOUT_US_ARTICLE_ID,
+    getZendeskUrl(),
+    getZendeskMappedUrl(),
+    ZENDESK_AUTH_HEADER
+  );
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
-    categories
+    categories,
+    !!aboutUsArticle
   );
 
   const strings = populateArticlePageStrings(dynamicContent);
