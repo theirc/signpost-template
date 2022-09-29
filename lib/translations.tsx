@@ -10,6 +10,7 @@ import { CardsListStrings } from '@ircsignpost/signpost-base/dist/src/home-page-
 import { SearchBarStrings } from '@ircsignpost/signpost-base/dist/src/search-bar';
 import { SearchResultsPageStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page';
 import { SearchResultsStrings } from '@ircsignpost/signpost-base/dist/src/search-results-page-content';
+import { SectionStrings } from '@ircsignpost/signpost-base/dist/src/section-page';
 import { ServiceMapStrings } from '@ircsignpost/signpost-base/dist/src/service-map';
 import { ShareButtonStrings } from '@ircsignpost/signpost-base/dist/src/share-button';
 
@@ -68,6 +69,8 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
 ];
 
 export const CATEGORY_PLACEHOLDERS = ['default_select_topic'];
+
+export const SECTION_PLACEHOLDERS = ['default_select_topic'];
 
 export const SEARCH_RESULTS_PLACEHOLDERS = ['default_search_results_found'];
 
@@ -250,6 +253,16 @@ export function populateSearchBarStrings(dynamicContent: {
 export function populateCategoryStrings(dynamicContent: {
   [key: string]: string;
 }): CategoryStrings {
+  return {
+    cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
+    selectTopicLabel: getSelectTopicLabel(dynamicContent),
+    searchBarStrings: populateSearchBarStrings(dynamicContent),
+  };
+}
+
+export function populateSectionStrings(dynamicContent: {
+  [key: string]: string;
+}): SectionStrings {
   return {
     cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     selectTopicLabel: getSelectTopicLabel(dynamicContent),
