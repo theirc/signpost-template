@@ -37,16 +37,15 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
 ];
 
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
-  // Header banner and social media strings.
-  /*
-   * TODO: create Dynamic content ID for mission statement.
-  '<website_name>_mission_statement',
-   */
+  'ri_italy_mission_statement',
   'default_banner_social_media_title',
   'default_banner_social_media_description',
   'default_banner_facebook_title',
+  'ri_italy_facebook_link',
   'default_banner_messenger_title',
+  'ri_italy_messenger_link',
   'default_banner_whatsapp_title',
+  'ri_italy_whatsapp_link',
   // Main body strings.
   'default_information_title',
   'default_information_description',
@@ -82,25 +81,21 @@ export const ERROR_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_error_home_button_title',
 ];
 
-// TODO: Ask your Product manager to get Social media links.
 export function populateSocialMediaLinks(dynamicContent: {
   [key: string]: string;
 }): SocialMediaLinks {
   return {
     facebookLink: {
       title: dynamicContent['default_banner_facebook_title'],
-      // TODO: create Dynamic content with link to Facebook page
-      href: '', // dynamicContent['<site_prefix>_facebook_link']
+      href: dynamicContent['ri_italy_facebook_link'],
     },
     whatsappLink: {
       title: dynamicContent['default_banner_whatsapp_title'],
-      // TODO: create Dynamic content with link to Whatsapp page
-      href: '', // dynamicContent['<site_prefix>_whatsapp_link']
+      href: dynamicContent['ri_italy_whatsapp_link'],
     },
     messengerLink: {
       title: dynamicContent['default_banner_messenger_title'],
-      // TODO: create Dynamic content with link to Messenger page
-      href: '', // dynamicContent['<site_prefix>_messenger_link']
+      href: dynamicContent['ri_italy_messenger_link'],
     },
   };
 }
@@ -109,8 +104,7 @@ export function populateHeaderBannerStrings(dynamicContent: {
   [key: string]: string;
 }): HeaderBannerStrings {
   return {
-    // TODO: replace welcomeTitle with website-specific Dynamic content ID.
-    welcomeTitle: 'Welcome text.', // dynamicContent['<site_prefix>_mission_statement'],
+    welcomeTitle: dynamicContent['ri_italy_mission_statement'],
     socialMediaTitle: dynamicContent['default_banner_social_media_title'],
     socialMediaDescription:
       dynamicContent['default_banner_social_media_description'],
@@ -219,8 +213,6 @@ export function getSelectTopicLabel(dynamicContent: {
 }): string {
   return dynamicContent['default_select_topic'];
 }
-
-// TODO(annkats): add populateServiceMapStrings() once Service map becomes a Shared component.
 
 export function populateArticleContentStrings(dynamicContent: {
   [key: string]: string;
