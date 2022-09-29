@@ -62,17 +62,17 @@ export async function getCategoriesWithSections(
   for (const category of categories) {
     const sections: ZendeskSection[] = [
       {
-        name: 'TODO',
+        name: category.name + '-TODO-1111',
         description: 'Lorem Ipsum',
-        id: 1111,
+        id: category.id + 1111,
         locale: 'en-us',
         category_id: category.id,
         icon: '',
       },
       {
-        name: 'TODO',
+        name: category.name + '-TODO-2222',
         description: 'Lorem Ipsum',
-        id: 2222,
+        id: category.id + 2222,
         locale: 'en-us',
         category_id: category.id,
         icon: '',
