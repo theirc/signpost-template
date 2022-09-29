@@ -1,13 +1,11 @@
-import {
-  Section, // TODO Use real signpost-base/Zendesk API implementation.
-  // getSectionsForCategory,
-} from '@ircsignpost/signpost-base/dist/src/category-content';
 import CategoryPage, {
-  CategoryStrings,
+  CategoryStrings, // TODO Use real signpost-base/Zendesk API implementation.
+  // getSectionsForCategory,
 } from '@ircsignpost/signpost-base/dist/src/category-page';
 import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 import { MenuItem } from '@ircsignpost/signpost-base/dist/src/select-menu';
+import { Section } from '@ircsignpost/signpost-base/dist/src/topic-with-articles';
 import { GetStaticProps } from 'next';
 
 import {
