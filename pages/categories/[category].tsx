@@ -101,6 +101,16 @@ async function getStaticParams() {
 }
 
 export async function getStaticPaths() {
+  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
+    // Category page does not exist in this type of content structure.
+    // All paths under categories should return 404
+    // (https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-false).
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
+
   const categoryParams = await getStaticParams();
 
   return {
@@ -119,15 +129,15 @@ function getStringPath(category: string, locale: string): string {
 }
 
 export async function getStringPaths(): Promise<string[]> {
+  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
+    // Category page does not exist in this type of content structure.
+    return [];
+  }
   const params = await getStaticParams();
   return params.map((param) => getStringPath(param.category, param.locale));
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  // Category page does not exist in this type of content structure.
-  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
-    return { notFound: true, props: {} };
-  }
   if (!locale) {
     throw new Error(
       `Failed to get static props for a category (id: ${params?.category}): missing locale.`
