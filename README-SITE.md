@@ -109,6 +109,18 @@ yarn lint --fix
 yarn prettier --write .
 ```
 
+## Testing
+
+This section describes practices used for testing.
+
+### E2E testing
+
+To run e2e tests, run
+
+```shell
+yarn e2e:headless
+```
+
 ## Site's design
 
 This section documents some of the site's design decisions.
