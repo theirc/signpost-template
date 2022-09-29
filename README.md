@@ -21,7 +21,19 @@ created from this template.
 
 ### 3. Run the new site's development set up instructions
 
-### 4. Customize your site
+### 4. Choose your site's content structure
+
+1. Use [Figma
+   guidelines](https://www.figma.com/file/Gkxqy6IGhG1WYtEO6t9oOF/Default-template-%2F-Signpost?node-id=257%3A18748)
+   to decide which content structure the site should follow: Beporsed or UFU.
+2. Set `USE_CAT_SEC_ART_CONTENT_STRUCTURE` in
+   [`lib/constants.ts`](lib/constants.ts) accordingly.
+3. If you have chosen U4U:
+   1. [Optional] Delete [the category page
+      file](pages/categories/[category].tsx). It's not present in this content
+      structure.
+
+### 5. Customize your site
 
 1.  Fill out the environment variables documented in `README-SITE.md`.
     1. Add all variables to [.env.local](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables).
@@ -40,7 +52,7 @@ created from this template.
 8.  Enable Service map by completing TODO in [lib/constants.ts](lib/constants.ts)
 9.  Enable Chat widget by completing TODO in [pages/\_document.tsx](pages/_document.tsx)
 
-### 5. Connect the site to Vercel
+### 6. Connect the site to Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel
 Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
@@ -49,7 +61,7 @@ from the creators of Next.js.
 Check out [Next.js deployment
 documentation](https://nextjs.org/docs/deployment) for more details.
 
-### 6. Setup a domain
+### 7. Setup a domain
 
 1. Set up the target domain after you have set up the site in the previous steps
    by following https://vercel.com/docs/concepts/projects/custom-domains.
@@ -57,7 +69,7 @@ documentation](https://nextjs.org/docs/deployment) for more details.
    - It's needed to allow Zendesk Admin functionalities (e.g., category editing and article preview) to keep working through Zendesk Themes.
 3. Verify that editing category name in Zendesk still works for your brand.
 
-### 7. Set up Google Analytics
+### 8. Set up Google Analytics
 
 **_Create a GA4 Property and find your Measurement ID_**
 
@@ -138,7 +150,7 @@ export function enableGoogleAnalytics(googleAnalyticsIds: string[]);
 export function trackClickEvent(eventCategory: string, eventLabel: string);
 ```
 
-### 8. Generate Zendesk OAuth token for your site
+### 9. Generate Zendesk OAuth token for your site
 
 You need to generate a new Zendesk OAuth token for your site for Zendesk logging and API usage tracking purposes. To do that, you need full Admin access. If you don't have it, ask your Product manager (Liam) to generate it for you with following instructions:
 
