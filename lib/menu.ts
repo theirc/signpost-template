@@ -30,11 +30,6 @@ export function getMenuItems(
   } else {
     addMenuItemsInformation(items, strings, categories as ZendeskCategory[]);
   }
-  items.push({
-    key: 'about',
-    label: strings.about,
-    href: `/articles/${ABOUT_US_ARTICLE_ID}`,
-  });
   return items;
 }
 

@@ -20,7 +20,7 @@ export const ABOUT_US_ARTICLE_ID: number = 4985544145943;
 // Set to false for the "information" -> category -> article hierarchy, similar to that of Beporsed.
 //
 // TODO
-export const USE_CAT_SEC_ART_CONTENT_STRUCTURE = false;
+export const USE_CAT_SEC_ART_CONTENT_STRUCTURE = true;
 
 // A mapping from category ID to a Material icon for that category.
 export const CATEGORY_ICON_NAMES: { [key: string]: string } = {
