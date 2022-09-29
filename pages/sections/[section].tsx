@@ -9,6 +9,13 @@ import {
   Article,
   Section,
 } from '@ircsignpost/signpost-base/dist/src/topic-with-articles';
+import {
+  getArticlesForSection,
+  getCategoriesWithSections,
+  getSection,
+  getSections,
+  getTranslationsFromDynamicContent,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
 
 import {
@@ -37,14 +44,6 @@ import {
   populateSectionStrings,
 } from '../../lib/translations';
 import { getZendeskUrl } from '../../lib/url';
-// TODO Use real Zendesk API implementation.
-import {
-  getArticlesForSection,
-  getCategoriesWithSections,
-  getSection,
-  getSections,
-  getTranslationsFromDynamicContent,
-} from '../../lib/zendesk-fake';
 
 interface CategoryProps {
   currentLocale: Locale;
