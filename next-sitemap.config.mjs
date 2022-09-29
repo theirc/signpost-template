@@ -12,7 +12,7 @@ function getSiteUrl() {
 const config = {
   siteUrl: getSiteUrl(),
   generateRobotsTxt: true,
-  exclude: ['/*/categories/*', '/server-sitemap.xml'],
+  exclude: ['/*/categories/*', '/*/sections/*', '/server-sitemap.xml'],
   robotsTxtOptions: {
     additionalSitemaps: [getSiteUrl() + '/server-sitemap.xml'],
   },

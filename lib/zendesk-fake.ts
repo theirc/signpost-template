@@ -165,6 +165,111 @@ export async function getSectionsForCategory(
   ]);
 }
 
+/**
+ * Fetches list of Zendesk sections for the given locale.
+ *
+ * @param _locale The locale of the section.
+ * @param _zendeskUrl The canonical Zendesk URL, e.g., https://signpost-u4u.zendesk.com.
+ *
+ * @returns List of ZendeskSection
+ */
+export async function getSections(
+  _locale: Locale,
+  _zendeskUrl: string
+): Promise<ZendeskSection[]> {
+  return [
+    {
+      name: 'TODO',
+      description: 'Lorem Ipsum',
+      id: 2222,
+      locale: 'en-us',
+      category_id: 123,
+      icon: '',
+    },
+    {
+      name: 'TODO',
+      description: 'Lorem Ipsum',
+      id: 1111,
+      locale: 'en-us',
+      category_id: 321,
+      icon: '',
+    },
+    {
+      name: 'TODO',
+      description: 'Lorem Ipsum',
+      id: 2222,
+      locale: 'en-us',
+      category_id: 321,
+      icon: '',
+    },
+  ];
+}
+
+/**
+ * Fetches section for the given locale.
+ *
+ * @param locale The locale of the section.
+ * @param sectionId Section id to fetch.
+ * @param zendeskUrl The canonical Zendesk URL, e.g., https://signpost-u4u.zendesk.com.
+ *
+ * @returns ZendeskSection
+ */
+export async function getSection(
+  locale: Locale,
+  sectionId: number,
+  _zendeskUrl: string
+): Promise<ZendeskSection | undefined> {
+  return {
+    name: 'TODO',
+    description: 'Lorem Ipsum',
+    id: sectionId,
+    locale: locale.url,
+    category_id: 321,
+    icon: '',
+  };
+}
+
+export async function getArticlesForSection(
+  locale: Locale,
+  sectionId: number,
+  _zendeskUrl: string
+): Promise<ZendeskArticle[]> {
+  return Promise.resolve([
+    {
+      locale: locale.url,
+      section_id: sectionId,
+      id: 11111101,
+      title: 'Lorem Ipsum',
+      body: 'TODO',
+      edited_at: '2022-09-19',
+    },
+    {
+      locale: locale.url,
+      section_id: sectionId,
+      id: 11111102,
+      title: 'Lorem Ipsum',
+      body: 'TODO',
+      edited_at: '2022-09-19',
+    },
+    {
+      locale: locale.url,
+      section_id: sectionId,
+      id: 22222201,
+      title: 'Lorem Ipsum',
+      body: 'TODO',
+      edited_at: '2022-09-19',
+    },
+    {
+      locale: locale.url,
+      section_id: sectionId,
+      id: 22222202,
+      title: 'Lorem Ipsum',
+      body: 'TODO',
+      edited_at: '2022-09-19',
+    },
+  ]);
+}
+
 // An example article content which contains custom elements.
 // More about Zendesk content editor custom elements:
 // https://docs.google.com/document/d/1RyKzdU5ytXyswHtMoefjpvC7DtEMcJ1ZwJtMRsP5r4E
