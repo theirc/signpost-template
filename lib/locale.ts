@@ -21,7 +21,7 @@ export const LOCALE_CODES_TO_CANONICAL_LOCALE_CODES: { [key: string]: string } =
     'en-us': 'en-us',
     ar: 'ar',
     fa: 'fa',
-    ft: 'fr',
+    fr: 'fr',
     uk: 'uk',
     ur: 'ur',
   };

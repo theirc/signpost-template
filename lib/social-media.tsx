@@ -21,14 +21,5 @@ export interface SocialMediaLinks {
 export function getSocialMediaProps(
   socialMediaLinks: SocialMediaLinks
 ): SocialMediaProps[] {
-  return [
-    {
-      ...socialMediaLinks.facebookLink,
-      image: facebookImage,
-    },
-    {
-      ...socialMediaLinks.messengerLink,
-      image: messengerImage,
-    },
-  ];
+  return [];
 }

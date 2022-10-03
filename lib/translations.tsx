@@ -102,9 +102,8 @@ export function populateHeaderBannerStrings(dynamicContent: {
 }): HeaderBannerStrings {
   return {
     welcomeTitle: dynamicContent['ri_greece_mission_statement'],
-    socialMediaTitle: dynamicContent['default_banner_social_media_title'],
-    socialMediaDescription:
-      dynamicContent['ri_greece_banner_social_media_description'],
+    socialMediaTitle: '',
+    socialMediaDescription: '',
   };
 }
 
