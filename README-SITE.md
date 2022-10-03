@@ -148,3 +148,7 @@ How to add Search to new Signpost websites:
    - In 'Facets', add 'category.id' to 'Attributes for faceting'. It's needed to filter internal/helper articles. E.g. see [example of U4U index](https://www.algolia.com/apps/BWATZIXLX6/explorer/configuration/zendesk_signpost-u4u_articles/facets).
 3. Add Queries index from your article index: https://www.algolia.com/apps/BWATZIXLX6/query-suggestions
    - Ask your Product manager (Liam) if you don't have permissions.
+
+### Custom content elements
+
+Zendesk articles rendered on this web site can contain [custom content elements](https://docs.google.com/document/d/1RyKzdU5ytXyswHtMoefjpvC7DtEMcJ1ZwJtMRsP5r4E/edit?resourcekey=0-ATE1HUHP4GrX6OPMwmJPJA#heading=h.glljwdjqb4d4). The custom elements are processed in [ArticleContent](https://github.com/unitedforukraine/signpost-base/blob/66cce03925eb3c426c3c3a2683cad7be3be7b467/src/article-content.tsx) base component.
