@@ -161,6 +161,77 @@ You need to generate a new Zendesk OAuth token for your site for Zendesk logging
    - Substitute <new_oauth_client_id>, <your_email> and <api_token>
    - Get an API token from https://signpost-global.zendesk.com/admin/apps-integrations/apis/zendesk-api/settings/tokens/
 
+### 10. Setup Next.js preview
+
+If you have followed the steps in this README, you've already generated a value for `PREVIEW_TOKEN` environment variable, provided it in Vecel ([here](https://github.com/unitedforukraine/signpost-template#5-customize-your-site)) and added the preview logic to your website ([thanks to the preview logic in the Article component](https://github.com/unitedforukraine/signpost-template/blob/6f3c9b53261d586ea8b4cb4e9c5aa81bc4e862de/pages/articles/%5Barticle%5D.tsx#L182)). That already allows you to access preview mode manually.
+See [defenition and manual usage of preview mode](https://docs.google.com/document/d/1IbtY_EvIm0c1C8yeKpEPWwPvWJyHiNehYkRpVJJ65kg/edit?usp=sharing).
+
+To additionaly enable the Next.js preview for the ZD content editor links:
+
+0. _(Optional but recommended)_ For Next.js-based Signpost instances ZD theme is kept alive only for preview mode and category/section edits. So to avoid confusion between the live Next.js website and the ZD theme, replace the ZD theme of your instance with a version of Copenhagen theme where all not required `.hbs` files, styles, translations are removed and the required `.hbs` templates contain something like `<!-- This file needs to exist when importing Zendesk theme. -->` .
+
+1. Edit your ZD theme's source code
+
+   1. Replace the content of `article.hbs` with
+
+      ```
+         <div>
+            <div id="article-container">
+            <p>Redirecting...</p>
+         </div>
+         <script>
+            // The script below implements Next.js preview mode redirects. More details in:
+            // https://docs.google.com/document/d/1IbtY_EvIm0c1C8yeKpEPWwPvWJyHiNehYkRpVJJ65kg
+
+            const baseUrl = `{{ settings.preview_base_url }}`;;
+            const locale = `{{ help_center.locale }}`;
+            const articleId = `{{ article.id }}`;
+            const previewToken = `{{ settings.preview_access_token }}`;
+
+            // Example ZD preview URL:
+            // https://signpost-u4u.zendesk.com/hc/en-us/articles/4810103030679/preview/eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NDgxMDEwMzAzMDY3OSwiZXhwIjoxNjYzOTQ2ODk3fQ.YlBI8yUJaJVe8nI3_o1kRrtk_0eomhe3jGL2JR-G4og
+            const isPreviewMode = window.location.href.split('/').includes('preview');
+
+            // URLs are constructed based on the routing from https://github.com/unitedforukraine/signpost-template
+            const nextjsPreviewUrl = `${baseUrl}/api/preview?slug=/${locale}/articles/${articleId}&secret=${previewToken}`;
+            // Clears preview cookie if it was set, then redirects to the live website in normal mode.
+            const nextjsUrl = `${baseUrl}/api/clear-preview-cookies?slug=/${locale}/articles/${articleId}`;
+            window.location.replace(isPreviewMode ? nextjsPreviewUrl : nextjsUrl);
+         </script>
+         </div>
+      ```
+
+   2. Addd two parameters to `manifest.json`'s settings array: `preview_access_token` and `preview_base_url` under `preview_access_token_group_label` label
+      ```
+         "settings": [
+            {
+               "label": "preview_access_token_group_label",
+               "variables": [
+               {
+                  "identifier": "preview_access_token",
+                  "type": "text",
+                  "value": "",
+                  "label": "preview_access_token_label",
+                  "description": "preview_access_token_description"
+               },
+               {
+                  "identifier": "preview_base_url",
+                  "type": "text",
+                  "value": "",
+                  "label": "preview_base_url_label",
+                  "description": "preview_base_url_description"
+               }
+               ]
+            }
+         ]
+      ```
+
+2. Upload the edited theme as [set it as live in Zendesk UI](https://support.zendesk.com/hc/en-us/articles/4408828836250-Changing-the-live-theme-of-your-help-center)
+
+3. Provide the values for `preview_access_token` (the preview access token value that you've generated earlier) and `preview_base_url` (the domain name of your instance, e.g. https://www.unitedforukraine.org/) in the theme's UI: click Customize on the live theme -> click on `preview_access_token_group_label` group -> paste the values -> click Publish
+
+4. (Optional): educate your content writers on [how to access preview mode](https://docs.google.com/document/d/1IbtY_EvIm0c1C8yeKpEPWwPvWJyHiNehYkRpVJJ65kg/edit#) manually and in the ZD UI
+
 ## Architectural Decisions
 
 ### Dual content structure
