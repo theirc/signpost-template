@@ -21,6 +21,7 @@ import { GetStaticProps } from 'next';
 import {
   CATEGORIES_TO_HIDE,
   GOOGLE_ANALYTICS_IDS,
+  MENU_CATEGORIES_TO_HIDE,
   REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
   SECTION_ICON_NAMES,
@@ -208,6 +209,12 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     );
   });
 
+  const menuCategories = await getCategoriesWithSections(
+    currentLocale,
+    getZendeskUrl(),
+    (c) => !MENU_CATEGORIES_TO_HIDE.includes(c.id)
+  );
+
   const sectionItems = categories
     .flatMap((c) => c.sections)
     .map((section) => {
@@ -221,7 +228,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
-    categories
+    menuCategories
   );
 
   return {

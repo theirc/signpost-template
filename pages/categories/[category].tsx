@@ -16,6 +16,7 @@ import {
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
   GOOGLE_ANALYTICS_IDS,
+  MENU_CATEGORIES_TO_HIDE,
   REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
   SITE_TITLE,
@@ -153,6 +154,10 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     await getCategories(currentLocale, getZendeskUrl())
   ).filter((c) => !CATEGORIES_TO_HIDE.includes(c.id));
 
+  const menuCategories = (
+    await getCategories(currentLocale, getZendeskUrl())
+  ).filter((c) => !MENU_CATEGORIES_TO_HIDE.includes(c.id));
+
   const categoryItems = categories.map((category) => {
     return {
       name: category.name,
@@ -164,7 +169,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
-    categories
+    menuCategories
   );
 
   const sections = await getSectionsForCategory(
