@@ -54,12 +54,9 @@ export const ZENDESK_AUTH_HEADER = {
   Authorization: 'Bearer ' + process.env.ZENDESK_OAUTH_TOKEN,
 };
 
-// TODO: Add your app's google analytics ids as local and server environment variables,
-// and then add to this list. You may have two IDs, for example, during the migration
-// from Universal Analytics to Google Analytics 4. See README.md for more details.
 export const GOOGLE_ANALYTICS_IDS = [
-  // Example:
-  // process.env.NEXT_PUBLIC_GA4_ID ?? '',
+  process.env.NEXT_PUBLIC_GA_ID ?? '',
+  process.env.NEXT_PUBLIC_GA4_ID ?? '',
 ];
 
 // Algolia search app ID, Search API key and search index name:
