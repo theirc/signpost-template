@@ -1,14 +1,12 @@
 import { AlgoliaSearchIndex } from '@ircsignpost/signpost-base/dist/src/search-common';
 import { LatLngExpression } from 'leaflet';
 
-export const SITE_TITLE = 'TODO';
+export const SITE_TITLE = 'Cuentanos Honduras';
 
-// TODO: add the country id of the instance to fetch the data from the cms for the service-map;
-export const COUNTRY_ID = 123;
+export const COUNTRY_ID = 15;
 
-// TODO: add the default coords for the center of the map
 export const MAP_DEFAULT_COORDS: LatLngExpression = [
-  34.45830721078611, 65.09457416213823,
+  14.629840095990676, -87.1541153115535,
 ];
 
 // Cache statically generated pages for 1 hour. The timeout was chosen
@@ -19,7 +17,7 @@ export const REVALIDATION_TIMEOUT_SECONDS: number = 1 * 60 * 60;
 // The "about us" article ID.
 //
 // TODO
-export const ABOUT_US_ARTICLE_ID: number = 123;
+export const ABOUT_US_ARTICLE_ID: number = 5981587083933;
 
 // The information hierary of the website.
 // Set to true for the category -> section -> article hierarchy, similar to that of United for Ukraine.
@@ -50,7 +48,6 @@ export const CATEGORIES_TO_HIDE: number[] = [
 // Keep in sync with locales configured in /next.config.js.
 export const DYNAMIC_CONTENT_LOCALES: { [key: string]: number } = {
   'en-us': 1, // English locale id
-  // TODO: Add any other IDs needed
 };
 
 export const ZENDESK_AUTH_HEADER = {
