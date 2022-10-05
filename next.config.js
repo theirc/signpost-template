@@ -30,10 +30,9 @@ module.exports = withLess({
       // See full list of Ant styles here:
       // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
       modifyVars: {
-        // TODO: Update theme colors
-        'primary-color': '#51258F',
-        'secondary-color': '#854ECA',
-        'accent-color': '#13C2C2',
+        'primary-color': '#242629',
+        'secondary-color': '#38393C',
+        'accent-color': '#54E961',
         'info-color': '@accent-color',
         'alert-info-bg-color': '@accent-color',
         // Override Ant typography.
@@ -52,7 +51,7 @@ module.exports = withLess({
         'header-background-color': '@primary-color',
         'header-text-color': 'white',
         'header-banner-background-color':
-          'linear-gradient(@secondary-color, @primary-color)',
+          'linear-gradient(173.7deg, @secondary-color 8.14%, @primary-color 127.84%)',
         'header-banner-text-color': 'white',
         // Set search styles.
         'search-icon-color': 'black',
