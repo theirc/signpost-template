@@ -294,7 +294,6 @@ export function populateSearchResultsPageStrings(dynamicContent: {
   [key: string]: string;
 }): SearchResultsPageStrings {
   return {
-    cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     searchBarStrings: populateSearchBarStrings(dynamicContent),
     lastEditedLabel: getLastUpdatedLabel(dynamicContent),
     resultsFoundForQuery: dynamicContent['default_search_results_found'],

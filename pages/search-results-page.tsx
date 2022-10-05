@@ -34,10 +34,11 @@ import { getMenuItems } from '../lib/menu';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   SEARCH_RESULTS_PLACEHOLDERS,
+  populateCookieBannerStrings,
   populateMenuOverlayStrings,
   populateSearchResultsPageStrings,
 } from '../lib/translations';
-import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
+import { getSiteUrl, getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
 // TODO: import methods from '@ircsignpost/signpost-base/dist/src/zendesk' instead.
 import {
   getArticle,
@@ -53,6 +54,10 @@ interface SearchResultsPageProps {
   menuOverlayItems: MenuOverlayItem[];
   // Page title.
   title: string;
+  // The site's url, e.g., 'https://unitedforukraine.org'.
+  siteUrl: string;
+  // A map of dynamic content placeholders to their string values.
+  dynamicContent: { [key: string]: string };
 }
 
 export default function SearchResultsPage({
@@ -60,6 +65,8 @@ export default function SearchResultsPage({
   strings,
   menuOverlayItems,
   title,
+  siteUrl,
+  dynamicContent,
 }: SearchResultsPageProps) {
   return (
     <DefaultSearchResultsPage
@@ -67,14 +74,15 @@ export default function SearchResultsPage({
       locales={LOCALES}
       pageTitle={title}
       articleSearchResultsIndex={SEARCH_RESULTS_PAGE_INDEX}
-      searcResultsFilters={{ categoriesToHide: CATEGORIES_TO_HIDE }}
+      searchResultsFilters={{ categoriesToHide: CATEGORIES_TO_HIDE }}
       searchBarIndex={SEARCH_BAR_INDEX}
       menuOverlayItems={menuOverlayItems}
       headerLogoProps={getHeaderLogoProps(currentLocale)}
       strings={strings}
+      siteUrl={siteUrl}
       cookieBanner={
         <CookieBanner
-          strings={strings.cookieBannerStrings}
+          strings={populateCookieBannerStrings(dynamicContent)}
           googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}
         />
       }
@@ -85,7 +93,7 @@ export default function SearchResultsPage({
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const currentLocale: Locale = getLocaleFromCode(locale ?? 'en-us');
 
-  let dynamicContent = await getTranslationsFromDynamicContent(
+  const dynamicContent = await getTranslationsFromDynamicContent(
     getZendeskLocaleId(currentLocale),
     COMMON_DYNAMIC_CONTENT_PLACEHOLDERS.concat(SEARCH_RESULTS_PLACEHOLDERS),
     getZendeskUrl(),
@@ -134,6 +142,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       strings,
       menuOverlayItems,
       title: SITE_TITLE,
+      siteUrl: getSiteUrl(),
+      dynamicContent,
       revalidate: REVALIDATION_TIMEOUT_SECONDS,
     },
   };

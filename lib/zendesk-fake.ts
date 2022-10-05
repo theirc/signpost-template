@@ -1,7 +1,7 @@
 // Fake implementation of the Zendesk interface.
 //
 // TODO Replace uses of this library with the real implementation.
-import { Section } from '@ircsignpost/signpost-base/dist/src/category-content';
+import { Section } from '@ircsignpost/signpost-base/dist/src/topic-with-articles';
 import type {
   CategoryWithSections,
   ZendeskArticle,
