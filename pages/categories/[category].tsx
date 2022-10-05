@@ -1,11 +1,17 @@
 import CategoryPage, {
-  CategoryStrings, // TODO Use real signpost-base/Zendesk API implementation.
+  CategoryStrings,
+  getSectionsForCategory, // TODO Use real signpost-base/Zendesk API implementation.
   // getSectionsForCategory,
 } from '@ircsignpost/signpost-base/dist/src/category-page';
 import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 import { MenuItem } from '@ircsignpost/signpost-base/dist/src/select-menu';
 import { Section } from '@ircsignpost/signpost-base/dist/src/topic-with-articles';
+import {
+  getArticle,
+  getCategories,
+  getTranslationsFromDynamicContent,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
 
 import {
@@ -35,13 +41,6 @@ import {
   populateMenuOverlayStrings,
 } from '../../lib/translations';
 import { getZendeskMappedUrl, getZendeskUrl } from '../../lib/url';
-// TODO Use real Zendesk API implementation.
-import {
-  getArticle,
-  getCategories,
-  getSectionsForCategory,
-  getTranslationsFromDynamicContent,
-} from '../../lib/zendesk-fake';
 
 interface CategoryProps {
   currentLocale: Locale;
@@ -180,7 +179,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     !!aboutUsArticle
   );
 
-  // TODO Use real Zendesk API instead of the faked one.
   const sections = await getSectionsForCategory(
     currentLocale,
     Number(params?.category),
