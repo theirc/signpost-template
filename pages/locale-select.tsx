@@ -11,10 +11,9 @@ import logo from '../public/header-logo-cuentanos.png';
 
 const langs: Lang[] = [
   {
-    langShort: 'en-us',
-    langLong: 'English',
+    langShort: 'es',
+    langLong: 'Español',
   },
-  // TODO: Add supported languages.
 ];
 
 /** The locale selection page.
