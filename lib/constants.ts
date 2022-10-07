@@ -48,6 +48,7 @@ export const CATEGORIES_TO_HIDE: number[] = [
 // Keep in sync with locales configured in /next.config.js.
 export const DYNAMIC_CONTENT_LOCALES: { [key: string]: number } = {
   'en-us': 1, // English locale id
+  es: 2,
 };
 
 export const ZENDESK_AUTH_HEADER = {

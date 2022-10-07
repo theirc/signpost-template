@@ -14,7 +14,10 @@ const langs: Lang[] = [
     langShort: 'en-us',
     langLong: 'English',
   },
-  // TODO: Add supported languages.
+  {
+    langShort: 'es',
+    langLong: 'Español',
+  },
 ];
 
 /** The locale selection page.
