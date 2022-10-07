@@ -11,10 +11,6 @@ import logo from '../public/header-logo-cuentanos.png';
 
 const langs: Lang[] = [
   {
-    langShort: 'en-us',
-    langLong: 'English',
-  },
-  {
     langShort: 'es',
     langLong: 'Español',
   },
