@@ -62,6 +62,7 @@ module.exports = withLess({
         // Set cookie banner styles.
         'cookie-banner-text': '#000',
         'cookie-banner-back': '@accent-color',
+        'home-banner-background-color': '#ffac46',
       },
     },
   },
