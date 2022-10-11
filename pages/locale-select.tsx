@@ -7,6 +7,7 @@ import type { Lang } from '@ircsignpost/signpost-base/dist/src/locale-select-pag
 import Image from 'next/image';
 
 import { SITE_TITLE } from '../lib/constants';
+import logo from '../public/header-logo-cuentanos.png';
 
 const langs: Lang[] = [
   {
@@ -33,7 +34,7 @@ export default function LocaleSelectPage() {
       siteTitle={SITE_TITLE}
       message={'Please choose your preferred language'}
       langs={langs}
-      image={<span>TODO</span>}
+      image={<Image src={logo} alt="icon" />}
     />
   );
 }
