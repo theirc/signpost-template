@@ -105,7 +105,7 @@ const Home: NextPage<HomeProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const currentLocale: Locale = getLocaleFromCode(locale ?? 'en-us');
+  const currentLocale: Locale = getLocaleFromCode(locale ?? 'es');
   let dynamicContent = await getTranslationsFromDynamicContent(
     getZendeskLocaleId(currentLocale),
     COMMON_DYNAMIC_CONTENT_PLACEHOLDERS.concat(

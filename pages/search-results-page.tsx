@@ -88,7 +88,7 @@ export default function SearchResultsPage({
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const currentLocale: Locale = getLocaleFromCode(locale ?? 'en-us');
+  const currentLocale: Locale = getLocaleFromCode(locale ?? 'es');
 
   const dynamicContent = await getTranslationsFromDynamicContent(
     getZendeskLocaleId(currentLocale),
