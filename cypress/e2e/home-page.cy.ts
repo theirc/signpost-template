@@ -9,8 +9,8 @@ const DELAY_MS: number = 1000;
 describe('Home page behavior', () => {
   function runTestCases() {
     it('renders the home page without errors', () => {
-      cy.visit(encodeURI('http://localhost:3003/en-us'));
-      cy.url().should('eq', 'http://localhost:3003/en-us');
+      cy.visit(encodeURI('http://localhost:3003/es'));
+      cy.url().should('eq', 'http://localhost:3003/es');
       // Major layout are rendered.
       cy.get('#__next');
       cy.get('header');
