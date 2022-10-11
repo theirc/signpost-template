@@ -38,10 +38,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
 
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header banner and social media strings.
-  /*
-   * TODO: create Dynamic content ID for mission statement.
-  '<website_name>_mission_statement',
-   */
+  'CuentaNos_ElSalvador_mission_statement',
   'default_banner_social_media_title',
   'default_banner_social_media_description',
   'default_banner_facebook_title',
@@ -109,8 +106,7 @@ export function populateHeaderBannerStrings(dynamicContent: {
   [key: string]: string;
 }): HeaderBannerStrings {
   return {
-    // TODO: replace welcomeTitle with website-specific Dynamic content ID.
-    welcomeTitle: 'Welcome text.', // dynamicContent['<site_prefix>_mission_statement'],
+    welcomeTitle: dynamicContent['CuentaNos_ElSalvador_mission_statement'],
     socialMediaTitle: dynamicContent['default_banner_social_media_title'],
     socialMediaDescription:
       dynamicContent['default_banner_social_media_description'],
