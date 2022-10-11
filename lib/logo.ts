@@ -6,7 +6,7 @@ import logo from '../public/logo-cuentanos.png';
 export const getHeaderLogoProps = (currentLocale: Locale): LogoProps => {
   let imgSrc: string;
   switch (currentLocale.url) {
-    case 'en-us':
+    case 'es':
     default:
       imgSrc = logo.src;
       break;
