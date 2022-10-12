@@ -134,7 +134,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       strings,
       menuOverlayItems,
       title: SITE_TITLE,
-      revalidate: REVALIDATION_TIMEOUT_SECONDS,
     },
+    revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };
 };
