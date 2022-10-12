@@ -185,8 +185,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       },
       categories,
       aboutUsTextHtml,
-      revalidate: REVALIDATION_TIMEOUT_SECONDS,
     },
+    revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };
 };
 
