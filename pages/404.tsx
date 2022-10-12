@@ -132,7 +132,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       menuOverlayItems,
       categories,
       title: strings.errorStrings.subtitle?.concat(' - ', SITE_TITLE),
-      revalidate: REVALIDATION_TIMEOUT_SECONDS,
     },
+    revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };
 };
