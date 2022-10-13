@@ -2,6 +2,7 @@
 import { SocialMediaProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
 
 import facebookImage from '../public/facebook.svg';
+import instagramImage from '../public/instagram.svg';
 import messengerImage from '../public/messenger.svg';
 import whatsappImage from '../public/whatsapp.svg';
 
@@ -15,13 +16,11 @@ export interface SocialMediaLinks {
   facebookLink: SocialMediaLink;
   whatsappLink: SocialMediaLink;
   messengerLink: SocialMediaLink;
+  instagramLink: SocialMediaLink;
 }
 
 /**
  * Provides data for Social Media buttons, e.g. Facebook, Whatsapp, etc.
- *
- * TODO: You might need to add new Social media buttons or remove Facebook/Whatsapp/Messenger.
- * If so, import social media icons (or remove unused ones) under public/ dir.
  */
 export function getSocialMediaProps(
   socialMediaLinks: SocialMediaLinks
@@ -38,6 +37,10 @@ export function getSocialMediaProps(
     {
       ...socialMediaLinks.messengerLink,
       image: messengerImage,
+    },
+    {
+      ...socialMediaLinks.instagramLink,
+      image: instagramImage,
     },
   ];
 }

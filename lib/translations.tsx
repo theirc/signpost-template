@@ -44,6 +44,8 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_banner_facebook_title',
   'default_banner_messenger_title',
   'default_banner_whatsapp_title',
+  'default_banner_instagram_title',
+  'CuentaNos_ElSalvador_instagram_link',
   // Main body strings.
   'default_information_title',
   'default_information_description',
@@ -98,6 +100,10 @@ export function populateSocialMediaLinks(dynamicContent: {
       title: dynamicContent['default_banner_messenger_title'],
       // TODO: create Dynamic content with link to Messenger page
       href: '', // dynamicContent['<site_prefix>_messenger_link']
+    },
+    instagramLink: {
+      title: dynamicContent['default_banner_instagram_title'],
+      href: dynamicContent['CuentaNos_ElSalvador_instagram_link'],
     },
   };
 }
