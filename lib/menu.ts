@@ -38,17 +38,25 @@ function addMenuItemsCategories(
   categories: CategoryWithSections[]
 ) {
   for (const { category, sections } of categories) {
-    items.push({
-      key: category.id.toString(),
-      label: category.name,
-      children: sections.map((section) => {
-        return {
-          key: section.id.toString(),
-          label: section.name,
-          href: '/sections/' + section.id.toString(),
-        };
-      }),
-    });
+    if (category.id === 4420351005975) {
+      items.push({
+        key: category.id.toString(),
+        label: category.name,
+        href: '#service-map',
+      });
+    } else {
+      items.push({
+        key: category.id.toString(),
+        label: category.name,
+        children: sections.map((section) => {
+          return {
+            key: section.id.toString(),
+            label: section.name,
+            href: '/sections/' + section.id.toString(),
+          };
+        }),
+      });
+    }
   }
 }
 

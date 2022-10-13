@@ -66,7 +66,6 @@ export const CATEGORIES_TO_HIDE: number[] = [
 
 export const MENU_CATEGORIES_TO_HIDE: number[] = [
   5388415886487, 5451758139293, 5388415940887, 4421271418775, 4420351027479,
-  4420351005975,
 ];
 
 // A map from a locale code to Zendesk locale id used for dynamic content translations.
