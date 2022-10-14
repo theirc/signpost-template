@@ -63,6 +63,8 @@ module.exports = withLess({
         'cookie-banner-text': '#000',
         'cookie-banner-back': '@accent-color',
         'home-banner-background-color': '#ffac46',
+        'link-color': '#0000ee',
+        'link-hover-color': '#0000eea8',
       },
     },
   },
