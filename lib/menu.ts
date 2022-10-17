@@ -42,7 +42,7 @@ function addMenuItemsCategories(
       items.push({
         key: category.id.toString(),
         label: category.name,
-        href: '#service-map',
+        href: '/#service-map',
       });
     } else {
       items.push({
