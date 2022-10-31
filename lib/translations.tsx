@@ -72,7 +72,12 @@ export const CATEGORY_PLACEHOLDERS = ['default_select_topic'];
 
 export const SECTION_PLACEHOLDERS = ['default_select_topic'];
 
-export const SEARCH_RESULTS_PLACEHOLDERS = ['default_search_results_found'];
+export const SEARCH_RESULTS_PLACEHOLDERS = [
+  'default_search_results_found',
+  'default_all_results_tab',
+  'default_information_results_tab',
+  'default_services_results_tab',
+];
 
 export const ERROR_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_error_indicator',
@@ -294,10 +299,12 @@ export function populateSearchResultsPageStrings(dynamicContent: {
   [key: string]: string;
 }): SearchResultsPageStrings {
   return {
-    cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     searchBarStrings: populateSearchBarStrings(dynamicContent),
     lastEditedLabel: getLastUpdatedLabel(dynamicContent),
     resultsFoundForQuery: dynamicContent['default_search_results_found'],
+    allResultsTabString: dynamicContent['default_all_results_tab'],
+    informationTabString: dynamicContent['default_information_results_tab'],
+    servicesTabString: dynamicContent['default_services_results_tab'],
   };
 }
 
