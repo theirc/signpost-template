@@ -77,6 +77,7 @@ export default function SearchResultsPage({
       headerLogoProps={getHeaderLogoProps(currentLocale)}
       strings={strings}
       siteUrl={siteUrl}
+      informationFilter={[5388318703383]}
       cookieBanner={
         <CookieBanner
           strings={populateCookieBannerStrings(dynamicContent)}

@@ -48,7 +48,7 @@ module.exports = withLess({
         'layout-header-height': 'auto',
         'layout-header-min-height': '4.375rem',
         'layout-header-padding': '0',
-        'header-background-color': '@primary-color',
+        'header-background-color': '@secondary-color 8.14%',
         'header-text-color': 'white',
         'header-banner-background-color':
           'linear-gradient(173.7deg, @secondary-color 8.14%, @primary-color 127.84%)',
