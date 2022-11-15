@@ -34,6 +34,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_download',
   'default_last_updated',
   'default_article_reader_title',
+  'default_banner_link_share_title',
 ];
 
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
@@ -180,6 +181,7 @@ export function getShareButtonStrings(dynamicContent: {
   return {
     label: dynamicContent['default_share'],
     notificationText: dynamicContent['default_share_notification_text'],
+    linkShareButton: dynamicContent['default_banner_link_share_title'],
   };
 }
 
