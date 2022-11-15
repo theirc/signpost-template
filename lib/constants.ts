@@ -24,8 +24,12 @@ export const USE_CAT_SEC_ART_CONTENT_STRUCTURE = false;
 
 // A mapping from category ID to a Material icon for that category.
 export const CATEGORY_ICON_NAMES: { [key: string]: string } = {
-  /* TODO */
-  '123': 'home_work', // Placeholder
+  '7643097487901': 'miscellaneous_services',
+  '7447099415837': 'campaign',
+  '7447654872093': 'transfer_within_a_station',
+  '7447642330781': 'local_hospital',
+  '7447677591325': 'work',
+  '7448472101917': 'perm_device_information',
 };
 
 // A mapping from section ID to a Material icon for that section.
