@@ -34,6 +34,9 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_download',
   'default_last_updated',
   'default_article_reader_title',
+  'default_banner_facebook_title',
+  'default_banner_whatsapp_title',
+  'default_banner_link_share_title',
 ];
 
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
@@ -46,6 +49,7 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'ri_italy_messenger_link',
   'default_banner_whatsapp_title',
   'ri_italy_whatsapp_link',
+  'default_banner_link_share_title',
   // Main body strings.
   'default_information_title',
   'ri_italy_information_description',
@@ -173,6 +177,7 @@ export function getShareButtonStrings(dynamicContent: {
   return {
     label: dynamicContent['default_share'],
     notificationText: dynamicContent['default_share_notification_text'],
+    linkShareButton: dynamicContent['default_banner_link_share_title'],
   };
 }
 
