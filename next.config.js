@@ -6,7 +6,7 @@ const nextConfig = {
   swcMinify: true,
   // Keep in sync with locales configured in /lib/locale.ts.
   i18n: {
-    locales: ['default', 'en-us' /* TODO */],
+    locales: ['default', 'sw', 'en-us'],
     defaultLocale: 'default',
     localeDetection: false,
   },
@@ -31,8 +31,8 @@ module.exports = withLess({
       // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
       modifyVars: {
         // TODO: Update theme colors
-        'primary-color': '#51258F',
-        'secondary-color': '#854ECA',
+        'primary-color': '#36BA94',
+        'secondary-color': '#36BA94',
         'accent-color': '#13C2C2',
         'info-color': '@accent-color',
         'alert-info-bg-color': '@accent-color',
@@ -49,20 +49,20 @@ module.exports = withLess({
         'layout-header-height': 'auto',
         'layout-header-min-height': '4.375rem',
         'layout-header-padding': '0',
-        'header-background-color': '@primary-color',
+        'header-background-color': '#36BA94',
         'header-text-color': 'white',
         'header-banner-background-color':
           'linear-gradient(@secondary-color, @primary-color)',
         'header-banner-text-color': 'white',
         // Set search styles.
         'search-icon-color': 'black',
-        'search-icon-bg-color': '@accent-color',
+        'search-icon-bg-color': '#FCD735',
         // Set card styles.
         'card-padding-base': '16px',
         'home-page-card-icon-color': '#141414',
         // Set cookie banner styles.
         'cookie-banner-text': '#000',
-        'cookie-banner-back': '@accent-color',
+        'cookie-banner-back': '#FFB500',
       },
     },
   },
