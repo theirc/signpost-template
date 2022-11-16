@@ -10,7 +10,9 @@ describe('Redirects', () => {
    *});
    */
   it('Default home page visit should redirect to locale select', () => {
-    cy.visit(encodeURI('http://localhost:3003/hc/es/articles/7759527263773'));
+    cy.visit(
+      encodeURI('http://localhost:3003/hc/es/articles/7759527263773-slug')
+    );
     // '%2F' corresponds to '/'.
     cy.url().should('eq', 'http://localhost:3003/es/articles/7759527263773');
   });
