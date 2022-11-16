@@ -31,13 +31,6 @@ export function getMenuItems(
   } else {
     addMenuItemsInformation(items, strings, categories as ZendeskCategory[]);
   }
-  if (includeAbout) {
-    items.push({
-      key: 'about',
-      label: strings.about,
-      href: `/articles/${ABOUT_US_ARTICLE_ID}`,
-    });
-  }
   return items;
 }
 
@@ -46,17 +39,25 @@ function addMenuItemsCategories(
   categories: CategoryWithSections[]
 ) {
   for (const { category, sections } of categories) {
-    items.push({
-      key: category.id.toString(),
-      label: category.name,
-      children: sections.map((section) => {
-        return {
-          key: section.id.toString(),
-          label: section.name,
-          href: '/sections/' + section.id.toString(),
-        };
-      }),
-    });
+    if (category.id === 4420351005975) {
+      items.push({
+        key: category.id.toString(),
+        label: category.name,
+        href: '/#service-map',
+      });
+    } else {
+      items.push({
+        key: category.id.toString(),
+        label: category.name,
+        children: sections.map((section) => {
+          return {
+            key: section.id.toString(),
+            label: section.name,
+            href: '/sections/' + section.id.toString(),
+          };
+        }),
+      });
+    }
   }
 }
 
