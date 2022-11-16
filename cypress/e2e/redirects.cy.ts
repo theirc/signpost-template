@@ -1,6 +1,4 @@
 describe('Redirects', () => {
-  // TODO Once you've connected a Zendesk CMS, provide a valid locale and
-  // article ID for e2e testing.
   /*
    *it('Legacy article form slug should navigate to the localized article page', () => {
    *  cy.visit(
@@ -12,9 +10,9 @@ describe('Redirects', () => {
    *});
    */
   it('Default home page visit should redirect to locale select', () => {
-    cy.visit(encodeURI('http://localhost:3003'));
+    cy.visit(encodeURI('http://localhost:3003/hc/es/articles/7759527263773'));
     // '%2F' corresponds to '/'.
-    cy.url().should('eq', 'http://localhost:3003/locale-select?target=%2F');
+    cy.url().should('eq', 'http://localhost:3003/es/articles/7759527263773');
   });
 });
 

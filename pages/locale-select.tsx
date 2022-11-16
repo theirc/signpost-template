@@ -7,13 +7,13 @@ import type { Lang } from '@ircsignpost/signpost-base/dist/src/locale-select-pag
 import Image from 'next/image';
 
 import { SITE_TITLE } from '../lib/constants';
+import logo from '../public/infodigna-logo.png';
 
 const langs: Lang[] = [
   {
-    langShort: 'en-us',
-    langLong: 'English',
+    langShort: 'es',
+    langLong: 'Español',
   },
-  // TODO: Add supported languages.
 ];
 
 /** The locale selection page.
@@ -31,9 +31,11 @@ export default function LocaleSelectPage() {
   return (
     <LocaleSelectPageBase
       siteTitle={SITE_TITLE}
-      message={'Please choose your preferred language'}
+      message={
+        'Información accessible, confiable, e imparcial para personas en movimiento en su paso por México.'
+      }
       langs={langs}
-      image={<span>TODO</span>}
+      image={<Image src={logo} alt="icon" />}
     />
   );
 }

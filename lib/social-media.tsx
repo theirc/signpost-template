@@ -19,9 +19,7 @@ export interface SocialMediaLinks {
 
 /**
  * Provides data for Social Media buttons, e.g. Facebook, Whatsapp, etc.
- *
- * TODO: You might need to add new Social media buttons or remove Facebook/Whatsapp/Messenger.
- * If so, import social media icons (or remove unused ones) under public/ dir.
+ 
  */
 export function getSocialMediaProps(
   socialMediaLinks: SocialMediaLinks
