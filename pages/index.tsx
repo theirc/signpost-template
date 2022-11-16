@@ -13,6 +13,12 @@ import {
 import {
   CategoryWithSections,
   ZendeskCategory,
+  getCategoriesWithSections,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
+import {
+  getArticle,
+  getCategories,
+  getTranslationsFromDynamicContent,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
@@ -24,6 +30,7 @@ import {
   COUNTRY_ID,
   GOOGLE_ANALYTICS_IDS,
   MAP_DEFAULT_COORDS,
+  MENU_CATEGORIES_TO_HIDE,
   REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
   SECTION_ICON_NAMES,
@@ -50,13 +57,6 @@ import {
   populateSocialMediaLinks,
 } from '../lib/translations';
 import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
-// TODO Use real Zendesk API implementation.
-import {
-  getArticle,
-  getCategories,
-  getCategoriesWithSections,
-  getTranslationsFromDynamicContent,
-} from '../lib/zendesk-fake';
 
 interface HomeProps {
   currentLocale: Locale;
@@ -119,6 +119,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   );
 
   let categories: ZendeskCategory[] | CategoryWithSections[];
+  let menuCategories: ZendeskCategory[] | CategoryWithSections[];
   if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
     categories = await getCategoriesWithSections(
       currentLocale,
@@ -130,28 +131,35 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         (s) => (s.icon = SECTION_ICON_NAMES[s.id] || 'help_outline')
       );
     });
+    menuCategories = await getCategoriesWithSections(
+      currentLocale,
+      getZendeskUrl(),
+      (c) => !MENU_CATEGORIES_TO_HIDE.includes(c.id)
+    );
   } else {
     categories = await getCategories(currentLocale, getZendeskUrl());
     categories = categories.filter((c) => !CATEGORIES_TO_HIDE.includes(c.id));
     categories.forEach(
       (c) => (c.icon = CATEGORY_ICON_NAMES[c.id] || 'help_outline')
     );
+    menuCategories = await getCategories(currentLocale, getZendeskUrl());
+    menuCategories = menuCategories.filter(
+      (c) => !MENU_CATEGORIES_TO_HIDE.includes(c.id)
+    );
   }
 
-  const aboutUsArticle = await getArticle(
+  const menuOverlayItems = getMenuItems(
+    populateMenuOverlayStrings(dynamicContent),
+    menuCategories
+  );
+  const article = await getArticle(
     currentLocale,
     ABOUT_US_ARTICLE_ID,
     getZendeskUrl(),
     getZendeskMappedUrl(),
     ZENDESK_AUTH_HEADER
   );
-  const aboutUsTextHtml = aboutUsArticle ? aboutUsArticle.body : '';
-
-  const menuOverlayItems = getMenuItems(
-    populateMenuOverlayStrings(dynamicContent),
-    categories,
-    !!aboutUsArticle
-  );
+  const aboutUsTextHtml = article ? article.body : '';
 
   const strings = populateHomePageStrings(dynamicContent);
 
@@ -166,8 +174,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     a.name.normalize().localeCompare(b.name.normalize())
   );
 
-  const services = await fetchServices(COUNTRY_ID, currentLocale.url);
-  services.sort((a, b) => a.name.normalize().localeCompare(b.name.normalize()));
+  const fetchedServices = await fetchServices(COUNTRY_ID, currentLocale.url);
+  const services = fetchedServices
+    .filter((s) => s.data_i18n[0]?.name)
+    .sort((a, b) => a.name.normalize().localeCompare(b.name.normalize()));
 
   return {
     props: {

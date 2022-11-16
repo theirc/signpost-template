@@ -2,6 +2,7 @@
 
 html,
 body {
+  scroll-behavior: smooth;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -13,7 +14,6 @@ body {
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 

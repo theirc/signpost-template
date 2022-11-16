@@ -34,24 +34,24 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_download',
   'default_last_updated',
   'default_article_reader_title',
+  'default_banner_link_share_title',
 ];
 
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header banner and social media strings.
-  /*
-   * TODO: create Dynamic content ID for mission statement.
-  '<website_name>_mission_statement',
-   */
+  'ri_greece_mission_statement',
   'default_banner_social_media_title',
-  'default_banner_social_media_description',
+  'ri_greece_banner_social_media_description',
   'default_banner_facebook_title',
   'default_banner_messenger_title',
   'default_banner_whatsapp_title',
+  'ri_greece_facebook_link',
+  'ri_greece_messenger_link',
   // Main body strings.
   'default_information_title',
-  'default_information_description',
+  'ri_greece_information_description',
   'default_service_map_title',
-  'default_service_map_description',
+  'ri_greece_service_map_description',
   'default_service_map_select_region',
   'default_service_map_all_regions',
   'default_service_map_select_city',
@@ -66,6 +66,7 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_service_map_all_cities_option',
   'default_service_map_all_categories_option',
   'default_service_map_my_location_option',
+  'HC_RI_GREECE_WELCOME_BANNER_TEXT_UCL',
 ];
 
 export const CATEGORY_PLACEHOLDERS = ['default_select_topic'];
@@ -87,25 +88,17 @@ export const ERROR_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_error_home_button_title',
 ];
 
-// TODO: Ask your Product manager to get Social media links.
 export function populateSocialMediaLinks(dynamicContent: {
   [key: string]: string;
 }): SocialMediaLinks {
   return {
     facebookLink: {
       title: dynamicContent['default_banner_facebook_title'],
-      // TODO: create Dynamic content with link to Facebook page
-      href: '', // dynamicContent['<site_prefix>_facebook_link']
-    },
-    whatsappLink: {
-      title: dynamicContent['default_banner_whatsapp_title'],
-      // TODO: create Dynamic content with link to Whatsapp page
-      href: '', // dynamicContent['<site_prefix>_whatsapp_link']
+      href: dynamicContent['ri_greece_facebook_link'],
     },
     messengerLink: {
       title: dynamicContent['default_banner_messenger_title'],
-      // TODO: create Dynamic content with link to Messenger page
-      href: '', // dynamicContent['<site_prefix>_messenger_link']
+      href: dynamicContent['ri_greece_messenger_link'],
     },
   };
 }
@@ -114,11 +107,9 @@ export function populateHeaderBannerStrings(dynamicContent: {
   [key: string]: string;
 }): HeaderBannerStrings {
   return {
-    // TODO: replace welcomeTitle with website-specific Dynamic content ID.
-    welcomeTitle: 'Welcome text.', // dynamicContent['<site_prefix>_mission_statement'],
-    socialMediaTitle: dynamicContent['default_banner_social_media_title'],
-    socialMediaDescription:
-      dynamicContent['default_banner_social_media_description'],
+    welcomeTitle: dynamicContent['ri_greece_mission_statement'],
+    socialMediaTitle: '',
+    socialMediaDescription: '',
   };
 }
 
@@ -127,7 +118,7 @@ export function populateServiceMapStrings(dynamicContent: {
 }): ServiceMapStrings {
   return {
     title: dynamicContent['default_service_map_title'],
-    description: dynamicContent['default_service_map_description'],
+    description: dynamicContent['ri_greece_service_map_description'],
     selectRegionTitle: dynamicContent['default_service_map_select_region'],
     regionDefaultValue: dynamicContent['default_service_map_all_regions'],
     selectCityTitle: dynamicContent['default_service_map_select_city'],
@@ -139,10 +130,10 @@ export function populateServiceMapStrings(dynamicContent: {
       dynamicContent['default_services_list_count_services'],
     mapTab: dynamicContent['default_service_map_map_tab'],
     listTab: dynamicContent['default_service_map_list_tab'],
-    allRegionsOption: dynamicContent['default_service_map_all_regions_option'],
-    allCitiesOption: dynamicContent['default_service_map_all_cities_option'],
+    allRegionsOption: dynamicContent['DEFAULT_SERVICE_MAP_ALL_REGIONS_OPTION'],
+    allCitiesOption: dynamicContent['DEFAULT_SERVICE_MAP_ALL_CITIES_OPTION'],
     allCategoriesOption:
-      dynamicContent['default_service_map_all_categories_option'],
+      dynamicContent['DEFAULT_SERVICE_MAP_ALL_CATEGORIES_OPTION'],
     myLocationOption: dynamicContent['default_service_map_my_location_option'],
   };
 }
@@ -153,7 +144,7 @@ export function populateCategoriesSectionStrings(dynamicContent: {
 }): CardsListStrings {
   return {
     title: dynamicContent['default_information_title'],
-    description: dynamicContent['default_information_description'],
+    description: dynamicContent['ri_greece_information_description'],
   };
 }
 
@@ -179,6 +170,7 @@ export function getShareButtonStrings(dynamicContent: {
   return {
     label: dynamicContent['default_share'],
     notificationText: dynamicContent['default_share_notification_text'],
+    linkShareButton: dynamicContent['default_banner_link_share_title'],
   };
 }
 
@@ -225,8 +217,6 @@ export function getSelectTopicLabel(dynamicContent: {
   return dynamicContent['default_select_topic'];
 }
 
-// TODO(annkats): add populateServiceMapStrings() once Service map becomes a Shared component.
-
 export function populateArticleContentStrings(dynamicContent: {
   [key: string]: string;
 }): ArticleContentStrings {
@@ -254,6 +244,7 @@ export function populateHomePageStrings(dynamicContent: {
     cookieBannerStrings: populateCookieBannerStrings(dynamicContent),
     serviceMapStrings: populateServiceMapStrings(dynamicContent),
     searchBarStrings: populateSearchBarStrings(dynamicContent),
+    topBannerString: dynamicContent['HC_RI_GREECE_WELCOME_BANNER_TEXT_UCL'],
   };
 }
 

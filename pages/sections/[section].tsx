@@ -9,12 +9,19 @@ import {
   Article,
   Section,
 } from '@ircsignpost/signpost-base/dist/src/topic-with-articles';
+import {
+  getArticlesForSection,
+  getCategoriesWithSections,
+  getSection,
+  getSections,
+  getTranslationsFromDynamicContent,
+} from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
 
 import {
-  ABOUT_US_ARTICLE_ID,
   CATEGORIES_TO_HIDE,
   GOOGLE_ANALYTICS_IDS,
+  MENU_CATEGORIES_TO_HIDE,
   REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
   SECTION_ICON_NAMES,
@@ -37,16 +44,7 @@ import {
   populateMenuOverlayStrings,
   populateSectionStrings,
 } from '../../lib/translations';
-import { getZendeskMappedUrl, getZendeskUrl } from '../../lib/url';
-// TODO Use real Zendesk API implementation.
-import {
-  getArticle,
-  getArticlesForSection,
-  getCategoriesWithSections,
-  getSection,
-  getSections,
-  getTranslationsFromDynamicContent,
-} from '../../lib/zendesk-fake';
+import { getZendeskUrl } from '../../lib/url';
 
 interface CategoryProps {
   currentLocale: Locale;
@@ -211,6 +209,12 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     );
   });
 
+  const menuCategories = await getCategoriesWithSections(
+    currentLocale,
+    getZendeskUrl(),
+    (c) => !MENU_CATEGORIES_TO_HIDE.includes(c.id)
+  );
+
   const sectionItems = categories
     .flatMap((c) => c.sections)
     .map((section) => {
@@ -222,18 +226,9 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
       };
     });
 
-  const aboutUsArticle = await getArticle(
-    currentLocale,
-    ABOUT_US_ARTICLE_ID,
-    getZendeskUrl(),
-    getZendeskMappedUrl(),
-    ZENDESK_AUTH_HEADER
-  );
-
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
-    categories,
-    !!aboutUsArticle
+    menuCategories
   );
 
   return {
