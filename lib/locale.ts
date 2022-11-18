@@ -16,7 +16,7 @@ export const LOCALE_CODES_TO_CANONICAL_LOCALE_CODES: { [key: string]: string } =
   {
     en: 'en-us',
     'en-us': 'en-us',
-    sw: 'sw',
+    // sw: 'sw',
   };
 
 // Returns the effective locale given locale code.
