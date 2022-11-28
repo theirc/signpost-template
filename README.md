@@ -232,6 +232,35 @@ To additionaly enable the Next.js preview for the ZD content editor links:
 
 4. (Optional): educate your content writers on [how to access preview mode](https://docs.google.com/document/d/1IbtY_EvIm0c1C8yeKpEPWwPvWJyHiNehYkRpVJJ65kg/edit#) manually and in the ZD UI
 
+## PWA and Offline availability
+
+Next.js supports PWA adding the [next-pwa](https://github.com/shadowwalker/next-pwa) plugin.
+
+To install the plugin, just use:
+
+```
+yarn add next-pwa
+```
+
+And then you should update your `next.config.js` file to use the plugin. Example:
+
+```
+const withLess = require('next-with-less')
+const withPWA = require('next-pwa')({ dest: 'public' })
+
+const nextConfig = {
+  ...
+}
+
+module.exports = withPWA(withLess({
+  ...nextConfig,
+  lessLoaderOptions: {...},
+}))
+
+```
+
+Please refer to the [next-pwa](https://github.com/shadowwalker/next-pwa) site for more information and extra configurations.
+
 ## Architectural Decisions
 
 ### Dual content structure
