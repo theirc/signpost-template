@@ -3,6 +3,6 @@ updates:
   - package-ecosystem: "yarn"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     allow:
       - dependency-name: "@ircsignpost/signpost-base"
