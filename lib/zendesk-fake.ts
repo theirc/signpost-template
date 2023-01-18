@@ -241,6 +241,7 @@ export async function getArticlesForSection(
       id: 11111101,
       title: 'Lorem Ipsum',
       body: 'TODO',
+      updated_at: '2022-09-19',
       edited_at: '2022-09-19',
     },
     {
@@ -249,6 +250,7 @@ export async function getArticlesForSection(
       id: 11111102,
       title: 'Lorem Ipsum',
       body: 'TODO',
+      updated_at: '2022-09-19',
       edited_at: '2022-09-19',
     },
     {
@@ -257,6 +259,7 @@ export async function getArticlesForSection(
       id: 22222201,
       title: 'Lorem Ipsum',
       body: 'TODO',
+      updated_at: '2022-09-19',
       edited_at: '2022-09-19',
     },
     {
@@ -265,6 +268,7 @@ export async function getArticlesForSection(
       id: 22222202,
       title: 'Lorem Ipsum',
       body: 'TODO',
+      updated_at: '2022-09-19',
       edited_at: '2022-09-19',
     },
   ]);
@@ -304,6 +308,7 @@ export async function getArticle(
   return {
     body: exampleArticleContent,
     edited_at: '2022-09-19',
+    updated_at: '2022-09-19',
     id: articleId,
     locale: locale.url,
     section_id: 123,
@@ -337,6 +342,7 @@ export async function getArticles(
         section_id: section.id,
         locale: locale.url,
         edited_at: article.lastEdit.value,
+        updated_at: article.lastEdit.value,
         title: article.title,
         body: exampleArticleContent,
       });
