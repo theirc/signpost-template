@@ -50,6 +50,10 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_banner_whatsapp_title',
   // Main body strings.
   'default_information_title',
+  /*
+  //TODO: Replace and create customized dynamic content for information description.
+  '<site_prefix>_information_description',
+  */
   'default_information_description',
   'default_service_map_title',
   'default_service_map_description',
@@ -154,6 +158,7 @@ export function populateCategoriesSectionStrings(dynamicContent: {
 }): CardsListStrings {
   return {
     title: dynamicContent['default_information_title'],
+    //TODO: Update to the customized '<site_prefix>_information_description',
     description: dynamicContent['default_information_description'],
   };
 }
