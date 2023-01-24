@@ -4,6 +4,10 @@ function Document() {
   return (
     <Html>
       <Head>
+        <meta
+          name="google-site-verification"
+          content="PrE2eX5nD9nGPXSEETbC8TVgIhz80mc4aDlBisKUXN8"
+        />
         <script
           src="https://kit.fontawesome.com/027db3ea3f.js"
           crossOrigin="anonymous"
