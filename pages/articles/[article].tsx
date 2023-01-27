@@ -157,7 +157,12 @@ export async function getStaticPaths() {
   const articleParams = await getStaticParams();
 
   return {
-    paths: [],
+    paths: articleParams.map(({ article, locale }) => {
+      return {
+        params: { article },
+        locale,
+      };
+    }),
     fallback: 'blocking',
   };
 }
