@@ -6,7 +6,7 @@ const nextConfig = {
   swcMinify: true,
   // Keep in sync with locales configured in /lib/locale.ts.
   i18n: {
-    locales: ['default', 'en-us' /* TODO */],
+    locales: ['default', 'en-us', 'ru', 'uk', 'cs'],
     defaultLocale: 'default',
     localeDetection: false,
   },
@@ -30,10 +30,9 @@ module.exports = withLess({
       // See full list of Ant styles here:
       // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
       modifyVars: {
-        // TODO: Update theme colors
-        'primary-color': '#51258F',
-        'secondary-color': '#854ECA',
-        'accent-color': '#13C2C2',
+        'primary-color': '#38393C',
+        'secondary-color': '#242629',
+        'accent-color': '#FFB500',
         'info-color': '@accent-color',
         'alert-info-bg-color': '@accent-color',
         // Override Ant typography.
@@ -49,13 +48,13 @@ module.exports = withLess({
         'layout-header-height': 'auto',
         'layout-header-min-height': '4.375rem',
         'layout-header-padding': '0',
-        'header-background-color': '@primary-color',
+        'header-background-color': '@secondary-color 8.14%',
         'header-text-color': 'white',
         'header-banner-background-color':
-          'linear-gradient(@secondary-color, @primary-color)',
+          'linear-gradient(173.7deg, @secondary-color 8.14%, @primary-color 127.84%)',
         'header-banner-text-color': 'white',
         // Set search styles.
-        'search-icon-color': 'black',
+        'search-icon-color': 'white',
         'search-icon-bg-color': '@accent-color',
         // Set card styles.
         'card-padding-base': '16px',
