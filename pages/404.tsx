@@ -34,7 +34,7 @@ import {
   getZendeskLocaleId,
 } from '../lib/locale';
 import { getHeaderLogoProps } from '../lib/logo';
-import { getMenuItems } from '../lib/menu';
+import { getFooterItems, getMenuItems } from '../lib/menu';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   ERROR_DYNAMIC_CONTENT_PLACEHOLDERS,
@@ -50,6 +50,7 @@ interface Custom404Props {
   strings: Custom404Strings;
   // A list of |MenuOverlayItem|s to be displayed in the header and side menu.
   menuOverlayItems: MenuOverlayItem[];
+  footerLinks?: MenuOverlayItem[];
 }
 
 export default function Custom404({
@@ -57,6 +58,7 @@ export default function Custom404({
   title,
   strings,
   menuOverlayItems,
+  footerLinks,
 }: Custom404Props) {
   const router = useRouter();
 
@@ -69,6 +71,7 @@ export default function Custom404({
       menuOverlayItems={menuOverlayItems}
       headerLogoProps={getHeaderLogoProps(currentLocale)}
       searchBarIndex={SEARCH_BAR_INDEX}
+      footerLinks={footerLinks}
       cookieBanner={
         <CookieBanner
           strings={strings.cookieBannerStrings}
@@ -134,6 +137,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     populateMenuOverlayStrings(dynamicContent),
     menuCategories
   );
+  const footerLinks = getFooterItems(
+    populateMenuOverlayStrings(dynamicContent),
+    menuCategories
+  );
 
   return {
     props: {
@@ -142,6 +149,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       menuOverlayItems,
       categories,
       title: strings.errorStrings.subtitle?.concat(' - ', SITE_TITLE),
+      footerLinks,
     },
     revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };

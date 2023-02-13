@@ -37,7 +37,7 @@ import {
   getZendeskLocaleId,
 } from '../../lib/locale';
 import { getHeaderLogoProps } from '../../lib/logo';
-import { getMenuItems } from '../../lib/menu';
+import { getFooterItems, getMenuItems } from '../../lib/menu';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   SECTION_PLACEHOLDERS,
@@ -59,6 +59,7 @@ interface CategoryProps {
   strings: SectionStrings;
   selectFilterLabel: string;
   filterItems: MenuItem[];
+  footerLinks?: MenuOverlayItem[];
 }
 
 export default function Category({
@@ -71,6 +72,7 @@ export default function Category({
   strings,
   selectFilterLabel,
   filterItems,
+  footerLinks,
 }: CategoryProps) {
   const [sectionDisplayed, setSectionDisplayed] = useState<Section>(section);
 
@@ -137,6 +139,7 @@ export default function Category({
       filterSelect={true}
       filterItems={filterItems}
       onSelectFilterChange={handleFilterSectionChange}
+      footerLinks={footerLinks}
     />
   );
 }
@@ -284,6 +287,11 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     menuCategories
   );
 
+  const footerLinks = getFooterItems(
+    populateMenuOverlayStrings(dynamicContent),
+    menuCategories
+  );
+
   const filterSelectStrings = populateFilterSelectStrings(dynamicContent);
 
   const filterItems: MenuItem[] = [
@@ -301,6 +309,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
       strings,
       selectFilterLabel: filterSelectStrings.filterLabel,
       filterItems,
+      footerLinks,
     },
     revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };

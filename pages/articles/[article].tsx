@@ -46,7 +46,7 @@ import {
   getZendeskLocaleId,
 } from '../../lib/locale';
 import { getHeaderLogoProps } from '../../lib/logo';
-import { getMenuItems } from '../../lib/menu';
+import { getFooterItems, getMenuItems } from '../../lib/menu';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   ERROR_DYNAMIC_CONTENT_PLACEHOLDERS,
@@ -70,6 +70,7 @@ interface ArticleProps {
   strings: ArticlePageStrings;
   // A list of |MenuOverlayItem|s to be displayed in the header and side menu.
   menuOverlayItems: MenuOverlayItem[];
+  footerLinks?: MenuOverlayItem[];
 }
 
 export default function Article({
@@ -85,6 +86,7 @@ export default function Article({
   preview,
   strings,
   menuOverlayItems,
+  footerLinks,
 }: ArticleProps) {
   const router = useRouter();
 
@@ -117,7 +119,14 @@ export default function Article({
             googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}
           />
         ),
-        footerComponent: <Footer currentLocale={locale} locales={LOCALES} />,
+        footerComponent: (
+          <Footer
+            currentLocale={locale}
+            locales={LOCALES}
+            strings={strings.footerStrings}
+            links={footerLinks}
+          />
+        ),
         layoutDirection: locale.direction,
         children: [],
       }}
@@ -233,6 +242,11 @@ export const getStaticProps: GetStaticProps = async ({
     menuCategories
   );
 
+  const footerLinks = getFooterItems(
+    populateMenuOverlayStrings(dynamicContent),
+    menuCategories
+  );
+
   const strings = populateArticlePageStrings(dynamicContent);
 
   const article = await getArticle(
@@ -298,6 +312,7 @@ export const getStaticProps: GetStaticProps = async ({
       preview: preview ?? false,
       strings,
       menuOverlayItems,
+      footerLinks,
     },
     revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };

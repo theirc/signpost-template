@@ -18,6 +18,24 @@ export interface CustomMenuOverlayStrings extends MenuOverlayStrings {
   about: string;
 }
 
+export function getFooterItems(
+  strings: CustomMenuOverlayStrings,
+  categories: ZendeskCategory[] | CategoryWithSections[]
+): MenuOverlayItem[] {
+  let items: MenuOverlayItem[] = [];
+  items.push({ key: 'home', label: strings.home, href: '/' });
+  for (const { category } of categories as CategoryWithSections[]) {
+    if (category.id === 4420351005975) {
+      items.push({
+        key: category.id.toString(),
+        label: category.name,
+        href: '/#service-map',
+      });
+    }
+  }
+  return items;
+}
+
 // TODO Update menu items if needed.
 export function getMenuItems(
   strings: CustomMenuOverlayStrings,
