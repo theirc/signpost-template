@@ -22,6 +22,7 @@ import {
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
+import getConfig from 'next/config';
 
 import {
   ABOUT_US_ARTICLE_ID,
@@ -83,6 +84,8 @@ const Home: NextPage<HomeProps> = ({
   categories,
   footerLinks,
 }) => {
+  const { publicRuntimeConfig } = getConfig();
+
   return (
     <HomePage
       title={SITE_TITLE}
@@ -100,6 +103,7 @@ const Home: NextPage<HomeProps> = ({
       aboutUsTextHtml={aboutUsTextHtml}
       categories={categories}
       footerLinks={footerLinks}
+      signpostVersion={publicRuntimeConfig?.version}
       cookieBanner={
         <CookieBanner
           strings={strings.cookieBannerStrings}
