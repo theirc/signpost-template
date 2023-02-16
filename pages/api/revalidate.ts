@@ -19,7 +19,7 @@ export default async function handler(
 
   try {
     let time = new Date();
-    time.setHours(time.getHours() - 24);
+    time.setHours(time.getHours() - 1);
     time.setSeconds(0, 0);
     const unixTime = Math.floor(time.getTime() - 1000)
       .toString()
@@ -39,7 +39,10 @@ export default async function handler(
         article.id
       );
       for (let translation of translations) {
+        console.log('TIME ', time);
+        console.log('UPDATED AT ', new Date(translation.updated_at));
         if (new Date(translation.updated_at) >= time) {
+          console.log('LOCALE ', translation.locale);
           articlesToRevalidate.push(translation);
         }
       }
@@ -51,7 +54,9 @@ export default async function handler(
         await res.revalidate(pathToRevalidate);
       })
     );
-    return res.status(200).json({ revalidated: true });
+    return res
+      .status(200)
+      .json({ revalidated: true, articles: articlesToRevalidate, time });
   } catch (err) {
     return res.status(500).send('Error revalidating ' + err);
   }
