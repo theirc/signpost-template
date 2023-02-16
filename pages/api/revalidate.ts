@@ -19,7 +19,7 @@ export default async function handler(
 
   try {
     let time = new Date();
-    time.setHours(time.getHours() - 1);
+    time.setHours(time.getHours() - 24);
     time.setSeconds(0, 0);
     const unixTime = Math.floor(time.getTime() - 1000)
       .toString()
