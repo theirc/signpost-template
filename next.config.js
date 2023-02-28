@@ -1,4 +1,5 @@
 const withLess = require('next-with-less');
+const pack = require('./package.json');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,6 +21,18 @@ const nextConfig = {
         permanent: true,
       },
     ];
+  },
+  // TODO: add images url to whitelist them
+  // images: {
+  //   remotePatterns: [
+  //     {
+  //       protocol: 'https',
+  //       hostname: 'signpost-greece.zendesk.com',
+  //     },
+  //   ],
+  // },
+  publicRuntimeConfig: {
+    version: pack.dependencies['@ircsignpost/signpost-base'],
   },
 };
 

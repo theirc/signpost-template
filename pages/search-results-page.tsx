@@ -9,6 +9,7 @@ import {
   ZendeskCategory,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
+import getConfig from 'next/config';
 
 import {
   ABOUT_US_ARTICLE_ID,
@@ -68,6 +69,8 @@ export default function SearchResultsPage({
   dynamicContent,
   siteUrl,
 }: SearchResultsPageProps) {
+  const { publicRuntimeConfig } = getConfig();
+
   return (
     <DefaultSearchResultsPage
       currentLocale={currentLocale}
@@ -80,6 +83,7 @@ export default function SearchResultsPage({
       headerLogoProps={getHeaderLogoProps(currentLocale)}
       strings={strings}
       siteUrl={siteUrl}
+      signpostVersion={publicRuntimeConfig?.version}
       cookieBanner={
         <CookieBanner
           strings={populateCookieBannerStrings(dynamicContent)}

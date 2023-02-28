@@ -10,6 +10,7 @@ import {
   Section,
 } from '@ircsignpost/signpost-base/dist/src/topic-with-articles';
 import { GetStaticProps } from 'next';
+import getConfig from 'next/config';
 
 import {
   ABOUT_US_ARTICLE_ID,
@@ -68,6 +69,8 @@ export default function Category({
   menuOverlayItems,
   strings,
 }: CategoryProps) {
+  const { publicRuntimeConfig } = getConfig();
+
   return (
     <SectionPage
       currentLocale={currentLocale}
@@ -86,6 +89,7 @@ export default function Category({
         />
       }
       strings={strings}
+      signpostVersion={publicRuntimeConfig?.version}
     />
   );
 }
