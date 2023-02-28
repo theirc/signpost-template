@@ -205,6 +205,40 @@ export async function getSections(
   ];
 }
 
+export async function getCategorySection(
+  locale: Locale,
+  zendeskUrl: string,
+  sectionId: number,
+  lastUpdatedLabel: string,
+  sortBy?: string
+): Promise<Section | undefined> {
+  const articles = (
+    await getArticlesForSection(locale, sectionId, zendeskUrl, sortBy)
+  ).map((article) => {
+    return {
+      id: article.id,
+      title: article.title,
+      lastEdit: {
+        label: lastUpdatedLabel,
+        value: article.updated_at,
+        locale: locale,
+      },
+    };
+  });
+
+  const section = await getSection(locale, sectionId, zendeskUrl);
+  if (!section) return;
+
+  const mappedSection: Section = {
+    id: section.id,
+    name: section.name,
+    description: section.description,
+    articles,
+  };
+
+  return mappedSection;
+}
+
 /**
  * Fetches section for the given locale.
  *
@@ -232,7 +266,8 @@ export async function getSection(
 export async function getArticlesForSection(
   locale: Locale,
   sectionId: number,
-  _zendeskUrl: string
+  _zendeskUrl: string,
+  sortBy?: string
 ): Promise<ZendeskArticle[]> {
   return Promise.resolve([
     {
@@ -243,6 +278,7 @@ export async function getArticlesForSection(
       body: 'TODO',
       updated_at: '2022-09-19',
       edited_at: '2022-09-19',
+      draft: false,
     },
     {
       locale: locale.url,
@@ -252,6 +288,7 @@ export async function getArticlesForSection(
       body: 'TODO',
       updated_at: '2022-09-19',
       edited_at: '2022-09-19',
+      draft: false,
     },
     {
       locale: locale.url,
@@ -261,6 +298,7 @@ export async function getArticlesForSection(
       body: 'TODO',
       updated_at: '2022-09-19',
       edited_at: '2022-09-19',
+      draft: false,
     },
     {
       locale: locale.url,
@@ -270,6 +308,7 @@ export async function getArticlesForSection(
       body: 'TODO',
       updated_at: '2022-09-19',
       edited_at: '2022-09-19',
+      draft: false,
     },
   ]);
 }
@@ -313,6 +352,7 @@ export async function getArticle(
     locale: locale.url,
     section_id: 123,
     title: 'TODO',
+    draft: false,
   };
 }
 
@@ -344,6 +384,7 @@ export async function getArticles(
         edited_at: article.lastEdit.value,
         updated_at: article.lastEdit.value,
         title: article.title,
+        draft: false,
         body: exampleArticleContent,
       });
     });

@@ -15,6 +15,7 @@ import {
   ZendeskCategory,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
+import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -23,7 +24,6 @@ import {
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
   GOOGLE_ANALYTICS_IDS,
-  REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
   SECTION_ICON_NAMES,
   SITE_TITLE,
@@ -38,7 +38,7 @@ import {
   getZendeskLocaleId,
 } from '../../lib/locale';
 import { getHeaderLogoProps } from '../../lib/logo';
-import { getMenuItems } from '../../lib/menu';
+import { getFooterItems, getMenuItems } from '../../lib/menu';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   ERROR_DYNAMIC_CONTENT_PLACEHOLDERS,
@@ -70,6 +70,7 @@ interface ArticleProps {
   strings: ArticlePageStrings;
   // A list of |MenuOverlayItem|s to be displayed in the header and side menu.
   menuOverlayItems: MenuOverlayItem[];
+  footerLinks?: MenuOverlayItem[];
 }
 
 export default function Article({
@@ -85,8 +86,10 @@ export default function Article({
   preview,
   strings,
   menuOverlayItems,
+  footerLinks,
 }: ArticleProps) {
   const router = useRouter();
+  const { publicRuntimeConfig } = getConfig();
 
   return (
     <ArticlePage
@@ -117,7 +120,15 @@ export default function Article({
             googleAnalyticsIds={GOOGLE_ANALYTICS_IDS}
           />
         ),
-        footerComponent: <Footer currentLocale={locale} locales={LOCALES} />,
+        footerComponent: (
+          <Footer
+            currentLocale={locale}
+            locales={LOCALES}
+            strings={strings.footerStrings}
+            links={footerLinks}
+            signpostVersion={publicRuntimeConfig?.version}
+          />
+        ),
         layoutDirection: locale.direction,
         children: [],
       }}
@@ -226,6 +237,11 @@ export const getStaticProps: GetStaticProps = async ({
 
   const strings = populateArticlePageStrings(dynamicContent);
 
+  const footerLinks = getFooterItems(
+    populateMenuOverlayStrings(dynamicContent),
+    categories
+  );
+
   const article = await getArticle(
     currentLocale,
     Number(params?.article),
@@ -268,7 +284,6 @@ export const getStaticProps: GetStaticProps = async ({
             preview: preview ?? false,
             metaTagAttributes: [],
           },
-          revalidate: REVALIDATION_TIMEOUT_SECONDS,
         };
   }
 
@@ -289,7 +304,7 @@ export const getStaticProps: GetStaticProps = async ({
       preview: preview ?? false,
       strings,
       menuOverlayItems,
+      footerLinks,
     },
-    revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };
 };

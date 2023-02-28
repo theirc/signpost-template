@@ -7,6 +7,8 @@ import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overla
 import { MenuItem } from '@ircsignpost/signpost-base/dist/src/select-menu';
 import { Section } from '@ircsignpost/signpost-base/dist/src/topic-with-articles';
 import { GetStaticProps } from 'next';
+import getConfig from 'next/config';
+import { useEffect, useState } from 'react';
 
 import {
   ABOUT_US_ARTICLE_ID,
@@ -26,19 +28,22 @@ import {
   getZendeskLocaleId,
 } from '../../lib/locale';
 import { getHeaderLogoProps } from '../../lib/logo';
-import { getMenuItems } from '../../lib/menu';
+import { getFooterItems, getMenuItems } from '../../lib/menu';
 import {
   CATEGORY_PLACEHOLDERS,
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
   getLastUpdatedLabel,
   populateCategoryStrings,
+  populateFilterSelectStrings,
   populateMenuOverlayStrings,
 } from '../../lib/translations';
 import { getZendeskMappedUrl, getZendeskUrl } from '../../lib/url';
 // TODO Use real Zendesk API implementation.
 import {
   getArticle,
+  getArticlesForSection,
   getCategories,
+  getCategorySection,
   getSectionsForCategory,
   getTranslationsFromDynamicContent,
 } from '../../lib/zendesk-fake';
@@ -52,6 +57,11 @@ interface CategoryProps {
   // A list of |MenuOverlayItem|s to be displayed in the header and side menu.
   menuOverlayItems: MenuOverlayItem[];
   strings: CategoryStrings;
+  selectFilterLabel: string;
+  filterItems: MenuItem[];
+  sectionFilterItems: MenuItem[];
+  dynamicContent: { [key: string]: string };
+  footerLinks?: MenuOverlayItem[];
 }
 
 export default function Category({
@@ -62,7 +72,76 @@ export default function Category({
   sections,
   menuOverlayItems,
   strings,
+  selectFilterLabel,
+  filterItems,
+  sectionFilterItems,
+  dynamicContent,
+  footerLinks,
 }: CategoryProps) {
+  const [sectionDisplayed, setSectionDisplayed] = useState<Section[]>(sections);
+  const [selectedSectionId, setSelectedSectionId] = useState<
+    number | undefined
+  >(undefined);
+
+  const { publicRuntimeConfig } = getConfig();
+
+  const handleSectionFilterChange = async (val: number) => {
+    const SECTION = await getCategorySection(
+      currentLocale,
+      getZendeskUrl(),
+      val,
+      getLastUpdatedLabel(dynamicContent)
+    );
+    if (!SECTION) return { notFound: true };
+    setSectionDisplayed([SECTION]);
+    setSelectedSectionId(val);
+  };
+
+  const handleSelectFilterChange = async (val: string) => {
+    if (selectedSectionId) {
+      const SECTION = await getCategorySection(
+        currentLocale,
+        getZendeskUrl(),
+        selectedSectionId,
+        getLastUpdatedLabel(dynamicContent),
+        val
+      );
+      if (!SECTION) return { notFound: true };
+      setSectionDisplayed([SECTION]);
+    } else {
+      const sections = await Promise.all(
+        sectionDisplayed.map(async (x) => {
+          const articles = (
+            await getArticlesForSection(
+              currentLocale,
+              x.id,
+              getZendeskUrl(),
+              val
+            )
+          ).map((article) => {
+            return {
+              id: article.id,
+              title: article.title,
+              lastEdit: {
+                label: getLastUpdatedLabel(dynamicContent),
+                value: article.updated_at,
+                locale: currentLocale,
+              },
+            };
+          });
+
+          return { id: x.id, name: x.name, articles };
+        })
+      );
+      setSectionDisplayed(sections);
+    }
+  };
+
+  useEffect(() => {
+    setSectionDisplayed(sections);
+    setSelectedSectionId(undefined);
+  }, [sections]);
+
   return (
     <CategoryPage
       currentLocale={currentLocale}
@@ -81,6 +160,15 @@ export default function Category({
         />
       }
       strings={strings}
+      selectFilterLabel={selectFilterLabel}
+      filterSelect={true}
+      filterItems={filterItems}
+      onSelectFilterChange={handleSelectFilterChange}
+      sectionFilter={true}
+      sectionFilterItems={sectionFilterItems}
+      onSectionFilterChange={handleSectionFilterChange}
+      footerLinks={footerLinks}
+      signpostVersion={publicRuntimeConfig?.version}
     />
   );
 }
@@ -188,6 +276,24 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     getLastUpdatedLabel(dynamicContent)
   );
 
+  const sectionFilterItems = sections.map((section) => {
+    return {
+      name: section.name,
+      value: section.id,
+    };
+  });
+
+  const filterSelectStrings = populateFilterSelectStrings(dynamicContent);
+
+  const filterItems: MenuItem[] = [
+    { name: filterSelectStrings.mostRecent, value: 'updated_at' },
+  ];
+
+  const footerLinks = getFooterItems(
+    populateMenuOverlayStrings(dynamicContent),
+    categories
+  );
+
   return {
     props: {
       currentLocale,
@@ -197,6 +303,11 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
       sections,
       menuOverlayItems,
       strings,
+      selectFilterLabel: filterSelectStrings.filterLabel,
+      filterItems,
+      sectionFilterItems,
+      dynamicContent,
+      footerLinks,
     },
     revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };

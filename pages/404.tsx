@@ -8,6 +8,7 @@ import {
   ZendeskCategory,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
+import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 
 import {
@@ -60,7 +61,7 @@ export default function Custom404({
   strings,
   menuOverlayItems,
 }: Custom404Props) {
-  const router = useRouter();
+  const { publicRuntimeConfig } = getConfig();
 
   return (
     <Custom404Page
@@ -71,6 +72,7 @@ export default function Custom404({
       menuOverlayItems={menuOverlayItems}
       headerLogoProps={getHeaderLogoProps(currentLocale)}
       searchBarIndex={SEARCH_BAR_INDEX}
+      signpostVersion={publicRuntimeConfig?.version}
       cookieBanner={
         <CookieBanner
           strings={strings.cookieBannerStrings}
