@@ -261,6 +261,24 @@ module.exports = withPWA(withLess({
 
 Please refer to the [next-pwa](https://github.com/shadowwalker/next-pwa) site for more information and extra configurations.
 
+## Rollback from Vercel
+
+All the deployments are controled through the Vercel deploy site, so if anything wrong happens with a deploy we can just move to production the last succesfull deploy
+
+We need to go to [Vercel](https://vercel.com/signpost) and select the instance that we need to fix
+After doing this we have to go to the `Deployments` tab and find the latest succesfull one.
+Once finded we only need to click the three dots on the right of the deploy and click on the `Promote to production` option.
+This will trigger a redeploy of the instance with the code of the deploy selected so we can have an instance running with no problems in production while we debug the issue with the latest code pushed.
+
+### Additional data:
+
+- Name branching: all the branches should be descriptive of what the changes are and should contain the number of the task from Jira, for e.g. if I'm pushing some style changes on footer the branch should be named something along "sp-123-footer-styles-modifications"
+- How we track feat updates: All the PRs should follow the [Conventional Commit Messages](https://www.conventionalcommits.org/en/v1.0.0/)
+  - The most important prefixes you should have in mind are:
+    </br>- `fix`: which represents bug fixes.
+    </br>- `feat`: which represents a new feature.
+- How to ensure that rollback is going to a correct production branch: we only have one production branch per project so this is not an issue.
+
 ## Architectural Decisions
 
 ### Dual content structure
