@@ -23,6 +23,11 @@ function Document() {
           id="rs_req_Init"
           defer
         ></script>
+        <script
+          type="text/javascript"
+          src="//script.crazyegg.com/pages/scripts/0076/6807.js"
+          async
+        ></script>
         {/*
         TODO: get API Key from your Product manager, update src and uncomment the script.
         <script
