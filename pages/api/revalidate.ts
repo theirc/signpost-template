@@ -1,8 +1,4 @@
-import {
-  ZendeskArticleTranslation,
-  getArticleTranslations,
-  getLastArticlesEdited,
-} from '@ircsignpost/signpost-base/dist/src/zendesk';
+import { getLastArticlesEdited } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { ZENDESK_AUTH_HEADER } from '../../lib/constants';
