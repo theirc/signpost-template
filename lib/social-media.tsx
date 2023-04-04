@@ -3,6 +3,7 @@ import { SocialMediaProps } from '@ircsignpost/signpost-base/dist/src/header-ban
 
 import facebookImage from '../public/facebook.svg';
 import messengerImage from '../public/messenger.svg';
+import telegramImage from '../public/telegram.svg';
 
 export interface SocialMediaLink {
   title: string;
@@ -13,6 +14,7 @@ export interface SocialMediaLink {
 export interface SocialMediaLinks {
   facebookLink: SocialMediaLink;
   messengerLink: SocialMediaLink;
+  telegramLink: SocialMediaLink;
 }
 
 /**
@@ -21,5 +23,18 @@ export interface SocialMediaLinks {
 export function getSocialMediaProps(
   socialMediaLinks: SocialMediaLinks
 ): SocialMediaProps[] {
-  return [];
+  return [
+    {
+      ...socialMediaLinks.facebookLink,
+      image: facebookImage,
+    },
+    {
+      ...socialMediaLinks.messengerLink,
+      image: messengerImage,
+    },
+    {
+      ...socialMediaLinks.telegramLink,
+      image: telegramImage,
+    },
+  ];
 }
