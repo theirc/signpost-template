@@ -107,18 +107,12 @@ export function populateSocialMediaLinks(dynamicContent: {
       title: dynamicContent['default_banner_facebook_title'],
       href: dynamicContent['ri_czechia_facebook_link'],
     },
-    whatsappLink: {
-      title: dynamicContent['default_banner_whatsapp_title'],
-      href: dynamicContent['ri_czechia_whatsapp_link'],
-    },
+
     messengerLink: {
       title: dynamicContent['default_banner_messenger_title'],
       href: dynamicContent['ri_czechia_messenger_link'],
     },
-    instagramLink: {
-      title: dynamicContent['default_banner_instagram_title'],
-      href: dynamicContent['ri_czechia_instagram_link'],
-    },
+
     telegramLink: {
       title: dynamicContent['default_banner_telegram_title'],
       href: dynamicContent['ri_czechia_telegram_link'],
