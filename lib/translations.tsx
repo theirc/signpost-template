@@ -53,12 +53,13 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_banner_whatsapp_title',
   'default_banner_instagram_title',
   'default_banner_telegram_title',
+  'default_banner_tiktok_title',
   'ri_czechia_facebook_link',
   'ri_czechia_whatsapp_link',
   'ri_czechia_messenger_link',
   'ri_czechia_telegram_link',
   'ri_czechia_instagram_link',
-
+  'ri_czechia_tiktok_link',
   // Main body strings.
   'default_information_title',
   'default_information_description',
@@ -112,10 +113,17 @@ export function populateSocialMediaLinks(dynamicContent: {
       title: dynamicContent['default_banner_messenger_title'],
       href: dynamicContent['ri_czechia_messenger_link'],
     },
-
     telegramLink: {
       title: dynamicContent['default_banner_telegram_title'],
       href: dynamicContent['ri_czechia_telegram_link'],
+    },
+    tiktokLink: {
+      title: dynamicContent['default_banner_tiktok_title'],
+      href: dynamicContent['ri_czechia_tiktok_link'],
+    },
+    instagramLink: {
+      title: dynamicContent['default_banner_instagram_title'],
+      href: dynamicContent['ri_czechia_instagram_link'],
     },
   };
 }
