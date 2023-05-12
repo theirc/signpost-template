@@ -2,8 +2,10 @@
 import { SocialMediaProps } from '@ircsignpost/signpost-base/dist/src/header-banner';
 
 import facebookImage from '../public/facebook.svg';
+import instagramImage from '../public/instagram.svg';
 import messengerImage from '../public/messenger.svg';
 import telegramImage from '../public/telegram.svg';
+import tiktokImage from '../public/tiktok.svg';
 
 export interface SocialMediaLink {
   title: string;
@@ -15,6 +17,8 @@ export interface SocialMediaLinks {
   facebookLink: SocialMediaLink;
   messengerLink: SocialMediaLink;
   telegramLink: SocialMediaLink;
+  tiktokLink: SocialMediaLink;
+  instagramLink: SocialMediaLink;
 }
 
 /**
@@ -37,6 +41,14 @@ export function getSocialMediaProps(
     {
       ...socialMediaLinks.telegramLink,
       image: telegramImage,
+    },
+    {
+      ...socialMediaLinks.tiktokLink,
+      image: tiktokImage,
+    },
+    {
+      ...socialMediaLinks.instagramLink,
+      image: instagramImage,
     },
   ];
 }
