@@ -8,6 +8,15 @@ function Document() {
           name="google-site-verification"
           content="PrE2eX5nD9nGPXSEETbC8TVgIhz80mc4aDlBisKUXN8"
         />
+        <meta property="og:title" content="Refugee Info Greece" />
+        <meta
+          property="og: description"
+          content="Refugee Info Greece website"
+        />
+        <meta
+          property="og:image"
+          content="https://greece.refugee.info/api/og-image"
+        />
         <script
           src="https://kit.fontawesome.com/027db3ea3f.js"
           crossOrigin="anonymous"
