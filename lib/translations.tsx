@@ -46,6 +46,7 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header banner and social media strings.
   'ri_greece_mission_statement',
   'default_banner_social_media_title',
+  'default_banner_social_media_description',
   'ri_greece_banner_social_media_description',
   'default_banner_facebook_title',
   'default_banner_messenger_title',
@@ -53,6 +54,7 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_banner_telegram_title',
   'ri_greece_facebook_link',
   'ri_greece_messenger_link',
+  'ri_greece_whatsapp_link',
   'ri_greece_telegram_link',
   // Main body strings.
   'default_information_title',
@@ -110,6 +112,10 @@ export function populateSocialMediaLinks(dynamicContent: {
       title: dynamicContent['default_banner_messenger_title'],
       href: dynamicContent['ri_greece_messenger_link'],
     },
+    whatsappLink: {
+      title: dynamicContent['default_banner_whatsapp_title'],
+      href: dynamicContent['ri_greece_whatsapp_link'],
+    },
   };
 }
 
@@ -118,8 +124,9 @@ export function populateHeaderBannerStrings(dynamicContent: {
 }): HeaderBannerStrings {
   return {
     welcomeTitle: dynamicContent['ri_greece_mission_statement'],
-    socialMediaTitle: '',
-    socialMediaDescription: '',
+    socialMediaTitle: dynamicContent['default_banner_social_media_title'],
+    socialMediaDescription:
+      dynamicContent['default_banner_social_media_description'],
   };
 }
 
