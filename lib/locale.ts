@@ -8,14 +8,18 @@ export { Locale };
 // Keep LOCALES and 'getLocaleFromCode' in sync with locales configured in /next.config.js.
 export const LOCALES: { [key: string]: Locale } = {
   'en-us': { url: 'en-us', direction: 'ltr', name: 'English' },
-  // TODO
+  so: { url: 'so', direction: 'ltr', name: 'Soomali' },
+  sw: { url: 'sw', direction: 'ltr', name: 'Kiswahili' },
+  ar: { url: 'ar', direction: 'rtl', name: 'عربي' },
 };
 
 export const LOCALE_CODES_TO_CANONICAL_LOCALE_CODES: { [key: string]: string } =
   {
     en: 'en-us',
     'en-us': 'en-us',
-    // TODO
+    so: 'so',
+    sw: 'sw',
+    ar: 'ar',
   };
 
 // Returns the effective locale given locale code.

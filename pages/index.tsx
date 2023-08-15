@@ -13,6 +13,10 @@ import {
 import {
   CategoryWithSections,
   ZendeskCategory,
+  getArticle,
+  getCategories,
+  getCategoriesWithSections,
+  getTranslationsFromDynamicContent,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
@@ -39,7 +43,7 @@ import {
   getZendeskLocaleId,
 } from '../lib/locale';
 import { getHeaderLogoProps } from '../lib/logo';
-import { getMenuItems } from '../lib/menu';
+import { getFooterItems, getMenuItems } from '../lib/menu';
 import { SocialMediaLinks, getSocialMediaProps } from '../lib/social-media';
 import {
   COMMON_DYNAMIC_CONTENT_PLACEHOLDERS,
@@ -51,13 +55,6 @@ import {
   populateSocialMediaLinks,
 } from '../lib/translations';
 import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
-// TODO Use real Zendesk API implementation.
-import {
-  getArticle,
-  getCategories,
-  getCategoriesWithSections,
-  getTranslationsFromDynamicContent,
-} from '../lib/zendesk-fake';
 
 interface HomeProps {
   currentLocale: Locale;
@@ -70,6 +67,7 @@ interface HomeProps {
   // The HTML text of the About Us category shown on the home page.
   aboutUsTextHtml: string;
   categories: ZendeskCategory[] | CategoryWithSections[];
+  footerLinks?: MenuOverlayItem[];
 }
 
 const Home: NextPage<HomeProps> = ({
@@ -81,6 +79,7 @@ const Home: NextPage<HomeProps> = ({
   serviceMapProps,
   aboutUsTextHtml,
   categories,
+  footerLinks,
 }) => {
   const { publicRuntimeConfig } = getConfig();
 
@@ -100,6 +99,7 @@ const Home: NextPage<HomeProps> = ({
       serviceMapProps={serviceMapProps}
       aboutUsTextHtml={aboutUsTextHtml}
       categories={categories}
+      footerLinks={footerLinks}
       signpostVersion={publicRuntimeConfig?.version}
       cookieBanner={
         <CookieBanner
@@ -173,6 +173,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const services = await fetchServices(COUNTRY_ID, currentLocale.url);
   services.sort((a, b) => a.name.normalize().localeCompare(b.name.normalize()));
 
+  const footerLinks = getFooterItems(
+    populateMenuOverlayStrings(dynamicContent),
+    categories
+  );
   return {
     props: {
       currentLocale,
@@ -189,6 +193,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       },
       categories,
       aboutUsTextHtml,
+      footerLinks,
     },
     revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };
