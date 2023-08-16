@@ -155,7 +155,7 @@ export function populateServiceMapStrings(dynamicContent: {
     allPopulationsOption: '',
     allProvidersOption: '',
     allServicesTypeOption: '',
-    distanceAwayStrings: { informationTooltip: '' },
+    distanceAwayStrings: { informationTooltip: 's' },
   };
 }
 
