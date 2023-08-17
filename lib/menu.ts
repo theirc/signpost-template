@@ -7,6 +7,7 @@ import {
   CategoryWithSections,
   ZendeskCategory,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
+import { ReactNode } from 'react';
 
 import {
   ABOUT_US_ARTICLE_ID,
@@ -14,6 +15,7 @@ import {
 } from './constants';
 
 export interface CustomMenuOverlayStrings extends MenuOverlayStrings {
+  [x: string]: ReactNode;
   information: string;
   about: string;
 }
@@ -27,7 +29,7 @@ export function getFooterItems(
   items.push({
     key: 'about',
     label: strings.about,
-    href: `/articles/${ABOUT_US_ARTICLE_ID}`,
+    href: 'https://czechia.refugee.info/articles/12503659447453',
   });
   return items;
 }
@@ -40,17 +42,29 @@ export function getMenuItems(
 ): MenuOverlayItem[] {
   let items: MenuOverlayItem[] = [];
   items.push({ key: 'home', label: strings.home, href: '/' });
-  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
-    addMenuItemsCategories(items, categories as CategoryWithSections[]);
-  } else {
-    addMenuItemsInformation(items, strings, categories as ZendeskCategory[]);
-  }
+  items.push({
+    key: 'Feedback Survey',
+    label: strings.feedback_title,
+    href: String(strings.feedback),
+  });
+
+  items.push({
+    key: 'services',
+    label: strings.services,
+    href: '/#service-map',
+  });
   if (includeAbout) {
     items.push({
       key: 'about',
       label: strings.about,
-      href: `/articles/${ABOUT_US_ARTICLE_ID}`,
+      href: 'https://czechia.refugee.info/articles/12503659447453',
     });
+  }
+
+  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
+    addMenuItemsCategories(items, categories as CategoryWithSections[]);
+  } else {
+    addMenuItemsInformation(items, strings, categories as ZendeskCategory[]);
   }
   return items;
 }

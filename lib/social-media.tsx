@@ -5,6 +5,7 @@ import facebookImage from '../public/facebook.svg';
 import instagramImage from '../public/instagram.svg';
 import messengerImage from '../public/messenger.svg';
 import telegramImage from '../public/telegram.svg';
+import telephoneImage from '../public/telephone.svg';
 import tiktokImage from '../public/tiktok.svg';
 
 export interface SocialMediaLink {
@@ -19,6 +20,7 @@ export interface SocialMediaLinks {
   telegramLink: SocialMediaLink;
   tiktokLink: SocialMediaLink;
   instagramLink: SocialMediaLink;
+  telephoneLink: SocialMediaLink;
 }
 
 /**
@@ -49,6 +51,10 @@ export function getSocialMediaProps(
     {
       ...socialMediaLinks.instagramLink,
       image: instagramImage,
+    },
+    {
+      ...socialMediaLinks.telephoneLink,
+      image: telephoneImage,
     },
   ];
 }

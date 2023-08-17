@@ -24,6 +24,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_menu_home_title',
   'default_information_title',
   'default_menu_about_title',
+  'default_service_map_title',
   // Cookie banner strings.
   'default_cookie_banner',
   'default_accept',
@@ -45,7 +46,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header banner and social media strings.
   'ri_czechia_mission_statement',
-
+  'ri_czechia_feedback_survey_title',
   'default_banner_social_media_title',
   'default_banner_social_media_description',
   'default_banner_facebook_title',
@@ -53,6 +54,7 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_banner_whatsapp_title',
   'default_banner_instagram_title',
   'default_banner_telegram_title',
+  'default_banner_telephone_title',
   'default_banner_tiktok_title',
   'ri_czechia_facebook_link',
   'ri_czechia_whatsapp_link',
@@ -60,6 +62,8 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'ri_czechia_telegram_link',
   'ri_czechia_instagram_link',
   'ri_czechia_tiktok_link',
+  'ri_czechia_telephone_link',
+  'ri_czechia_feedback_survey',
   // Main body strings.
   'default_information_title',
   'default_information_description',
@@ -124,6 +128,10 @@ export function populateSocialMediaLinks(dynamicContent: {
     instagramLink: {
       title: dynamicContent['default_banner_instagram_title'],
       href: dynamicContent['ri_czechia_instagram_link'],
+    },
+    telephoneLink: {
+      title: dynamicContent['default_banner_telephone_title'],
+      href: dynamicContent['ri_czechia_telephone_link'],
     },
   };
 }
@@ -261,6 +269,9 @@ export function populateMenuOverlayStrings(dynamicContent: {
     home: dynamicContent['default_menu_home_title'],
     information: dynamicContent['default_information_title'],
     about: dynamicContent['default_menu_about_title'],
+    services: dynamicContent['default_service_map_title'],
+    feedback: dynamicContent['ri_czechia_feedback_survey'],
+    feedback_title: dynamicContent['ri_czechia_feedback_survey_title'],
   };
 }
 
