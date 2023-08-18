@@ -7,7 +7,6 @@ import {
   CategoryWithSections,
   ZendeskCategory,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
-import { ReactNode } from 'react';
 
 import {
   ABOUT_US_ARTICLE_ID,
@@ -15,9 +14,11 @@ import {
 } from './constants';
 
 export interface CustomMenuOverlayStrings extends MenuOverlayStrings {
-  [x: string]: ReactNode;
   information: string;
   about: string;
+  feedback_title: string;
+  feedback: string;
+  services: string;
 }
 
 export function getFooterItems(
@@ -27,14 +28,18 @@ export function getFooterItems(
   let items: MenuOverlayItem[] = [];
   items.push({ key: 'home', label: strings.home, href: '/' });
   items.push({
+    key: 'services',
+    label: strings.services,
+    href: '/#service-map',
+  });
+  items.push({
     key: 'about',
     label: strings.about,
-    href: 'https://czechia.refugee.info/articles/12503659447453',
+    href: `/articles/${ABOUT_US_ARTICLE_ID}`,
   });
   return items;
 }
 
-// TODO Add service link when map enabled.
 export function getMenuItems(
   strings: CustomMenuOverlayStrings,
   categories: ZendeskCategory[] | CategoryWithSections[],
@@ -45,26 +50,25 @@ export function getMenuItems(
   items.push({
     key: 'Feedback Survey',
     label: strings.feedback_title,
-    href: String(strings.feedback),
+    href: strings.feedback,
   });
-
+  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
+    addMenuItemsCategories(items, categories as CategoryWithSections[]);
+  } else {
+    addMenuItemsInformation(items, strings, categories as ZendeskCategory[]);
+  }
   items.push({
     key: 'services',
     label: strings.services,
     href: '/#service-map',
   });
+
   if (includeAbout) {
     items.push({
       key: 'about',
       label: strings.about,
-      href: 'https://czechia.refugee.info/articles/12503659447453',
+      href: `/articles/${ABOUT_US_ARTICLE_ID}`,
     });
-  }
-
-  if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
-    addMenuItemsCategories(items, categories as CategoryWithSections[]);
-  } else {
-    addMenuItemsInformation(items, strings, categories as ZendeskCategory[]);
   }
   return items;
 }
@@ -74,17 +78,25 @@ function addMenuItemsCategories(
   categories: CategoryWithSections[]
 ) {
   for (const { category, sections } of categories) {
-    items.push({
-      key: category.id.toString(),
-      label: category.name,
-      children: sections.map((section) => {
-        return {
-          key: section.id.toString(),
-          label: section.name,
-          href: '/sections/' + section.id.toString(),
-        };
-      }),
-    });
+    if (category.id === 10159110917917) {
+      items.push({
+        key: category.id.toString(),
+        label: category.name,
+        href: '/#service-map',
+      });
+    } else {
+      items.push({
+        key: category.id.toString(),
+        label: category.name,
+        children: sections.map((section) => {
+          return {
+            key: section.id.toString(),
+            label: section.name,
+            href: '/sections/' + section.id.toString(),
+          };
+        }),
+      });
+    }
   }
 }
 

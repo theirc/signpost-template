@@ -20,6 +20,8 @@ import { SocialMediaLinks } from './social-media';
 
 /** General strings used on various pages. */
 export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
+  'ri_czechia_feedback_survey_title',
+  'ri_czechia_feedback_survey',
   // Header strings.
   'default_menu_home_title',
   'default_information_title',
@@ -46,7 +48,6 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header banner and social media strings.
   'ri_czechia_mission_statement',
-  'ri_czechia_feedback_survey_title',
   'default_banner_social_media_title',
   'default_banner_social_media_description',
   'default_banner_facebook_title',
@@ -63,7 +64,6 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'ri_czechia_instagram_link',
   'ri_czechia_tiktok_link',
   'ri_czechia_telephone_link',
-  'ri_czechia_feedback_survey',
   // Main body strings.
   'default_information_title',
   'default_information_description',
