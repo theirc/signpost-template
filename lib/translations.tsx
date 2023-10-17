@@ -59,6 +59,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_skype_label',
   'default_signal_label',
   'default_banner_telephone_title',
+  'default_linkedin_label',
   'default_monday_label',
   'default_tuesday_label',
   'default_wednesday_label',
@@ -107,6 +108,7 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_all_populations_option',
   'default_all_accessibilities_option',
   'default_distance_away_tooltip',
+  'default_seach_input_text',
   'default_contact_button_label',
   'default_view_service_label',
 ];
@@ -185,19 +187,21 @@ export function populateServiceMapStrings(dynamicContent: {
       dynamicContent['default_services_list_count_services'],
     mapTab: dynamicContent['default_service_map_map_tab'],
     listTab: dynamicContent['default_service_map_list_tab'],
-    allRegionsOption: dynamicContent['default_service_map_all_regions_option'],
-    allCitiesOption: dynamicContent['default_service_map_all_cities_option'],
+    allRegionsOption: dynamicContent['DEFAULT_SERVICE_MAP_ALL_REGIONS_OPTION'],
+    allCitiesOption: dynamicContent['DEFAULT_SERVICE_MAP_ALL_CITIES_OPTION'],
     allCategoriesOption:
-      dynamicContent['default_service_map_all_categories_option'],
+      dynamicContent['DEFAULT_SERVICE_MAP_ALL_CATEGORIES_OPTION'],
     myLocationOption: dynamicContent['default_service_map_my_location_option'],
     allServicesTypeOption: dynamicContent['default_all_services_type_option'],
     allProvidersOption: dynamicContent['default_all_providers_option'],
     allPopulationsOption: dynamicContent['default_all_populations_option'],
     allAccessibilitiesOption:
       dynamicContent['default_all_accessibilities_option'],
+    distanceAwayStrings: {
+      informationTooltip: dynamicContent['default_distance_away_tooltip'],
+    },
     popupStrings: populatePopupStrings(dynamicContent),
-    distanceAwayStrings: { informationTooltip: '' },
-    labelSearchInput: { label: '' },
+    labelSearchInput: { label: dynamicContent['default_seach_input_text'] },
   };
 }
 
