@@ -56,27 +56,6 @@ export default async function handler(
       return res.status(500).send('Error revalidating zendesk' + err);
     }
   }
-
-  if (req.query.secret === process.env.DIRECTUS_REVALIDATE_TOKEN) {
-    try {
-      let time = new Date();
-      const result = await Promise.allSettled(
-        Object.keys(LOCALES).map(async (lang) => {
-          console.log('LOCALE', LOCALES[lang].url);
-          const pathToRevalidate = `/${LOCALES[lang].url}/`;
-          return await res.revalidate(pathToRevalidate);
-        })
-      );
-
-      return res.status(200).json({
-        revalidated: true,
-        time,
-        status: handleResults(result),
-      });
-    } catch (err) {
-      return res.status(500).send('Error revalidating directus' + err);
-    }
-  }
 }
 
 const isFulfilled = <T>(
