@@ -10,10 +10,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // Check for secret to confirm this is a valid request
-  if (
-    req.query.secret !== process.env.REVALIDATE_TOKEN ||
-    req.query.secret !== process.env.DIRECTUS_REVALIDATE_TOKEN
-  ) {
+  if (req.query.secret !== process.env.REVALIDATE_TOKEN) {
     return res.status(401).json({ message: 'Invalid token' });
   }
 
@@ -39,7 +36,6 @@ export default async function handler(
       const result = await Promise.allSettled(
         articles.map(async (article) => {
           for (let lang in LOCALES) {
-            console.log('LOCALE ', LOCALES[lang].url);
             const pathToRevalidate = `/${LOCALES[lang].url}/articles/${article.id}`;
             await res.revalidate(pathToRevalidate);
           }
