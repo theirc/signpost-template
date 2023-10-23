@@ -10,46 +10,72 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // Check for secret to confirm this is a valid request
-  if (req.query.secret !== process.env.REVALIDATE_TOKEN) {
+  if (
+    req.query.secret !== process.env.REVALIDATE_TOKEN ||
+    req.query.secret !== process.env.DIRECTUS_REVALIDATE_TOKEN
+  ) {
     return res.status(401).json({ message: 'Invalid token' });
   }
 
-  try {
-    let time = new Date();
-    time.setHours(time.getHours() - 2);
-    time.setSeconds(0, 0);
-    const unixTime = Math.floor(time.getTime() - 1000)
-      .toString()
-      .slice(0, -3);
+  if (req.query.secret === process.env.REVALIDATE_TOKEN) {
+    try {
+      let time = new Date();
+      time.setHours(time.getHours() - 2);
+      time.setSeconds(0, 0);
+      const unixTime = Math.floor(time.getTime() - 1000)
+        .toString()
+        .slice(0, -3);
 
-    const articles = await getLastArticlesEdited(
-      getZendeskUrl(),
-      unixTime,
-      ZENDESK_AUTH_HEADER
-    );
+      const articles = await getLastArticlesEdited(
+        getZendeskUrl(),
+        unixTime,
+        ZENDESK_AUTH_HEADER
+      );
 
-    if (!articles.length) {
-      return res.status(200).json('nothing to revalidate');
+      if (!articles.length) {
+        return res.status(200).json('nothing to revalidate');
+      }
+
+      const result = await Promise.allSettled(
+        articles.map(async (article) => {
+          for (let lang in LOCALES) {
+            console.log('LOCALE ', LOCALES[lang].url);
+            const pathToRevalidate = `/${LOCALES[lang].url}/articles/${article.id}`;
+            await res.revalidate(pathToRevalidate);
+          }
+        })
+      );
+
+      return res.status(200).json({
+        revalidated: true,
+        articles,
+        time,
+        status: handleResults(result),
+      });
+    } catch (err) {
+      return res.status(500).send('Error revalidating zendesk' + err);
     }
+  }
 
-    const result = await Promise.allSettled(
-      articles.map(async (article) => {
-        for (let lang in LOCALES) {
-          console.log('LOCALE ', LOCALES[lang].url);
-          const pathToRevalidate = `/${LOCALES[lang].url}/articles/${article.id}`;
-          await res.revalidate(pathToRevalidate);
-        }
-      })
-    );
+  if (req.query.secret === process.env.DIRECTUS_REVALIDATE_TOKEN) {
+    try {
+      let time = new Date();
+      const result = await Promise.allSettled(
+        Object.keys(LOCALES).map(async (lang) => {
+          console.log('LOCALE', LOCALES[lang].url);
+          const pathToRevalidate = `/${LOCALES[lang].url}/`;
+          return await res.revalidate(pathToRevalidate);
+        })
+      );
 
-    return res.status(200).json({
-      revalidated: true,
-      articles,
-      time,
-      status: handleResults(result),
-    });
-  } catch (err) {
-    return res.status(500).send('Error revalidating ' + err);
+      return res.status(200).json({
+        revalidated: true,
+        time,
+        status: handleResults(result),
+      });
+    } catch (err) {
+      return res.status(500).send('Error revalidating directus' + err);
+    }
   }
 }
 
