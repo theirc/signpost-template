@@ -78,7 +78,7 @@ interface HomeProps {
   footerLinks?: MenuOverlayItem[];
 }
 
-const Home: NextPage<HomeProps> = ({
+export default function Home({
   currentLocale,
   strings,
   headerBannerStrings,
@@ -88,7 +88,7 @@ const Home: NextPage<HomeProps> = ({
   aboutUsTextHtml,
   categories,
   footerLinks,
-}) => {
+}: HomeProps) {
   const { publicRuntimeConfig } = getConfig();
 
   return (
@@ -117,7 +117,7 @@ const Home: NextPage<HomeProps> = ({
       }
     />
   );
-};
+}
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const currentLocale: Locale = getLocaleFromCode(locale ?? 'en-us');
@@ -223,5 +223,3 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     revalidate: REVALIDATION_TIMEOUT_SECONDS,
   };
 };
-
-export default Home;
