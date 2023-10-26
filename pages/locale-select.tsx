@@ -34,6 +34,10 @@ const langs: Lang[] = [
     langShort: 'ur',
     langLong: 'اردو',
   },
+  {
+    langShort: 'so',
+    langLong: 'Soomaali',
+  },
 ];
 
 /** The locale selection page.

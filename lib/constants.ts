@@ -78,6 +78,7 @@ export const DYNAMIC_CONTENT_LOCALES: { [key: string]: number } = {
   fr: 16,
   uk: 1173,
   ur: 1183,
+  so: 1403,
 };
 
 export const ZENDESK_AUTH_HEADER = {
