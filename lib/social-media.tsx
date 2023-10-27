@@ -3,6 +3,7 @@ import { SocialMediaProps } from '@ircsignpost/signpost-base/dist/src/header-ban
 
 import facebookImage from '../public/facebook.svg';
 import messengerImage from '../public/messenger.svg';
+import telegramImage from '../public/telegram.svg';
 import whatsappImage from '../public/whatsapp.svg';
 
 export interface SocialMediaLink {
@@ -15,6 +16,7 @@ export interface SocialMediaLinks {
   facebookLink: SocialMediaLink;
   messengerLink: SocialMediaLink;
   whatsappLink: SocialMediaLink;
+  telgramLink: SocialMediaLink;
 }
 
 /**
@@ -35,6 +37,10 @@ export function getSocialMediaProps(
     {
       ...socialMediaLinks.whatsappLink,
       image: whatsappImage,
+    },
+    {
+      ...socialMediaLinks.telegramLink,
+      image: telegramImage,
     },
   ];
 }

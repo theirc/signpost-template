@@ -155,6 +155,10 @@ export function populateSocialMediaLinks(dynamicContent: {
       title: dynamicContent['default_banner_whatsapp_title'],
       href: dynamicContent['ri_greece_whatsapp_link'],
     },
+    telegramLink: {
+      title: dynamicContent['default_banner_telegram_title'],
+      href: dynamicContent['ri_greece_telegram_link'],
+    },
   };
 }
 
@@ -315,6 +319,7 @@ export function populateServiceContentStrings(dynamicContent: {
       Twitter: dynamicContent['default_banner_twitter_title'],
       Viber: dynamicContent['default_banner_viber_title'],
       Whatsapp: dynamicContent['default_banner_whatsapp_title'],
+      f,
     },
     openingHoursStrings: {
       Monday: dynamicContent['default_monday_label'],
