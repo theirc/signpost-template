@@ -25,6 +25,7 @@ import { SocialMediaLinks } from './social-media';
 export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header strings.
   'default_menu_home_title',
+  'default_service_map_title',
   'default_information_title',
   'default_menu_about_title',
   // Cookie banner strings.
@@ -86,7 +87,6 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Main body strings.
   'default_information_title',
   'ri_greece_information_description',
-  'default_service_map_title',
   'ri_greece_service_map_description',
   'default_service_map_select_region',
   'default_service_map_all_regions',
@@ -339,6 +339,7 @@ export function populateMenuOverlayStrings(dynamicContent: {
     home: dynamicContent['default_menu_home_title'],
     information: dynamicContent['default_information_title'],
     about: dynamicContent['default_menu_about_title'],
+    services: dynamicContent['default_service_map_title'],
   };
 }
 

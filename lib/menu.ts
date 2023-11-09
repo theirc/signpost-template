@@ -16,6 +16,7 @@ import {
 export interface CustomMenuOverlayStrings extends MenuOverlayStrings {
   information: string;
   about: string;
+  services: string;
 }
 
 export function getFooterItems(
@@ -24,15 +25,11 @@ export function getFooterItems(
 ): MenuOverlayItem[] {
   let items: MenuOverlayItem[] = [];
   items.push({ key: 'home', label: strings.home, href: '/' });
-  for (const { category } of categories as CategoryWithSections[]) {
-    if (category.id === 4420351005975) {
-      items.push({
-        key: category.id.toString(),
-        label: category.name,
-        href: '/#service-map',
-      });
-    }
-  }
+  items.push({
+    key: 'services',
+    label: strings.services, // Make sure this string is defined in your strings object
+    href: '/#service-map',
+  });
   return items;
 }
 
@@ -43,6 +40,11 @@ export function getMenuItems(
 ): MenuOverlayItem[] {
   let items: MenuOverlayItem[] = [];
   items.push({ key: 'home', label: strings.home, href: '/' });
+  items.push({
+    key: 'services',
+    label: strings.services, // Make sure this string is defined in your strings object
+    href: '/#service-map',
+  });
   if (USE_CAT_SEC_ART_CONTENT_STRUCTURE) {
     addMenuItemsCategories(items, categories as CategoryWithSections[]);
   } else {
