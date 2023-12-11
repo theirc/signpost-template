@@ -82,7 +82,7 @@ export default function SearchResultsPage({
       strings={strings}
       siteUrl={siteUrl}
       informationFilter={[4768127626007]}
-      servicesFilter={[4420351005975]}
+      servicesFilter={[1]}
       footerLinks={footerLinks}
       signpostVersion={publicRuntimeConfig?.version}
       cookieBanner={
