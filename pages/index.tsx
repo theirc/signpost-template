@@ -14,11 +14,6 @@ import HomePage, {
 import { MenuOverlayItem } from '@ircsignpost/signpost-base/dist/src/menu-overlay';
 import { ServiceMapProps } from '@ircsignpost/signpost-base/dist/src/service-map';
 import {
-  fetchRegions,
-  fetchServices,
-  fetchServicesCategories,
-} from '@ircsignpost/signpost-base/dist/src/service-map-common';
-import {
   CategoryWithSections,
   ZendeskCategory,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
@@ -191,10 +186,39 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     a.name?.normalize().localeCompare(b.name?.normalize())
   );
 
+  const uniqueAccessibilityIdsSet = new Set(
+    services.flatMap((x) =>
+      x.Accessibility.map(
+        (accessibilityItem) => accessibilityItem.accessibility_id
+      )
+    )
+  );
+  const uniqueAccessibilityIdsArray = Array.from(uniqueAccessibilityIdsSet);
+
+  const uniquePopulationsIdsSet = new Set(
+    services.flatMap((x) =>
+      x.Populations.map((population) => population.populations_id)
+    )
+  );
+  const uniquePopulationsIdsArray = Array.from(uniquePopulationsIdsSet);
+
+  const uniqueProvidersIdsSet = new Set(services.flatMap((x) => x.provider.id));
+  const uniqueProvidersIdsArray = Array.from(uniqueProvidersIdsSet);
+
   const serviceTypes = await getDirectusServiceCategories(directus);
-  const providers = await getDirectusProviders(directus, DIRECTUS_COUNTRY_ID);
-  const populations = await getDirectusPopulationsServed(directus);
-  const accessibility = await getDirectusAccessibility(directus);
+  const providers = await getDirectusProviders(
+    directus,
+    DIRECTUS_COUNTRY_ID,
+    uniqueProvidersIdsArray
+  );
+  const populations = await getDirectusPopulationsServed(
+    uniquePopulationsIdsArray,
+    directus
+  );
+  const accessibility = await getDirectusAccessibility(
+    uniqueAccessibilityIdsArray,
+    directus
+  );
 
   return {
     props: {
