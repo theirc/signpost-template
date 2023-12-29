@@ -163,7 +163,7 @@ async function getStaticParams() {
 
   const servicesFiltered = services?.filter((service) => {
     const translation = service.translations.find((translation) =>
-      allowedLanguageCodes.includes(translation.languages_id.code)
+      allowedLanguageCodes.includes(translation.languages_id?.code)
     );
     return translation;
   });
@@ -171,7 +171,7 @@ async function getStaticParams() {
   return servicesFiltered.flatMap((service) =>
     service?.translations?.map((translation) => {
       const locale = Object.values(LOCALES).find(
-        (x) => x.directus === translation.languages_id.code
+        (x) => x.directus === translation.languages_id?.code
       );
 
       return {
@@ -259,7 +259,7 @@ export const getStaticProps: GetStaticProps = async ({
   const service = await getDirectusArticle(Number(params?.service), directus);
 
   const serviceTranslated = service.translations.filter(
-    (x) => x.languages_id.code === currentLocale.directus
+    (x) => x.languages_id?.code === currentLocale.directus
   );
 
   service.translations = serviceTranslated;
