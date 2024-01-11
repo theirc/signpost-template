@@ -239,8 +239,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         shareButton: getShareButtonStrings(dynamicContent),
         serviceTypes,
         providers,
-        populations,
-        accessibility,
         showDirectus: true,
         currentLocale,
       },
