@@ -11,7 +11,10 @@ import {
 } from '@ircsignpost/signpost-base/dist/src/topic-with-articles';
 import { GetStaticProps } from 'next';
 import getConfig from 'next/config';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
+import { useBreadcrumbs } from '../../context/BreadcrumbsContext';
 import {
   ABOUT_US_ARTICLE_ID,
   CATEGORIES_TO_HIDE,
@@ -72,6 +75,14 @@ export default function Category({
   footerLinks,
 }: CategoryProps) {
   const { publicRuntimeConfig } = getConfig();
+  const router = useRouter();
+  const { setBreadcrumbs } = useBreadcrumbs();
+
+  useEffect(() => {
+    const url = router.asPath;
+    const test = { url, title: section.name };
+    setBreadcrumbs(test);
+  }, [router.asPath, setBreadcrumbs, section.name]);
 
   return (
     <SectionPage
