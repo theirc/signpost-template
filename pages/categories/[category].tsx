@@ -14,8 +14,10 @@ import {
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import { GetStaticProps } from 'next';
 import getConfig from 'next/config';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
+import { useBreadcrumbs } from '../../context/BreadcrumbsContext';
 import {
   CATEGORIES_TO_HIDE,
   CATEGORY_ICON_NAMES,
@@ -71,8 +73,18 @@ export default function Category({
   footerLinks,
 }: CategoryProps) {
   const [sectionDisplayed, setSectionDisplayed] = useState<Section[]>(sections);
-
   const { publicRuntimeConfig } = getConfig();
+  const router = useRouter();
+  const { setBreadcrumbs } = useBreadcrumbs();
+
+  useEffect(() => {
+    const url = router.asPath;
+    const test = {
+      url,
+      title: categoryItems.filter((x) => x.value === categoryId)[0]?.name,
+    };
+    setBreadcrumbs(test);
+  }, [categoryId, categoryItems, router.asPath, setBreadcrumbs]);
 
   const handleSectionFilterChange = async (val: number) => {
     const SECTION = await getCategorySection(

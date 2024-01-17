@@ -26,6 +26,7 @@ import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import React from 'react';
 
+import { useBreadcrumbs } from '../../context/BreadcrumbsContext';
 import {
   ABOUT_US_ARTICLE_ID,
   CATEGORIES_TO_HIDE,
@@ -91,6 +92,7 @@ export default function Article({
 }: ArticleProps) {
   const router = useRouter();
   const { publicRuntimeConfig } = getConfig();
+  const { breadcrumbs } = useBreadcrumbs();
 
   return (
     <ArticlePage
@@ -144,6 +146,7 @@ export default function Article({
             locale: locale,
           },
           strings: strings.articleContentStrings,
+          previosURL: breadcrumbs,
         }}
       />
     </ArticlePage>
