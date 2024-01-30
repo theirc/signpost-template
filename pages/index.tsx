@@ -3,8 +3,10 @@ import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import {
   getDirectusAccessibility,
   getDirectusArticles,
+  getDirectusCities,
   getDirectusPopulationsServed,
   getDirectusProviders,
+  getDirectusRegions,
   getDirectusServiceCategories,
 } from '@ircsignpost/signpost-base/dist/src/directus';
 import { HeaderBannerStrings } from '@ircsignpost/signpost-base/dist/src/header-banner';
@@ -34,7 +36,6 @@ import {
   DIRECTUS_COUNTRY_ID,
   DIRECTUS_INSTANCE,
   GOOGLE_ANALYTICS_IDS,
-  MAP_DEFAULT_COORDS,
   MENU_CATEGORIES_TO_HIDE,
   REVALIDATION_TIMEOUT_SECONDS,
   SEARCH_BAR_INDEX,
@@ -208,8 +209,25 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   );
   const uniquePopulationsIdsArray = Array.from(uniquePopulationsIdsSet);
 
+  const uniqueRegionsIds = services.reduce((unique: number[], article) => {
+    if (!unique.includes(article.region) && article.region !== null) {
+      unique.push(article.region);
+    }
+    return unique;
+  }, []);
+
+  const uniqueCitiesIds = services.reduce((unique: number[], article) => {
+    if (!unique.includes(article.city) && article.city !== null) {
+      unique.push(article.city);
+    }
+    return unique;
+  }, []);
+
   const uniqueProvidersIdsSet = new Set(services.flatMap((x) => x.provider.id));
   const uniqueProvidersIdsArray = Array.from(uniqueProvidersIdsSet);
+
+  const regions = await getDirectusRegions(uniqueRegionsIds, directus);
+  const cities = await getDirectusCities(uniqueCitiesIds, directus);
 
   const serviceTypes = await getDirectusServiceCategories(directus);
   const providersArray = await getDirectusProviders(
@@ -238,12 +256,13 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       socialMediaLinks: populateSocialMediaLinks(dynamicContent),
       serviceMapProps: {
         services,
-        defaultCoords: MAP_DEFAULT_COORDS,
         shareButton: getShareButtonStrings(dynamicContent),
         serviceTypes,
         providers,
         showDirectus: true,
         currentLocale,
+        regions,
+        cities,
       },
       categories,
       aboutUsTextHtml,

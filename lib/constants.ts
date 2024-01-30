@@ -1,11 +1,8 @@
 import { AlgoliaSearchIndex } from '@ircsignpost/signpost-base/dist/src/search-common';
-import { LatLngExpression } from 'leaflet';
 
 export const SITE_TITLE = 'Refugee.info Greece';
 
 export const COUNTRY_ID = 9;
-
-export const MAP_DEFAULT_COORDS: LatLngExpression = [39.4589841, 23.4877237];
 
 // Cache statically generated pages for 1 hour. The timeout was chosen
 // arbitrarily. Our website has static, non-urgent resources, so we probably do
