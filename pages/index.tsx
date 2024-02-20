@@ -1,6 +1,7 @@
 import { Directus } from '@directus/sdk';
 import CookieBanner from '@ircsignpost/signpost-base/dist/src/cookie-banner';
 import {
+  DirectusServiceCategory,
   getDirectusAccessibility,
   getDirectusArticles,
   getDirectusCities,
@@ -209,27 +210,51 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   );
   const uniquePopulationsIdsArray = Array.from(uniquePopulationsIdsSet);
 
-  const uniqueRegionsIds = services.reduce((unique: number[], article) => {
-    if (!unique.includes(article.region) && article.region !== null) {
-      unique.push(article.region);
-    }
-    return unique;
-  }, []);
+  const uniqueRegionsIds = new Set(services.map((service) => service.region));
 
-  const uniqueCitiesIds = services.reduce((unique: number[], article) => {
-    if (!unique.includes(article.city) && article.city !== null) {
-      unique.push(article.city);
-    }
-    return unique;
-  }, []);
+  const uniqueCitiesIds = new Set(services.map((service) => service.city));
 
   const uniqueProvidersIdsSet = new Set(services.flatMap((x) => x.provider.id));
   const uniqueProvidersIdsArray = Array.from(uniqueProvidersIdsSet);
 
-  const regions = await getDirectusRegions(uniqueRegionsIds, directus);
-  const cities = await getDirectusCities(uniqueCitiesIds, directus);
+  const regions = await getDirectusRegions(
+    Array.from(uniqueRegionsIds).filter((x) => x !== null),
+    directus
+  );
+  const cities = await getDirectusCities(
+    Array.from(uniqueCitiesIds).filter((x) => x !== null),
+    directus
+  );
 
-  const serviceTypes = await getDirectusServiceCategories(directus);
+  const fetchServiceTypes = await getDirectusServiceCategories(directus);
+  const uniqueTypesSet = new Set<number>();
+  services.forEach((service) => {
+    service.categories.forEach((category) => {
+      uniqueTypesSet.add(category.service_categories_id.id);
+    });
+  });
+
+  const usedSubcategoryIds = new Set<number>();
+  services.forEach((service) => {
+    service.subcategories.forEach((subcategory) => {
+      usedSubcategoryIds.add(subcategory.services_subcategories_id);
+    });
+  });
+
+  const serviceTypes = fetchServiceTypes
+    .filter((type) => uniqueTypesSet.has(type.id))
+    .map((category) => {
+      const filteredSubcategories = category.services_subcategories.filter(
+        (subcategory) =>
+          usedSubcategoryIds.has(subcategory?.services_subcategories_id?.id)
+      );
+
+      return {
+        ...category,
+        services_subcategories: filteredSubcategories,
+      } as DirectusServiceCategory;
+    });
+
   const providersArray = await getDirectusProviders(
     directus,
     DIRECTUS_COUNTRY_ID

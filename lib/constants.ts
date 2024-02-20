@@ -2,8 +2,6 @@ import { AlgoliaSearchIndex } from '@ircsignpost/signpost-base/dist/src/search-c
 
 export const SITE_TITLE = 'Refugee.info Greece';
 
-export const COUNTRY_ID = 9;
-
 // Cache statically generated pages for 1 hour. The timeout was chosen
 // arbitrarily. Our website has static, non-urgent resources, so we probably do
 // not need to serve content faster.
