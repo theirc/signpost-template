@@ -4,7 +4,7 @@ import { SocialMediaProps } from '@ircsignpost/signpost-base/dist/src/header-ban
 import facebookImage from '../public/facebook.svg';
 import messengerImage from '../public/messenger.svg';
 import telegramImage from '../public/telegram.svg';
-import whatsAppChannelImage from ''../public/wachannel.svg''
+import whatsAppChannelImage from ''../public/wachannel.svg';
 
 export interface SocialMediaLink {
   title: string;
