@@ -85,7 +85,7 @@ export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'ri_greece_facebook_link',
   'ri_greece_messenger_link',
   'ri_greece_whatsapp_link',
-  'ri_greece_whatsapp_channel_link'
+  'ri_greece_whatsapp_channel_link',
   'ri_greece_telegram_link',
   // Main body strings.
   'default_information_title',
