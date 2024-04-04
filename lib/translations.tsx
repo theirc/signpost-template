@@ -150,6 +150,10 @@ export function populateSocialMediaLinks(dynamicContent: {
       title: dynamicContent['default_banner_telegram_title'],
       href: dynamicContent['ri_greece_telegram_link'],
     },
+    whatsappLink: {
+      title: dynamicContent['default_banner_whatsapp_title'],
+      href: dynamicContent['ri_greece_whatsapp_link'],
+    },
     whatsAppChannelLink: {
       title: dynamicContent['default_banner_whatsappchannel_title'],
       href: dynamicContent['ri_greece_whatsapp_channel_link'],
