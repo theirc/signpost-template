@@ -17,7 +17,7 @@ export interface SocialMediaLinks {
   facebookLink: SocialMediaLink;
   messengerLink: SocialMediaLink;
   telegramLink: SocialMediaLink;
-  whatsAppLink: socialMediaLink;
+  whatsAppLink: SocialMediaLink;
   whatsAppChannelLink: SocialMediaLink;
 }
 
