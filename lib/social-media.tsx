@@ -36,6 +36,7 @@ export function getSocialMediaProps(
       ...socialMediaLinks.messengerLink,
       image: messengerImage,
     },
+    {
       ...socialMediaLinks.whatsAppLink,
       image: whatsAppImage,
     },
