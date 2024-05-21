@@ -805,7 +805,7 @@
   version "16.42.0"
   resolved "https://registry.yarnpkg.com/@ircsignpost/signpost-base/-/signpost-base-16.42.0.tgz#ae3142597a0766afa42ba0075d056fecd9df9cf8"
   integrity sha512-aBRQ8Rfw78HlsxpEuTY9JyYFUYn4mYe+24qQlMBMmgtf4AM8kIH9CBAwbF4joHdKxJynS1Plqz6zNM/IT8NXfQ==
-
+  
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
@@ -5779,6 +5779,11 @@ react-dom@18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-icons@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.0.1.tgz#1694e11bfa2a2888cab47dcc30154ce90485feee"
+  integrity sha512-WqLZJ4bLzlhmsvme6iFdgO8gfZP17rfjYEJ2m9RsZjZ+cc4k1hTzknEz63YS1MeT50kVzoa1Nz36f4BEx+Wigw==
 
 react-instantsearch-hooks-web@^6.32.0:
   version "6.33.0"

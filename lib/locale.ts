@@ -13,14 +13,14 @@ export const LOCALES: { [key: string]: Locale } = {
     name: 'English',
     directus: 'en-US',
   },
-  // TODO
+  fr: { url: 'fr', direction: 'ltr', name: 'Français', directus: 'fr-FR' },
 };
 
 export const LOCALE_CODES_TO_CANONICAL_LOCALE_CODES: { [key: string]: string } =
   {
     en: 'en-us',
     'en-us': 'en-us',
-    // TODO
+    fr: 'fr',
   };
 
 // Returns the effective locale given locale code.
@@ -34,5 +34,5 @@ export function getLocaleFromCode(code: string): Locale {
  If there is no mapping for the requested locale, return the deafault id 
  for en-us locale. */
 export const getZendeskLocaleId = (currentLocale: Locale): number => {
-  return DYNAMIC_CONTENT_LOCALES[currentLocale.url] || 1;
+  return DYNAMIC_CONTENT_LOCALES[currentLocale.url] || 16;
 };

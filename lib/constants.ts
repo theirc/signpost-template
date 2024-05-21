@@ -1,6 +1,6 @@
 import { AlgoliaSearchIndex } from '@ircsignpost/signpost-base/dist/src/search-common';
 
-export const SITE_TITLE = 'TODO';
+export const SITE_TITLE = 'Anoura';
 
 // Cache statically generated pages for 1 hour. The timeout was chosen
 // arbitrarily. Our website has static, non-urgent resources, so we probably do
@@ -10,7 +10,7 @@ export const REVALIDATION_TIMEOUT_SECONDS: number = 1 * 60 * 60;
 // The "about us" article ID.
 //
 // TODO
-export const ABOUT_US_ARTICLE_ID: number = 123;
+export const ABOUT_US_ARTICLE_ID: number = 14695806352157;
 
 // The information hierary of the website.
 // Set to true for the category -> section -> article hierarchy, similar to that of United for Ukraine.
@@ -21,8 +21,10 @@ export const USE_CAT_SEC_ART_CONTENT_STRUCTURE = false;
 
 // A mapping from category ID to a Material icon for that category.
 export const CATEGORY_ICON_NAMES: { [key: string]: string } = {
-  /* TODO */
-  '123': 'home_work', // Placeholder
+  '17609148236829': 'apps',
+  '17609120768797': 'gavel',
+  '15018270761501': 'info',
+  '15018294354845': 'help',
 };
 
 // A mapping from section ID to a Material icon for that section.
@@ -40,8 +42,8 @@ export const CATEGORIES_TO_HIDE: number[] = [
 // https://developer.zendesk.com/api-reference/ticketing/account-configuration/locales/
 // Keep in sync with locales configured in /next.config.js.
 export const DYNAMIC_CONTENT_LOCALES: { [key: string]: number } = {
-  'en-us': 1, // English locale id
-  // TODO: Add any other IDs needed
+  'en-us': 1,
+  fr: 16,
 };
 
 export const ZENDESK_AUTH_HEADER = {
@@ -81,5 +83,5 @@ export const SEARCH_RESULTS_PAGE_INDEX: AlgoliaSearchIndex = {
 };
 
 export const DIRECTUS_AUTH_TOKEN = process.env.DIRECTUS_TOKEN ?? '';
-export const DIRECTUS_COUNTRY_ID = 0; // TODO: replace with the country ID from directus
-export const DIRECTUS_INSTANCE = ''; // TODO: add the url from the directus instance you want to fetch data from
+export const DIRECTUS_COUNTRY_ID = 28;
+export const DIRECTUS_INSTANCE = 'https://directus-irc.azurewebsites.net/';

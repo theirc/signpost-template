@@ -27,6 +27,7 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_menu_home_title',
   'default_information_title',
   'default_menu_about_title',
+  'default_menu_services_title',
   // Cookie banner strings.
   'default_cookie_banner',
   'default_accept',
@@ -72,21 +73,18 @@ export const COMMON_DYNAMIC_CONTENT_PLACEHOLDERS = [
 
 export const HOME_PAGE_DYNAMIC_CONTENT_PLACEHOLDERS = [
   // Header banner and social media strings.
-  /*
-   * TODO: create Dynamic content ID for mission statement.
-  '<website_name>_mission_statement',
-   */
+  'mali_mission_statement',
   'default_banner_social_media_title',
   'default_banner_social_media_description',
   'default_banner_facebook_title',
   'default_banner_messenger_title',
   'default_banner_whatsapp_title',
+  'mali_facebook_link',
+  'mali_messenger_link',
+  'mali_whatsapp_link',
   // Main body strings.
   'default_information_title',
-  /*
-  //TODO: Replace and create customized dynamic content for information description.
-  '<site_prefix>_information_description',
-  */
+  'mali_information_description',
   'default_information_description',
   'default_service_map_title',
   'default_service_map_description',
@@ -129,25 +127,21 @@ export const ERROR_DYNAMIC_CONTENT_PLACEHOLDERS = [
   'default_error_home_button_title',
 ];
 
-// TODO: Ask your Product manager to get Social media links.
 export function populateSocialMediaLinks(dynamicContent: {
   [key: string]: string;
 }): SocialMediaLinks {
   return {
     facebookLink: {
       title: dynamicContent['default_banner_facebook_title'],
-      // TODO: create Dynamic content with link to Facebook page
-      href: '', // dynamicContent['<site_prefix>_facebook_link']
+      href: dynamicContent['mali_facebook_link'],
     },
     whatsappLink: {
       title: dynamicContent['default_banner_whatsapp_title'],
-      // TODO: create Dynamic content with link to Whatsapp page
-      href: '', // dynamicContent['<site_prefix>_whatsapp_link']
+      href: dynamicContent['mali_whatsapp_link'],
     },
     messengerLink: {
       title: dynamicContent['default_banner_messenger_title'],
-      // TODO: create Dynamic content with link to Messenger page
-      href: '', // dynamicContent['<site_prefix>_messenger_link']
+      href: dynamicContent['mali_messenger_link'],
     },
   };
 }
@@ -156,8 +150,7 @@ export function populateHeaderBannerStrings(dynamicContent: {
   [key: string]: string;
 }): HeaderBannerStrings {
   return {
-    // TODO: replace welcomeTitle with website-specific Dynamic content ID.
-    welcomeTitle: 'Welcome text.', // dynamicContent['<site_prefix>_mission_statement'],
+    welcomeTitle: dynamicContent['mali_mission_statement'],
     socialMediaTitle: dynamicContent['default_banner_social_media_title'],
     socialMediaDescription:
       dynamicContent['default_banner_social_media_description'],
@@ -198,8 +191,7 @@ export function populateCategoriesSectionStrings(dynamicContent: {
 }): CardsListStrings {
   return {
     title: dynamicContent['default_information_title'],
-    //TODO: Update to the customized '<site_prefix>_information_description',
-    description: dynamicContent['default_information_description'],
+    description: dynamicContent['mali_information_description'],
   };
 }
 
@@ -291,6 +283,7 @@ export function populateMenuOverlayStrings(dynamicContent: {
     home: dynamicContent['default_menu_home_title'],
     information: dynamicContent['default_information_title'],
     about: dynamicContent['default_menu_about_title'],
+    services: dynamicContent['default_menu_services_title'],
   };
 }
 

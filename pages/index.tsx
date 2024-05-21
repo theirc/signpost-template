@@ -19,6 +19,10 @@ import { ServiceMapProps } from '@ircsignpost/signpost-base/dist/src/service-map
 import {
   CategoryWithSections,
   ZendeskCategory,
+  getArticle,
+  getCategories,
+  getCategoriesWithSections,
+  getTranslationsFromDynamicContent,
 } from '@ircsignpost/signpost-base/dist/src/zendesk';
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
@@ -58,13 +62,6 @@ import {
   populateSocialMediaLinks,
 } from '../lib/translations';
 import { getZendeskMappedUrl, getZendeskUrl } from '../lib/url';
-// TODO Use real Zendesk API implementation.
-import {
-  getArticle,
-  getCategories,
-  getCategoriesWithSections,
-  getTranslationsFromDynamicContent,
-} from '../lib/zendesk-fake';
 
 interface HomeProps {
   currentLocale: Locale;
@@ -163,8 +160,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
   const menuOverlayItems = getMenuItems(
     populateMenuOverlayStrings(dynamicContent),
-    categories,
-    !!aboutUsArticle
+    categories
   );
 
   const footerLinks = getFooterItems(
@@ -211,10 +207,13 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const uniqueProvidersIdsArray = Array.from(uniqueProvidersIdsSet);
 
   const regions = await getDirectusRegions(
-    Array.from(uniqueRegionsIds),
+    Array.from(uniqueRegionsIds).filter((x) => x !== null),
     directus
   );
-  const cities = await getDirectusCities(Array.from(uniqueCitiesIds), directus);
+  const cities = await getDirectusCities(
+    Array.from(uniqueCitiesIds).filter((x) => x !== null),
+    directus
+  );
 
   const fetchServiceTypes = await getDirectusServiceCategories(directus);
   const uniqueTypesSet = new Set<number>();
