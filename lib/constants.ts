@@ -25,6 +25,8 @@ export const CATEGORY_ICON_NAMES: { [key: string]: string } = {
   '17609120768797': 'gavel',
   '15018270761501': 'info',
   '15018294354845': 'help',
+  '18904321744413': 'woman',
+  '18899875123229': 'mood',
 };
 
 // A mapping from section ID to a Material icon for that section.
