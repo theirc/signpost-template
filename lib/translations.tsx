@@ -135,10 +135,6 @@ export function populateSocialMediaLinks(dynamicContent: {
       title: dynamicContent['default_banner_facebook_title'],
       href: dynamicContent['mali_facebook_link'],
     },
-    whatsappLink: {
-      title: dynamicContent['default_banner_whatsapp_title'],
-      href: dynamicContent['mali_whatsapp_link'],
-    },
     messengerLink: {
       title: dynamicContent['default_banner_messenger_title'],
       href: dynamicContent['mali_messenger_link'],
